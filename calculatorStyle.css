@@ -4,3 +4,22 @@
 body {
     background: linear-gradient(to right, #253770, #431e61);
 }
+
+h1 {
+    color: white;
+    background: linear-gradient(to right, #2b4392, #592783);
+    font: 2.5em "Helvetica", "Candara";
+    width: 420px;
+    margin: 15px 36%;
+    padding: 5px;
+    border-radius: 20px;
+    text-shadow: 5px 5px 5px #000000;
+    box-shadow: 0px 5px 10px #220a36;
+}
+#calculator {
+    margin-left: 31.5%;
+    margin-top: 35px;
+    width: 560px;
+    height: 565px;
+    background: red;
+}
