@@ -16,10 +16,23 @@ h1 {
     text-shadow: 5px 5px 5px #000000;
     box-shadow: 0px 5px 10px #220a36;
 }
+
 #calculator {
     margin-left: 31.5%;
-    margin-top: 35px;
+    margin-top: 20px;
     width: 560px;
     height: 565px;
     background: red;
+}
+
+.numbers {
+    background: blue;
+}
+
+footer {
+    background: green;
+    margin-top: 15px;
+    padding-left: 40%;
+    font: 1em Helvetica;
+    color: #1f1f1f;
 }
