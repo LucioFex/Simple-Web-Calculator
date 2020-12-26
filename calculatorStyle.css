@@ -3,6 +3,7 @@
 
 body {
     background: linear-gradient(to right, #253770, #431e61);
+    position: relative;
 }
 
 h1 {
@@ -15,24 +16,57 @@ h1 {
     border-radius: 20px;
     text-shadow: 5px 5px 5px #000000;
     box-shadow: 0px 5px 10px #220a36;
+    position: absolute;
 }
 
 #calculator {
-    margin-left: 31.5%;
-    margin-top: 20px;
+    margin-left: 30%;
+    margin-top: 85px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(at center, #411f58 70%, #193444);
+    border-radius: 30px;
+    box-shadow: 10px 10px 25px black;
+    position: absolute;
+}
+
+#calculatorInterface {
+    margin-bottom: 100px;
+    margin: 17px;
     width: 560px;
     height: 565px;
     background: red;
+    position: relative;
+    border-radius: 15px;
 }
 
-.numbers {
+#numbers {
     background: blue;
+    position: absolute;
+    margin: 38% 0 0 10px;
+    border-radius: 10px;
+    width: 80%;
+    height: 60%;
+}
+
+.num {
+    background: purple;
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin: 5px;
+    text-align: center;
 }
 
 footer {
-    background: green;
-    margin-top: 15px;
-    padding-left: 40%;
-    font: 1em Helvetica;
-    color: #1f1f1f;
+    background: linear-gradient(to right, #300415, #44031c);
+    text-align: center;
+    font: 1.2em Helvetica, Candara;
+    color: #ffffff;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 0;
 }
