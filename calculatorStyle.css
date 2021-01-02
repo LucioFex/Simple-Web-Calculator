@@ -16,11 +16,11 @@ html, body {
 
 #main {
     overflow: auto;
-    padding-bottom: 100%;
+    padding-bottom: 70%;
     background: radial-gradient(at center, #253770, #431e61);
 }
 
-h1 {
+#title {
     color: white;
     background: linear-gradient(to right, #2b4392, #592783);
     font: 2.5em "Helvetica", "Candara";
@@ -75,9 +75,53 @@ h1 {
 }
 
 footer {
-    background-color: black;
+    background-color: #18181a;
     position: relative;
-    height: 175px;
+    height: 250px;
     margin-top: -100px;
     clear: both;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: block;
+    overflow: hidden;
+    box-sizing: border-box;
 }
+
+
+#inner_footer {
+    display: block;
+    margin: 0 auto;
+}
+
+#inner_footer #logo_container {
+    float: left;
+    padding: 15px 50px 0 30px;
+}
+
+#inner_footer #logo_container img {
+    width: 240px;
+    height: auto;
+}
+
+
+
+#inner_footer .footer_third {
+    /* width: calc(21.6666666667% - 20px);  /* Check more about this */
+    margin-right: 10px;
+    float: left;
+}
+#inner_footer .footer_third:last-child {
+    margin-right: 0;
+}
+
+#inner_footer .footer_third h1{
+    font-family: "arial";
+    font-size: 25px;
+    color: white;
+    display: block;
+    font-weight: 200;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Continue from here */
