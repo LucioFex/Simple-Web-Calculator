@@ -87,33 +87,32 @@ footer {
     box-sizing: border-box;
 }
 
-
-#inner_footer {
+#inner-footer {
     display: block;
     margin: 0 auto;
 }
 
-#inner_footer #logo_container {
+#inner-footer #logo-container {
     float: left;
     padding: 25px 50px 0 30px;
 }
 
-#inner_footer #logo_container img {
+#inner-footer #logo-container img {
     width: 280px;
     height: auto;
 }
 
-#inner_footer .footer_third {
+#inner-footer .footer-third {
     width: calc(21.6666666667% - 20px);
     margin-right: 10px;
     margin-top: 10px;
     float: left;
 }
-#inner_footer .footer_third:last-child {
+#inner-footer .footer-third:last-child {
     margin-right: 0;
 }
 
-#inner_footer .footer_third h1{
+#inner-footer .footer-third h1{
     font-family: "arial";
     font-size: 30px;
     color: white;
@@ -124,7 +123,7 @@ footer {
     margin-top: 20px;
 }
 
-#inner_footer .footer_third a{
+#inner-footer .footer-third a{
     font-family: "arial";
     font-size: 18px;
     color: white;
@@ -134,13 +133,13 @@ footer {
     margin-bottom: 20px;
 }
 
-#inner_footer .footer_third li{
+#inner-footer .footer-third li{
     display: inline-block;
     padding: 0 5px;
     font-size: 20px;
 }
 
-#inner_footer .footer_third span {
+#inner-footer .footer-third span {
     color: white;
     font-family: arial;
     font-size: 18px;
@@ -149,7 +148,7 @@ footer {
     width: 105%;
 }
 
-#inner_footer .footer_third li i {
+#inner-footer .footer-third li i {
     font-size: 65px;
     padding-right: 15px;
 }
