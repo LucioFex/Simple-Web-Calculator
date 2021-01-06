@@ -17,7 +17,7 @@ html, body {
 #main {
     overflow: auto;
     padding-bottom: 70%;
-    background: radial-gradient(at center, #253770, #431e61);
+    background: radial-gradient(at center, #253770, #382569);
 }
 
 #title {
@@ -40,42 +40,54 @@ html, body {
     margin-top: 85px;
     width: 600px;
     height: 600px;
-    background: radial-gradient(at center, #411f58 70%, #193444);
+    background: radial-gradient(at center, #281f58 70%, #193444);
     border-radius: 30px;
     box-shadow: 10px 10px 25px black;
     position: absolute;
 }
 
 #calculatorInterface {
-    /* margin-bottom: 100px; */
     margin: 17px;
     width: 560px;
     height: 565px;
-    background: red;
+    background: linear-gradient(to top right, #142133, #1f2e42);
     position: relative;
     border-radius: 15px;
 }
 
-#numbers {
-    background: blue;
+.nums-container {
+    background: linear-gradient(to top right, #1c2a3f, #1f2e42);
     position: absolute;
     margin: 38% 0 0 10px;
     border-radius: 10px;
-    width: 80%;
+    width: 70%;
     height: 60%;
 }
 
-.num {
-    background: purple;
-    width: 50px;
-    height: 50px;
+.numbers {
+    margin-left: 15%;
+    clear: both;
+}
+
+.button {
+    /* background: #223958; */
+    background:radial-gradient(at center, #243b5a, #223958);
+    width: 75px;
+    height: 70px;
     float: left;
     margin: 5px;
     text-align: center;
+    font: 1.2em helvetica, century gothic, arial;
+    color: white;
+    border-radius: 5px;
+}
+
+#num0 {
+    width: 160px;
 }
 
 footer {
-    background-color: #18181a;
+    background: linear-gradient(to right, #19171b 20%, #18181a 20%);
     position: relative;
     height: 300px;
     margin-top: -100px;

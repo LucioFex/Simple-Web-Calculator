@@ -4,10 +4,9 @@
 <head>
     <meta charset="utf-8">
     <title>Simple Web Calculator</title>
-    <script src=calculatorFunctionality.js></script>
     <!-- <link rel="stylesheet" href="cssReset.css"> -->
-    <link rel="stylesheet" href="calculatorStyle.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="calculatorStyle.css">
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
@@ -21,17 +20,26 @@
 
             <div id=calculator>
                 <div id="calculatorInterface">
-                    <div id="numbers">
-                        <div id="num1" class="num">1</div>
-                        <div id="num2" class="num">2</div>
-                        <div id="num3" class="num">3</div>
-                        <div id="num4" class="num">4</div>
-                        <div id="num5" class="num">5</div>
-                        <div id="num6" class="num">6</div>
-                        <div id="num7" class="num">7</div>
-                        <div id="num8" class="num">8</div>
-                        <div id="num9" class="num">9</div>
-                        <div id="num0" class="num">0</div>
+                    <div class="nums-container">
+                        <div class="numbers">
+                            <div id="num1" class="button">1</div>
+                            <div id="num2" class="button">2</div>
+                            <div id="num3" class="button">3</div>
+                        </div>
+                        <div class="numbers">
+                            <div id="num4" class="button">4</div>
+                            <div id="num5" class="button">5</div>
+                            <div id="num6" class="button">6</div>
+                        </div>
+                        <div class="numbers">
+                            <div id="num7" class="button">7</div>
+                            <div id="num8" class="button">8</div>
+                            <div id="num9" class="button">9</div>
+                        </div>
+                        <div class="numbers">
+                            <div id="num0" class="button">0</div>
+                            <div id="comma" class="button">.</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -46,8 +54,8 @@
 
             <div class="footer-third">
                 <h1>Need help?</h1>
-                <a href="#" id="Terms">Terms &amp; Conditions</a>
-                <a href="#">Privacy Policy</a>
+                <a href="#" id="terms">Terms &amp; Conditions</a>
+                <a href="#" id="privacy">Privacy Policy</a>
             </div>
 
             <div class="footer-third">
@@ -68,6 +76,6 @@
             </div>
         </div>
     </footer>
-
+    <script type="text/javascript" src=calculatorFunctionality.js></script>
 </body>
 </html>
