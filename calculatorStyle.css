@@ -23,15 +23,15 @@ html, body {
 #title {
     color: white;
     background: linear-gradient(to right, #2b4392, #592783);
-    font: 2.5em "Helvetica", "Candara";
+    font: 2.5em Helvetica, Candara;
     width: 420px;
-    margin: 15px 35.5%;
+    margin: 15px 35.7%;
     padding: 5px;
     border-radius: 20px;
     text-shadow: 5px 5px 5px #000000;
     box-shadow: 0px 5px 10px #220a36;
     position: absolute;
-    top: 30px;
+    top: 20px;
 }
 
 #calculator {
@@ -70,7 +70,7 @@ html, body {
 }
 
 .button {
-    background:radial-gradient(at center, #243b5a, #223958 );
+    background: radial-gradient(at center, #243b5a, #223958 );
     width: 75px;
     height: 70px;
     float: left;
@@ -81,6 +81,7 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
+    user-select: None;
     transition: 0.22s ease-in-out 0.01s;
 }
 
@@ -93,10 +94,8 @@ html, body {
 }
 
 .fa-github:hover, .fa-twitter:hover, .material-icons:hover {
-    transform: scale(1.15);
+    transform: scale(1.3);
 }
-
-
 
 footer {
     background: linear-gradient(to right, #19171b 20%, #18181a 20%);
