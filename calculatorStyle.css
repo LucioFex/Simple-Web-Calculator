@@ -25,7 +25,7 @@ html, body {
     background: linear-gradient(to right, #2b4392, #592783);
     font: 2.5em "Helvetica", "Candara";
     width: 420px;
-    margin: 15px 36%;
+    margin: 15px 35.5%;
     padding: 5px;
     border-radius: 20px;
     text-shadow: 5px 5px 5px #000000;
@@ -50,13 +50,13 @@ html, body {
     margin: 17px;
     width: 560px;
     height: 565px;
-    background: linear-gradient(to top right, #142133, #1f2e42);
+    background: linear-gradient(to top right, #131f30, #1d2b3d);
     position: relative;
     border-radius: 15px;
 }
 
 .nums-container {
-    background: linear-gradient(to top right, #1c2a3f, #1f2e42);
+    background: linear-gradient(to top right, rgb(22, 37, 59), #1e3047);
     position: absolute;
     margin: 38% 0 0 10px;
     border-radius: 10px;
@@ -65,26 +65,38 @@ html, body {
 }
 
 .numbers {
-    margin-left: 15%;
+    margin: 13px 0 15px 15%;
     clear: both;
 }
 
 .button {
-    /* background: #223958; */
-    background:radial-gradient(at center, #243b5a, #223958);
+    background:radial-gradient(at center, #243b5a, #223958 );
     width: 75px;
     height: 70px;
     float: left;
     margin: 5px;
-    text-align: center;
-    font: 1.2em helvetica, century gothic, arial;
+    font: 2em helvetica, century gothic, arial;
     color: white;
     border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.22s ease-in-out 0.01s;
 }
 
-#num0 {
-    width: 160px;
+.fa-github, .fa-twitter, .material-icons {
+    transition: 0.22s ease-in-out 0.01s;
 }
+
+.button:hover {
+    transform: scale(1.15);
+}
+
+.fa-github:hover, .fa-twitter:hover, .material-icons:hover {
+    transform: scale(1.15);
+}
+
+
 
 footer {
     background: linear-gradient(to right, #19171b 20%, #18181a 20%);
