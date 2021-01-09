@@ -56,16 +56,16 @@ html, body {
 }
 
 .nums-container {
-    background: linear-gradient(to top right, rgb(22, 37, 59), #1e3047);
+    background: linear-gradient(to top right, #16253b, #1e3047);
     position: absolute;
-    margin: 38% 0 0 10px;
+    margin: 36% 0 0 4%;
     border-radius: 10px;
-    width: 70%;
-    height: 60%;
+    width: 55%;
+    height: 61%;
 }
 
 .numbers {
-    margin: 13px 0 15px 15%;
+    margin: 13px 0 15px 8%;
     clear: both;
 }
 
@@ -82,7 +82,7 @@ html, body {
     justify-content: center;
     align-items: center;
     user-select: None;
-    transition: 0.22s ease-in-out 0.01s;
+    transition: 0.18s ease-in-out 0.01s;
 }
 
 .fa-github, .fa-twitter, .material-icons {
@@ -154,9 +154,11 @@ footer {
     font-weight: 200;
     width: fit-content;
     margin-bottom: 20px;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
-#inner-footer .footer-third li{
+#inner-footer .footer-third li {
     display: inline-block;
     padding: 0 5px;
     font-size: 20px;
