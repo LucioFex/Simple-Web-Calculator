@@ -18,14 +18,17 @@ function notice(event) {
         `${id[0].toUpperCase() + id.slice(1)} and stuff like that.`);
 
     if (id == "terms") {
-        alert("The license of this web site is the MIT LICENSE");
+        alert("The license of this web site is the MIT LICENSE.");
     }
     
     else if (id == "privacy") {
         alert("Knowing that this web site is about a calculator, there's " +
             "no need to set any kind of privacy politic. Relax...");
-        alert("But I wanna learn how to redirect you from this page to" +
-            "another one, so... Let's look at the formal definition of privacy. 😁")
+
+        alert("But I wanna learn how to redirect you from this page to " +
+            "another one, so... Let's look at the formal definition of privacy. 😁");
+        
+        window.open("https://en.wikipedia.org/wiki/Privacy", "_blank");
     }
 }
 
