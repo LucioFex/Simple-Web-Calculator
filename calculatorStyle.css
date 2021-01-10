@@ -55,34 +55,51 @@ html, body {
     border-radius: 15px;
 }
 
-.nums-container {
+#nums-container {
     background: linear-gradient(to top right, #16253b, #1e3047);
     position: absolute;
-    margin: 36% 0 0 4%;
     border-radius: 10px;
-    width: 55%;
+    width: 53.5%;
     height: 61%;
+    top: 37%;
+    left: 2%;
 }
 
-.numbers {
-    margin: 13px 0 15px 8%;
+#arithmetic-container {
+    position: absolute;
+    left: calc(75.5% - 95px);
+    top: calc(52.5% - 90px);
+    border-radius: 10px;
+}
+
+.numbers-line {
+    margin: 13px 0 15px 4%;
     clear: both;
 }
 
 .button {
-    background: radial-gradient(at center, #243b5a, #223958 );
-    width: 75px;
-    height: 70px;
-    float: left;
     margin: 5px;
     font: 2.2em helvetica, century gothic, arial;
     color: white;
     border-radius: 5px;
     display: flex;
+    float: left;
     justify-content: center;
     align-items: center;
     user-select: None;
     transition: 0.18s ease-in-out 0.01s;
+}
+
+#nums-container .button {
+    background: radial-gradient(at center, #243b5a, #223958);
+    width: 80px;
+    height: 70px;
+}
+
+#arithmetic-container .button {
+    background: radial-gradient(at center, #24355a, #223358);
+    width: 95px;
+    height: 90px;
 }
 
 .fa-github, .fa-twitter, .material-icons {
