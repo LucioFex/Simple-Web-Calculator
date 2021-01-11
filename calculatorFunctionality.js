@@ -4,12 +4,17 @@ var terms
 var privacy
 
 function setUp () {
+
+    // Functionality of the terms and privacy buttons
     terms = document.getElementById("terms");
     privacy = document.getElementById("privacy");
-    
+
     for (element of [terms, privacy]) {
         element.addEventListener("click", notice, false);
     }
+
+    // Change of the title background-color in intervals
+    multiColor(document.getElementById("title"), 1)
 }
 
 function notice(event) {
@@ -32,5 +37,18 @@ function notice(event) {
     }
 }
 
+function multiColor(title, module) {  // Check this function later
 
-window.addEventListener('load', setUp, false);
+    if (module % 2 == 0) {
+        title.style.background = "red";
+    }
+    else if (module % 2 == 1) {
+        title.style.background = "blue";
+    }
+
+    setInterval(multiColor(title, module + 1), 1000);
+
+}
+
+
+window.addEventListener('load', setUp, false);  // Starts the script
