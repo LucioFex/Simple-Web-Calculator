@@ -1,23 +1,24 @@
 // JavaScript document
 
-var terms
-var privacy
+var colors = ["#294192", "#2f4d0d", "#412781", "#811414"];
+var nums = 0
 
 function setUp () {
 
     // Functionality of the terms and privacy buttons
-    terms = document.getElementById("terms");
-    privacy = document.getElementById("privacy");
+    let terms = document.getElementById("terms");
+    let privacy = document.getElementById("privacy");
 
     for (element of [terms, privacy]) {
         element.addEventListener("click", notice, false);
     }
 
     // Change of the title background-color in intervals
-    multiColor(document.getElementById("title"), 1)
+    setInterval(multiColor, 1000 * 4, document.getElementById("title"));
 }
 
 function notice(event) {
+    // Usage of the "terms and conditions" and "privacy policy" buttons
     let id = event.target.id;
     alert("I am supposed to show you something about " +
         `${id[0].toUpperCase() + id.slice(1)} and stuff like that.`);
@@ -37,17 +38,15 @@ function notice(event) {
     }
 }
 
-function multiColor(title, module) {  // Check this function later
-
-    if (module % 2 == 0) {
-        title.style.background = "red";
-    }
-    else if (module % 2 == 1) {
-        title.style.background = "blue";
+function multiColor(title) {
+    // Change of the background color of the title of the page.
+    if (nums > (colors.length - 1)) {
+        nums = 0
     }
 
-    setInterval(multiColor(title, module + 1), 1000);
+    title.style.background = colors[nums];
 
+    nums += 1
 }
 
 
