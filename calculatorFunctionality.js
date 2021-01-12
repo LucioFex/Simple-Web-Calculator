@@ -4,7 +4,6 @@ var colors = ["#294192", "#2f4d0d", "#412781", "#811414"];
 var nums = 0
 
 function setUp () {
-
     // Functionality of the terms and privacy buttons
     let terms = document.getElementById("terms");
     let privacy = document.getElementById("privacy");
