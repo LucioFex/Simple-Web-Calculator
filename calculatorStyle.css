@@ -69,12 +69,12 @@ html, body {
 #arithmetic-container {
     position: absolute;
     left: calc(75.5% - 95px);
-    top: calc(52.5% - 90px);
+    top: calc(53% - 90px);
     border-radius: 10px;
 }
 
 .numbers-line {
-    margin: 13px 0 15px 4%;
+    margin: 13px 0 20px 4%;
     clear: both;
 }
 
@@ -98,11 +98,28 @@ html, body {
     height: 70px;
 }
 
+#nums-container #del {
+    background: radial-gradient(at center, #522121, #461212);
+    font-size: 1.8em;
+    border: 1px solid #ffffff49;
+}
+
+#nums-container #comma {
+    font-size: 3em;
+    align-items: flex-start;
+}
+
 #arithmetic-container .button {
     background: radial-gradient(at center, #24355a, #223358);
     font-size: 2.2em;
     width: 95px;
-    height: 90px;
+    height: 55px;
+}
+
+#arithmetic-container #equal-to {
+    background: radial-gradient(at center, #3a5285, #435f9b);
+    width: calc(100px * 2);
+    height: 65px;
 }
 
 .button:hover {

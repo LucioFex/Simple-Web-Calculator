@@ -13,7 +13,7 @@ function setUp () {
         element.addEventListener("click", notice, false);
     }
 
-    // Change of the title background-color in intervals
+    // Change of the title background color in intervals of 4 seconds
     setInterval(multiColor, 1000 * 4, document.getElementById("title"));
 }
 
@@ -45,7 +45,6 @@ function multiColor(title) {
     }
 
     title.style.background = colors[nums];
-
     nums += 1
 }
 
