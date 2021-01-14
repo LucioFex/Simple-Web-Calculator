@@ -3,6 +3,7 @@
 var colors = ["#294192", "#2f4d0d", "#412781", "#811414"];
 var nums = 0
 
+
 function setUp () {
     // Functionality of the terms and privacy buttons
     let terms = document.getElementById("terms");
@@ -15,6 +16,7 @@ function setUp () {
     // Change of the title background color in intervals of 4 seconds
     setInterval(multiColor, 1000 * 4, document.getElementById("title"));
 }
+
 
 function notice(event) {
     // Usage of the "terms and conditions" and "privacy policy" buttons
@@ -36,6 +38,7 @@ function notice(event) {
         window.open("https://en.wikipedia.org/wiki/Privacy", "_blank");
     }
 }
+
 
 function multiColor(title) {
     // Change of the background color of the title of the page.

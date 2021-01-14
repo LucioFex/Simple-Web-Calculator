@@ -1,4 +1,4 @@
-# Simple_Web_Calculator (Still in development)
+# Simple Web Calculator (Still in development)
 
 A basic calculator made only in HTML, CSS and JavaScript
 
@@ -14,6 +14,10 @@ A basic calculator made only in HTML, CSS and JavaScript
  ## Contributions
  Pull requests are welcome. So if you've got an idea of how to improve this code, I'll thank you for opening an issue to check that change that you want to make.
  
+
+ ## Credits
+- Delete icon made by [Those-Icons](https://www.flaticon.com/authors/those-icons) from www.flaticon.com.
+- Social icons from [w3schools](https://www.w3schools.com/icons/fontawesome_icons_brand.asp).
  
 ## License
 [MIT LICENSE](https://choosealicense.com/licenses/mit/)

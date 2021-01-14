@@ -15,14 +15,20 @@
 <body>
     <div id="container">
         <section id="main">
-            <header>
-                <h1 id="title">Simple Web Calculator</h1>
-            </header>
+            <header><h1 id="title">Simple Web Calculator</h1></header>
             <div id=calculator>
                 <div id="calculator-interface">
                     <div id="calculator-screen">
                         <div id="screen-top"></div>
                         <div id="screen-bottom"></div>
+                    </div>
+                    <div id="functional-container">
+                        <div id="percentage" class="button">%</div>
+                        <div id="pi" class="button">π</div>
+                        <div id="euler" class="button">e</div>
+                        <div id="factorial" class="button">n!</div>
+                        <div id="ce" class="button">CE</div>
+                        <div id="del" class="button"><img src="imgs/delete.png"></div>
                     </div>
                     <div id="nums-container">
                         <div class="numbers-line">
@@ -41,31 +47,21 @@
                             <div id="num9" class="button">9</div>
                         </div>
                         <div class="numbers-line">
-                            <div id="del" class="button">DEL</div>
+                            <div id="clear" class="button">C</div>
                             <div id="num0" class="button">0</div>
-                            <div id="comma" class="button">.</div>
+                            <div id="comma" class="button">,</div>
                         </div>
                     </div>
                     <div id="arithmetic-container">
-                        <div class="arithmetic-line">
-                            <div id="root" class="button">√</div>
-                            <div id="power" class="button">^</div>
-                        </div>
-                        <div class="arithmetic-line">
-                            <div id="division" class="button">÷</div>
-                            <div id="multiplication" class="button">x</div>
-                        </div>
-                        <div class="arithmetic-line">
-                            <div id="substraction" class="button">-</div>
-                            <div id="sum" class="button">+</div>
-                        </div>
-                        <div class="arithmetic-line">
-                            <div id="parenthesis-left" class="button">(</div>
-                            <div id="parenthesis-right" class="button">)</div>
-                        </div>
-                        <div class="arithmetic-line">
-                            <div id="equal-to" class="button">=</div>
-                        </div>
+                        <div id="root" class="button">√</div>
+                        <div id="power" class="button">^</div>
+                        <div id="division" class="button">÷</div>
+                        <div id="multiplication" class="button">x</div>
+                        <div id="substraction" class="button">-</div>
+                        <div id="sum" class="button">+</div>
+                        <div id="parenthesis-left" class="button">(</div>
+                        <div id="parenthesis-right" class="button">)</div>
+                        <div id="equal-to" class="button">=</div>
                     </div>
                 </div>
             </div>
