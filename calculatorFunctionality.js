@@ -32,8 +32,9 @@ function notice(event) {
         alert("Knowing that this web site is about a calculator, there's " +
             "no need to set any kind of privacy politic. Relax...");
 
-        alert("But I wanna learn how to redirect you from this page to " +
-            "another one, so... Let's look at the formal definition of privacy. 😁");
+        alert(
+            "But I wanna learn how to redirect you from this page to another" +
+            " one, so... Let's look at the formal definition of privacy. 😁");
         
         window.open("https://en.wikipedia.org/wiki/Privacy", "_blank");
     }
