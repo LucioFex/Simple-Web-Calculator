@@ -37,7 +37,7 @@ html, body {
 }
 
 #calculator {
-    top: calc(60% - 300px);
+    top: 120px;
     left: calc(50% - 300px);
     width: 600px;
     height: 600px;

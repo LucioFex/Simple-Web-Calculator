@@ -1,11 +1,15 @@
-// JavaScript document
+// JavaScript document - Luciano Esteban (2021)
 
-var colors = ["#294192", "#2f4d0d", "#412781", "#811414"];
+
+// Fundamental variables
+const colors = ["#294192", "#2f4d0d", "#790979", "#811414"];
+const numsTop = document.getElementById("nums-top");
+const numsBottom = document.getElementById("nums-bottom");
 var nums = 0
 
 
-function setUp () {
-    // Functionality of the terms and privacy buttons
+function setUp() {
+    // Functionality of the terms and privacy buttons:
     let terms = document.getElementById("terms");
     let privacy = document.getElementById("privacy");
 
@@ -13,9 +17,59 @@ function setUp () {
         element.addEventListener("click", notice, false);
     }
 
-    // Change of the title background color in intervals of 4 seconds
+    // Change of the title background color in intervals of 4 seconds:
     setInterval(multiColor, 1000 * 4, document.getElementById("title"));
+
+     // Functionality of the calculator buttons:
+    for (idName of document.getElementsByClassName("button")) {
+        buttonAction(idName);
+    }
+
 }
+
+
+function multiColor(title) {
+    // Change of the background color of the title of the page every 4 seconds
+    if (nums > (colors.length - 1)) {
+        nums = 0
+    }
+
+    title.style.background = colors[nums];
+    nums += 1
+}
+
+
+function buttonAction(input) {
+    /*
+    Button selection action:
+        It prepares all AddEventListeners of the calculator buttons.
+
+    This function prints in the bottom calculator
+    screen the selected symbol or number.
+    Also it adds the value to a list to be process by another function.
+
+    If the ID of the input class has an special name such as
+    "clear", "del", "ce" (any type of calculator system button),
+    then it will have an special tratment.
+    */
+
+    let systemButtons = ["negate", "ce", "del", "clear", "equal-to"];
+
+    if (systemButtons.includes(input.id)) {
+        // systemAction(input.id);  // Check later...
+        console.log(input.id);
+    }
+
+    else if (systemButtons.includes(input.id) == false) {
+        input.addEventListener("click",
+            function() {numsBottom.innerHTML = input.innerHTML;}, false);
+    }
+}
+
+
+// function systemAction() {
+
+// }
 
 
 function notice(event) {
@@ -34,21 +88,16 @@ function notice(event) {
 
         alert(
             "But I wanna learn how to redirect you from this page to another" +
-            " one, so... Let's look at the formal definition of privacy. 😁");
+            " one, so... Let's look at the formal definition of privacy :)");
+
+        alert(
+            "Oh, I olmost forget: \nIf you'd have read this, then surely your" +
+            " navigator will cancel the next page that I will try to open." +
+            "\n\nIf you didn't read anything, then you will have no problem >:("
+        )
         
         window.open("https://en.wikipedia.org/wiki/Privacy", "_blank");
     }
-}
-
-
-function multiColor(title) {
-    // Change of the background color of the title of the page.
-    if (nums > (colors.length - 1)) {
-        nums = 0
-    }
-
-    title.style.background = colors[nums];
-    nums += 1
 }
 
 
