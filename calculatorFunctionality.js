@@ -49,28 +49,42 @@ function buttonAction(input) {
     Also it adds the value to a list to be process by another function.
 
     If the ID of the input class has an special name such as
-    "clear", "del", "ce" (any type of calculator system button),
-    then it will have an special tratment.
+    "clear", "del", "ce" or any type of calculator system button,
+    Then it will have an special tratment.
+
+    If the input is a number, then the function will print it in
+    the bottom Screen it if it's the first in the list (new calculus).
+    If not, then it will be added to the top screen.
     */
 
-    let systemButtons = ["negate", "ce", "del", "clear", "equal-to"];
+    let topValues = [
+        "negate", "ce", "del", "clear", "equal-to", "factorial", "root",
+        "power", "division", "multiplication", "substraction", "sum"];
 
-    if (systemButtons.includes(input.id)) {
-        // systemAction(input.id);  // Check later...
-        console.log(input.id);
+    let bottomValues = ["pi", "euler"];
+
+    if (topValues.includes(input.id)) {
+        input.addEventListener("click", topScreenPrint, false);
     }
 
-    else if (systemButtons.includes(input.id) == false) {
-        input.addEventListener("click",
-            function() {numsBottom.innerHTML = input.innerHTML;}, false);
+    else if (bottomValues.includes(input.id) == false) {
+        input.addEventListener("click", bottomScreenPrint, false);
     }
 }
 
+function topScreenPrint(sym) {  // Continue from here
+    /*
+    Process the inserted symbol to print the
+    progress of the calculation in the top screen.
+    */
+}
 
-// function systemAction() {
-
-// }
-
+function bottomScreenPrint(num) {  // Continue from here
+    /*
+    Prints the selected number in the bottom screen,
+    including variables such as "pi" or "e".
+    */
+}
 
 function notice(event) {
     // Usage of the "terms and conditions" and "privacy policy" buttons

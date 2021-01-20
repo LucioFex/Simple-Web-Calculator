@@ -37,6 +37,7 @@ html, body {
 }
 
 #calculator {
+    user-select: None;
     top: 120px;
     left: calc(50% - 300px);
     width: 600px;
@@ -138,18 +139,32 @@ html, body {
     float: left;
     justify-content: center;
     align-items: center;
-    user-select: None;
-    transition: 0.18s ease-in-out 0.01s;
+    transition: 0.17s ease-in-out 0.01s;
 }
 
 .button:hover {
     transform: scale(1.15);
 }
 
+#functional-container .button:active,
+#nums-container .button:active,
+#arithmetic-container .button:active{
+    transition: 0.01s ease-in-out 0.01s;
+    transform: scale(0.9);
+}
+
+#functional-container .button:active {
+    background: #182a53;
+}
+
+#nums-container .button:active {
+    background: #1c385e;
+}
+
 #functional-container .button {
-    background: radial-gradient(at center, #24355a, #223358);
+    border: #3e568a dashed 3px;
     font-size: 2.2em;
-    width: 74px;
+    width: 70px;
     height: 55px;
 }
 
@@ -168,7 +183,7 @@ html, body {
 }
 
 #nums-container .button {
-    background: radial-gradient(at center, #243b5a, #223958);
+    background: #243b5a;
     font-size: 2.2em;
     width: 80px;
     height: 70px;
@@ -176,14 +191,22 @@ html, body {
 
 #nums-container #clear {
     font-size: 1.8em;
-    background: radial-gradient(at center, #282152, #291246);
+    background: #291246;
     border: 1px solid #ffffff49;
+}
+
+#nums-container #clear:active {
+    background: #3a1764;
 }
 
 #functional-container #del, #functional-container #ce {
     font-size: 1.3em;
-    background: radial-gradient(at center, #3c3568, #422564);
+    background: #472a69;
     border: 1px solid #ffffff49;
+}
+
+#functional-container #del:active, #functional-container #ce:active {
+    background: #462075;
 }
 
 #nums-container #comma {
@@ -199,9 +222,14 @@ html, body {
 }
 
 #arithmetic-container #equal-to {
-    background: radial-gradient(at center, #3a5285, #435f9b);
+    background: #3a5285;
     width: calc(100px * 2);
     height: 65px;
+}
+
+#arithmetic-container #equal-to:active {
+    background: #314e8b;
+    transform: scale(1.09);
 }
 
 footer {
