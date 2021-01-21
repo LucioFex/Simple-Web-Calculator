@@ -5,7 +5,9 @@
 const colors = ["#294192", "#2f4d0d", "#790979", "#811414"];
 const numsTop = document.getElementById("nums-top");
 const numsBottom = document.getElementById("nums-bottom");
-var nums = 0
+var colorNum = 0;
+var calculatorValues = [];
+var resultValue = "";
 
 
 function setUp() {
@@ -30,12 +32,12 @@ function setUp() {
 
 function multiColor(title) {
     // Change of the background color of the title of the page every 4 seconds
-    if (nums > (colors.length - 1)) {
-        nums = 0
+    if (colorNum > (colors.length - 1)) {
+        colorNum = 0
     }
 
-    title.style.background = colors[nums];
-    nums += 1
+    title.style.background = colors[colorNum];
+    colorNum += 1
 }
 
 
@@ -57,33 +59,36 @@ function buttonAction(input) {
     If not, then it will be added to the top screen.
     */
 
-    let topValues = [
+    let specialValues = [
         "negate", "ce", "del", "clear", "equal-to", "factorial", "root",
         "power", "division", "multiplication", "substraction", "sum"];
 
-    let bottomValues = ["pi", "euler"];
-
-    if (topValues.includes(input.id)) {
-        input.addEventListener("click", topScreenPrint, false);
+    if (specialValues.includes(input.id)) {
+        return input.addEventListener("click", topScreenPrint(input), false);
     }
-
-    else if (bottomValues.includes(input.id) == false) {
-        input.addEventListener("click", bottomScreenPrint, false);
-    }
+    // If input.id is a number or var number:
+    return input.addEventListener("click", bottomScreenPrint, false);
 }
 
-function topScreenPrint(sym) {  // Continue from here
+function topScreenPrint(sym) {
     /*
     Process the inserted symbol to print the
     progress of the calculation in the top screen.
     */
 }
 
-function bottomScreenPrint(num) {  // Continue from here
+function bottomScreenPrint(num) {  // Beggining of the develop of this function
     /*
     Prints the selected number in the bottom screen,
     including variables such as "pi" or "e".
     */
+    if (num.target.id == "comma" && resultValue.includes(",")) {
+        return resultValue
+    }
+
+    resultValue += num.target.innerHTML
+    numsBottom.innerHTML = resultValue;
+    return resultValue
 }
 
 function notice(event) {

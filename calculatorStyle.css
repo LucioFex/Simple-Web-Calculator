@@ -97,13 +97,13 @@ html, body {
 #nums-top {
     color: #e0e0e0b0;
     font-size: 18px;
-    user-select: None;
     padding: 2px 0;
 }
 
 #nums-bottom {
     color: #e0e0e0;
     font-size: 43px;
+    user-select: all;
 }
 
 #functional-container {
@@ -150,11 +150,15 @@ html, body {
 #nums-container .button:active,
 #arithmetic-container .button:active{
     transition: 0.01s ease-in-out 0.01s;
-    transform: scale(0.9);
+    transform: scale(1);
 }
 
 #functional-container .button:active {
     background: #182a53;
+}
+
+#arithmetic-container .button:active {
+    background: #273e61;
 }
 
 #nums-container .button:active {
@@ -199,13 +203,15 @@ html, body {
     background: #3a1764;
 }
 
-#functional-container #del, #functional-container #ce {
+#functional-container #del,
+#functional-container #ce {
     font-size: 1.3em;
     background: #472a69;
     border: 1px solid #ffffff49;
 }
 
-#functional-container #del:active, #functional-container #ce:active {
+#functional-container #del:active,
+#functional-container #ce:active {
     background: #462075;
 }
 
@@ -215,7 +221,7 @@ html, body {
 }
 
 #arithmetic-container .button {
-    background: radial-gradient(at center, #24355a, #223358);
+    background: #24355a;
     font-size: 2.2em;
     width: 95px;
     height: 55px;
