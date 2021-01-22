@@ -37,7 +37,7 @@ function multiColor(title) {
     }
 
     title.style.background = colors[colorNum];
-    colorNum += 1
+    colorNum += 1;
 }
 
 
@@ -54,9 +54,8 @@ function buttonAction(input) {
     "clear", "del", "ce" or any type of calculator system button,
     Then it will have an special tratment.
 
-    If the input is a number, then the function will print it in
-    the bottom Screen it if it's the first in the list (new calculus).
-    If not, then it will be added to the top screen.
+    If the input is a number or comma, then the function will print it in
+    the bottom Screen.
     */
 
     let specialValues = [
@@ -65,17 +64,18 @@ function buttonAction(input) {
         "division", "multiplication", "sum", "substraction"];
 
     if (specialValues.includes(input.id)) {
-        return input.addEventListener("click", topScreenPrint(input), false);
+        return input.addEventListener("click", processValue, false);
     }
     // If input.id is a number or var number:
     return input.addEventListener("click", bottomScreenPrint, false);
 }
 
-function topScreenPrint(sym) {
+function processValue(sym) {
     /*
     Process the inserted symbol to print the
     progress of the calculation in the top screen.
     */
+    
 }
 
 function bottomScreenPrint(num) {  // Beggining of the develop of this function
@@ -83,13 +83,36 @@ function bottomScreenPrint(num) {  // Beggining of the develop of this function
     Prints the selected number in the bottom screen,
     including variables such as "pi" or "e".
     */
-    if (num.target.id == "comma" && resultValue.includes(",")) {
-        return resultValue
+    num = num.target;
+
+    if (num.id == "comma" && resultValue.includes(",")) {
+        return resultValue;
     }
 
-    resultValue += num.target.innerHTML
+    else if (num.id == "comma" && resultValue.includes(",") == false) {
+        if (resultValue.length == 0) {
+            resultValue = "0,";
+        }
+
+        else if (resultValue.length > 1) {
+            resultValue += ",";
+        }
+    }
+
+    else if (num.id == "pi") {
+        resultValue = "3,1415926535897932384";
+    }
+
+    else if (num.id == "euler") {
+        resultValue = "2,7182818284590452353";
+    }
+
+    else if (num.id.slice(0, 3) == "num") {
+        resultValue += num.innerHTML;
+    }
+
     numsBottom.innerHTML = resultValue;
-    return resultValue
+    return resultValue;
 }
 
 function notice(event) {

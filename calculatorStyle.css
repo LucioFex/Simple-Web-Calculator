@@ -103,7 +103,7 @@ html, body {
 #nums-bottom {
     color: #e0e0e0;
     font-size: 43px;
-    user-select: all;
+    user-select: text;
 }
 
 #functional-container {
