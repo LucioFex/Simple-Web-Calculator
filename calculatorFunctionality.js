@@ -3,8 +3,8 @@
 
 // Fundamental variables
 const colors = ["#294192", "#2f4d0d", "#790979", "#811414"];
-const numsTop = document.getElementById("nums-top");
-const numsBottom = document.getElementById("nums-bottom");
+const topScreen = document.getElementById("nums-top");
+const bottomScreen = document.getElementById("nums-bottom");
 var colorNum = 0;
 var calculatorValues = [];
 var resultValue = "";
@@ -59,9 +59,7 @@ function buttonAction(input) {
     */
 
     let specialValues = [
-        "negate", "ce", "del", "clear", "equal-to", "over-x",
-        "factorial", "square-root", "cube-root", "square-power",
-        "division", "multiplication", "sum", "substraction"];
+        "equal-to", "over-x", "factorial", "square-root", "cube-root", "square-power", "division", "multiplication", "sum", "substraction"];
 
     if (specialValues.includes(input.id)) {
         return input.addEventListener("click", processValue, false);
@@ -75,43 +73,54 @@ function processValue(sym) {
     Process the inserted symbol to print the
     progress of the calculation in the top screen.
     */
-    
+    sym = sym.target;
 }
 
-function bottomScreenPrint(num) {  // Beggining of the develop of this function
+function bottomScreenPrint(sym) {  // Beggining of the develop of this function
     /*
     Prints the selected number in the bottom screen,
-    including variables such as "pi" or "e".
+    including variables such as "pi" or "e". Even the 'negate'.
+    But if the input is a system calculator
+    button such as "clear", "ce" or "del".
     */
-    num = num.target;
+    sym = sym.target;
 
-    if (num.id == "comma" && resultValue.includes(",")) {
+    if (sym.id == "comma" && resultValue.includes(",")) {
         return resultValue;
     }
 
-    else if (num.id == "comma" && resultValue.includes(",") == false) {
-        if (resultValue.length == 0) {
-            resultValue = "0,";
-        }
-
-        else if (resultValue.length > 1) {
-            resultValue += ",";
-        }
+    else if (sym.id == "comma" && resultValue.length > 1) {
+        resultValue += ",";
     }
 
-    else if (num.id == "pi") {
+    else if (sym.id == "comma" && resultValue.length == 0) {
+        resultValue = "0,";
+    }
+
+    else if (sym.id == "pi") {
         resultValue = "3,1415926535897932384";
     }
 
-    else if (num.id == "euler") {
+    else if (sym.id == "euler") {
         resultValue = "2,7182818284590452353";
     }
 
-    else if (num.id.slice(0, 3) == "num") {
-        resultValue += num.innerHTML;
+    else if (sym.id.slice(0, 3) == "num") {
+        resultValue += sym.innerHTML;
     }
 
-    numsBottom.innerHTML = resultValue;
+    else if ((sym.id == "del1" || sym.id == "del2") && resultValue.length > 1) {
+        resultValue = resultValue.slice(0, -1);
+        bottomScreen.innerHTML = resultValue;
+    }
+
+    else if ((sym.id == "del1" || sym.id == "del2") && resultValue.length <= 1) {
+        resultValue = "";
+        bottomScreen.innerHTML = "0";
+        return resultValue;
+    }
+
+    bottomScreen.innerHTML = resultValue;
     return resultValue;
 }
 

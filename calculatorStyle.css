@@ -172,9 +172,14 @@ html, body {
     height: 55px;
 }
 
-#functional-container #del img {
+#functional-container #del1 img {
     width: 40px;
     height: 40px;
+    user-select: none;
+    -webkit-user-drag: none;
+    -moz-user-drag: none;
+    -ms-user-drag: none;
+    -o-user-drag: none;
 }
 
 #euler, #factorial, #pi {
@@ -203,14 +208,14 @@ html, body {
     background: #3a1764;
 }
 
-#functional-container #del,
+#functional-container #del1,
 #functional-container #ce {
     font-size: 1.3em;
     background: #472a69;
     border: 1px solid #ffffff49;
 }
 
-#functional-container #del:active,
+#functional-container #del1:active,
 #functional-container #ce:active {
     background: #462075;
 }
