@@ -60,8 +60,9 @@ function buttonAction(input) {
     */
 
     let specialValues = [
-        "negate", "ce", "del", "clear", "equal-to", "factorial", "root",
-        "power", "division", "multiplication", "substraction", "sum"];
+        "negate", "ce", "del", "clear", "equal-to", "over-x",
+        "factorial", "square-root", "cube-root", "square-power",
+        "division", "multiplication", "sum", "substraction"];
 
     if (specialValues.includes(input.id)) {
         return input.addEventListener("click", topScreenPrint(input), false);
