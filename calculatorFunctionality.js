@@ -85,16 +85,12 @@ function bottomScreenPrint(sym) {  // Beggining of the develop of this function
     */
     sym = sym.target;
 
-    if (sym.id == "comma" && resultValue.includes(",")) {
-        return resultValue;
-    }
+    if (sym.id == "comma" && resultValue.includes(",") == false) {
+        if (resultValue.length == 0) {
+            resultValue = "0";
+        }
 
-    else if (sym.id == "comma" && resultValue.length > 1) {
         resultValue += ",";
-    }
-
-    else if (sym.id == "comma" && resultValue.length == 0) {
-        resultValue = "0,";
     }
 
     else if (sym.id == "pi") {
@@ -114,13 +110,22 @@ function bottomScreenPrint(sym) {  // Beggining of the develop of this function
         bottomScreen.innerHTML = resultValue;
     }
 
-    else if ((sym.id == "del1" || sym.id == "del2") && resultValue.length <= 1) {
+    else if (
+        (sym.id == "del1" || sym.id == "del2") && resultValue.length <= 1
+    || sym.id == "ce" || sym.id == "clear") {
         resultValue = "";
-        bottomScreen.innerHTML = "0";
-        return resultValue;
     }
 
-    bottomScreen.innerHTML = resultValue;
+    if (resultValue != "") {
+        bottomScreen.innerHTML = resultValue;
+    }
+
+    else if (resultValue == "") {
+        bottomScreen.innerHTML = "0";
+    }
+
+    console.log(resultValue);
+
     return resultValue;
 }
 
