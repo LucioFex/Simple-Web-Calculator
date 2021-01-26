@@ -1,13 +1,16 @@
 // JavaScript document - Luciano Esteban (2021)
 
-
 // Fundamental variables
 const colors = ["#294192", "#2f4d0d", "#790979", "#811414"];
 const topScreen = document.getElementById("nums-top");
 const bottomScreen = document.getElementById("nums-bottom");
+const normalValues = {
+    "num1": "1", "num2": "2", "num3": "3", "num4": "4", "num5": "5",
+    "num6": "6", "num7": "7", "num8": "8", "num9": "9", "num0": "0",
+    "pi": "3.1415926535897932384", "euler": "2.7182818284590452353"};
 var colorNum = 0;
-var calculatorValues = [];
 var resultValue = "";
+var calculatorValues = [];
 
 
 function setUp() {
@@ -26,7 +29,6 @@ function setUp() {
     for (idName of document.getElementsByClassName("button")) {
         buttonAction(idName);
     }
-
 }
 
 
@@ -61,12 +63,15 @@ function buttonAction(input) {
     let specialValues = [
         "equal-to", "over-x", "factorial", "square-root", "cube-root", "square-power", "division", "multiplication", "sum", "substraction"];
 
+    // let systemValues = ["clear", "del1", "del2", "ce", "negate"];
+
     if (specialValues.includes(input.id)) {
         return input.addEventListener("click", processValue, false);
     }
-    // If input.id is a number or var number:
+    // If input.id is a number or not in the 'specialValues' list:
     return input.addEventListener("click", bottomScreenPrint, false);
 }
+
 
 function processValue(sym) {
     /*
@@ -76,7 +81,8 @@ function processValue(sym) {
     sym = sym.target;
 }
 
-function bottomScreenPrint(sym) {  // Beggining of the develop of this function
+
+function bottomScreenPrint(sym) {  // CONTINUE REFACTORING THIS FUNCTION
     /*
     Prints the selected number in the bottom screen,
     including variables such as "pi" or "e". Even the 'negate'.
@@ -85,49 +91,63 @@ function bottomScreenPrint(sym) {  // Beggining of the develop of this function
     */
     sym = sym.target;
 
-    if (sym.id == "comma" && resultValue.includes(",") == false) {
-        if (resultValue.length == 0) {
-            resultValue = "0";
-        }
+    // if (sym.id == "comma" && resultValue.includes(",") == false) {
+    //     if (resultValue.length == 0) {
+    //         resultValue = "0";
+    //     }
+    //     resultValue += ",";
+    // }
 
-        resultValue += ",";
+    // else if (sym.id == "pi") {
+    //     resultValue = "3,1415926535897932384";
+    // }
+
+    // else if (sym.id == "euler") {
+    //     resultValue = "2,7182818284590452353";
+    // }
+
+    // else if (sym.id.slice(0, 3) == "num") {
+    //     resultValue += sym.innerHTML;
+    // }
+
+    // else if ((sym.id == "del1" || sym.id == "del2") && resultValue.length > 1) {
+    //     resultValue = resultValue.slice(0, -1);
+    //     bottomScreen.innerHTML = resultValue;
+    // }
+
+    // else if (
+    //     (sym.id == "del1" || sym.id == "del2") && resultValue.length <= 1
+    // || sym.id == "ce" || sym.id == "clear") {
+    //     resultValue = "";
+    // }
+
+    // if (resultValue != "") {
+    //     bottomScreen.innerHTML = resultValue;
+    // }
+
+    // else if (resultValue == "") {
+    //     bottomScreen.innerHTML = "0";
+    // }
+
+    if (sym.id.includes("num")) {
+        resultValue += normalValues[sym.id];
     }
 
-    else if (sym.id == "pi") {
-        resultValue = "3,1415926535897932384";
+    else if (sym.id == "pi" || sym.id == "euler") {
+        resultValue = normalValues[sym.id];
     }
 
-    else if (sym.id == "euler") {
-        resultValue = "2,7182818284590452353";
-    }
-
-    else if (sym.id.slice(0, 3) == "num") {
-        resultValue += sym.innerHTML;
-    }
-
-    else if ((sym.id == "del1" || sym.id == "del2") && resultValue.length > 1) {
-        resultValue = resultValue.slice(0, -1);
-        bottomScreen.innerHTML = resultValue;
-    }
-
-    else if (
-        (sym.id == "del1" || sym.id == "del2") && resultValue.length <= 1
-    || sym.id == "ce" || sym.id == "clear") {
+    else if (sym.id == "clear" || sym.id == "ce" || sym.id == "c"
+    || (sym.id == "del1" || sym.id == "del2") && resultValue.length == 1) {
         resultValue = "";
     }
 
-    if (resultValue != "") {
-        bottomScreen.innerHTML = resultValue;
-    }
-
-    else if (resultValue == "") {
-        bottomScreen.innerHTML = "0";
-    }
-
-    console.log(resultValue);
+    bottomScreen.innerHTML = resultValue;
+    if (resultValue == "") {bottomScreen.innerHTML = "0";}
 
     return resultValue;
 }
+
 
 function notice(event) {
     // Usage of the "terms and conditions" and "privacy policy" buttons
