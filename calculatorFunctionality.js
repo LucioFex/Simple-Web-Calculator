@@ -62,9 +62,8 @@ function buttonAction(input) {
     */
 
     let specialValues = [
-        "equal-to", "over-x", "factorial", "square-root", "cube-root", "square-power", "division", "multiplication", "sum", "substraction"];
-
-    // let systemValues = ["clear", "del1", "del2", "ce", "negate"];
+        "equal-to", "over-x", "factorial", "square-root", "cube-root",
+        "square-power", "division", "multiplication", "sum", "substraction"];
 
     if (specialValues.includes(input.id)) {
         return input.addEventListener("click", processValue, false);
@@ -92,7 +91,13 @@ function bottomScreenPrint(sym) {
     */
     sym = sym.target;
 
-    if (sym.id.includes("num") || sym.id == "comma"
+    if (sym.id == "clear" || sym.id == "ce" || sym.id == "c"
+    || (sym.id == "del1" || sym.id == "del2") && resultValue.length == 1
+    || sym.id == "num0" && (resultValue == "" || resultValue == "0")) {
+        resultValue = "";
+    }
+
+    else if (sym.id.includes("num") || sym.id == "comma"
     && resultValue.length > 0 && resultValue.includes(",") == false) {
         resultValue += normalValues[sym.id];
     }
@@ -105,15 +110,10 @@ function bottomScreenPrint(sym) {
         resultValue = normalValues[sym.id];
     }
 
-    else if (sym.id == "negate") {
+    else if (sym.id == "negate" && resultValue != "") {
         if (resultValue[0] != "-") {resultValue = "-" + resultValue;}
         else if (resultValue[0] == "-") {
             resultValue = resultValue.slice(1, resultValue.length);}
-    }
-
-    else if (sym.id == "clear" || sym.id == "ce" || sym.id == "c"
-    || (sym.id == "del1" || sym.id == "del2") && resultValue.length == 1) {
-        resultValue = "";
     }
 
     else if (sym.id == "del1" || sym.id == "del2") {
@@ -148,7 +148,7 @@ function notice(event) {
         alert(
             "Oh, I olmost forget: \nIf you'd have read this, then surely your" +
             " navigator will cancel the next page that I will try to open." +
-            "\n\nIf you didn't read anything, then you will have no problem >:("
+            "\n\nIf you skipped everything, then you will have no problem >:("
         )
         
         window.open("https://en.wikipedia.org/wiki/Privacy", "_blank");
