@@ -7,6 +7,7 @@ const bottomScreen = document.getElementById("nums-bottom");
 const normalValues = {
     "num1": "1", "num2": "2", "num3": "3", "num4": "4", "num5": "5",
     "num6": "6", "num7": "7", "num8": "8", "num9": "9", "num0": "0",
+    "comma": ",",
     "pi": "3.1415926535897932384", "euler": "2.7182818284590452353"};
 var colorNum = 0;
 var resultValue = "";
@@ -82,7 +83,7 @@ function processValue(sym) {
 }
 
 
-function bottomScreenPrint(sym) {  // CONTINUE REFACTORING THIS FUNCTION
+function bottomScreenPrint(sym) {
     /*
     Prints the selected number in the bottom screen,
     including variables such as "pi" or "e". Even the 'negate'.
@@ -91,50 +92,23 @@ function bottomScreenPrint(sym) {  // CONTINUE REFACTORING THIS FUNCTION
     */
     sym = sym.target;
 
-    // if (sym.id == "comma" && resultValue.includes(",") == false) {
-    //     if (resultValue.length == 0) {
-    //         resultValue = "0";
-    //     }
-    //     resultValue += ",";
-    // }
-
-    // else if (sym.id == "pi") {
-    //     resultValue = "3,1415926535897932384";
-    // }
-
-    // else if (sym.id == "euler") {
-    //     resultValue = "2,7182818284590452353";
-    // }
-
-    // else if (sym.id.slice(0, 3) == "num") {
-    //     resultValue += sym.innerHTML;
-    // }
-
-    // else if ((sym.id == "del1" || sym.id == "del2") && resultValue.length > 1) {
-    //     resultValue = resultValue.slice(0, -1);
-    //     bottomScreen.innerHTML = resultValue;
-    // }
-
-    // else if (
-    //     (sym.id == "del1" || sym.id == "del2") && resultValue.length <= 1
-    // || sym.id == "ce" || sym.id == "clear") {
-    //     resultValue = "";
-    // }
-
-    // if (resultValue != "") {
-    //     bottomScreen.innerHTML = resultValue;
-    // }
-
-    // else if (resultValue == "") {
-    //     bottomScreen.innerHTML = "0";
-    // }
-
-    if (sym.id.includes("num")) {
+    if (sym.id.includes("num") || sym.id == "comma"
+    && resultValue.length > 0 && resultValue.includes(",") == false) {
         resultValue += normalValues[sym.id];
+    }
+
+    else if (sym.id == "comma" && resultValue.includes(",") == false) {
+        resultValue += "0,";
     }
 
     else if (sym.id == "pi" || sym.id == "euler") {
         resultValue = normalValues[sym.id];
+    }
+
+    else if (sym.id == "negate") {
+        if (resultValue[0] != "-") {resultValue = "-" + resultValue;}
+        else if (resultValue[0] == "-") {
+            resultValue = resultValue.slice(1, resultValue.length);}
     }
 
     else if (sym.id == "clear" || sym.id == "ce" || sym.id == "c"
@@ -142,9 +116,13 @@ function bottomScreenPrint(sym) {  // CONTINUE REFACTORING THIS FUNCTION
         resultValue = "";
     }
 
+    else if (sym.id == "del1" || sym.id == "del2") {
+        resultValue = resultValue.slice(0, -1);
+    }
+
+    // Final print
     bottomScreen.innerHTML = resultValue;
     if (resultValue == "") {bottomScreen.innerHTML = "0";}
-
     return resultValue;
 }
 
