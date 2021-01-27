@@ -1,16 +1,17 @@
 // JavaScript document - Luciano Esteban (2021)
 
 // Fundamental variables
-const colors = ["#294192", "#2f4d0d", "#790979", "#811414"];
 const topScreen = document.getElementById("nums-top");
 const bottomScreen = document.getElementById("nums-bottom");
+const calculator = document.getElementById("calculator");
+const colors = ["#294192", "#2f4d0d", "#790979", "#811414"];
 const normalValues = {
     "num1": "1", "num2": "2", "num3": "3", "num4": "4", "num5": "5",
     "num6": "6", "num7": "7", "num8": "8", "num9": "9", "num0": "0",
     "comma": ",",
     "pi": "3.1415926535897932384", "euler": "2.7182818284590452353"};
-var colorNum = 0;
 var resultValue = "";
+var colorNum = 0;
 var calculatorValues = [];
 
 
@@ -120,6 +121,8 @@ function bottomScreenPrint(sym) {
         resultValue = resultValue.slice(0, -1);
     }
 
+
+    console.log(calculator.offsetWidth, calculator.offsetHeight);
     // Final print
     bottomScreen.innerHTML = resultValue;
     if (resultValue == "") {bottomScreen.innerHTML = "0";}
