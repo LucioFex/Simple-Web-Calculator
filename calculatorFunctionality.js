@@ -3,6 +3,7 @@
 // Fundamental variables
 const topScreen = document.getElementById("nums-top");
 const bottomScreen = document.getElementById("nums-bottom");
+const skull = document.getElementById("skull")
 const calculator = document.getElementById("calculator");
 const colors = ["#294192", "#2f4d0d", "#790979", "#811414"];
 const normalValues = {
@@ -121,12 +122,19 @@ function bottomScreenPrint(sym) {
         resultValue = resultValue.slice(0, -1);
     }
 
-
-    console.log(calculator.offsetWidth, calculator.offsetHeight);
     // Final print
     bottomScreen.innerHTML = resultValue;
     if (resultValue == "") {bottomScreen.innerHTML = "0";}
+    skullPosition();  // Continue with the skull position
     return resultValue;
+}
+
+
+function skullPosition() {  // Check later...
+    if (bottomScreen.innerHTML.length > 21) {
+        // skull.style.left = `calc(90% - (307px +${bottomScreen.innerHTML}))`
+        console.log(bottomScreen.innerHTML.length);
+    }
 }
 
 

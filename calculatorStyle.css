@@ -48,6 +48,12 @@ html, body {
     position: absolute;
 }
 
+#skull {
+    top: 120px;
+    left: calc(90% - 307px);
+    position: absolute;
+}
+
 #calculator-interface {
     margin: 17px;
     width: 560px;
