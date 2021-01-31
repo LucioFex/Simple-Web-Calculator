@@ -3,8 +3,10 @@
 // Fundamental variables
 const topScreen = document.getElementById("nums-top");
 const bottomScreen = document.getElementById("nums-bottom");
-const skull = document.getElementById("skull")
 const calculator = document.getElementById("calculator");
+const calculatorInterface = document.getElementById("calculator-interface");
+const calculatorScreen = document.getElementById("calculator-screen");
+const skull = document.getElementById("skull")
 const colors = ["#294192", "#2f4d0d", "#790979", "#811414"];
 const normalValues = {
     "num1": "1", "num2": "2", "num3": "3", "num4": "4", "num5": "5",
@@ -125,16 +127,35 @@ function bottomScreenPrint(sym) {
     // Final print
     bottomScreen.innerHTML = resultValue;
     if (resultValue == "") {bottomScreen.innerHTML = "0";}
-    skullPosition();  // Continue with the skull position
+    skullPosition();
     return resultValue;
 }
 
 
-function skullPosition() {  // Check later...
+function skullPosition() {  // Continue checking the skull img problem
     if (bottomScreen.innerHTML.length > 21) {
-        // skull.style.left = `calc(90% - (307px +${bottomScreen.innerHTML}))`
-        console.log(bottomScreen.innerHTML.length);
+        calculator.style.width = `calc(600px + ${
+            (bottomScreen.innerHTML.length - 21) * 24}px)`;
+
+        calculatorInterface.style.width = `calc(560px + ${
+            (bottomScreen.innerHTML.length - 21) * 24}px)`;
+
+        calculatorScreen.style.width = `calc(504px + ${
+            (bottomScreen.innerHTML.length - 21) * 24}px)`;
+
+        skull.style.left = `calc(50% + 300px + ${
+            (bottomScreen.innerHTML.length - 21) * 24}px)`;
+        skull.src = "imgs/over-limit-screen.png";
     }
+
+    else if (bottomScreen.innerHTML.length <= 21) {
+        calculator.style.width = "600px";
+        calculatorInterface.style.width = "560px";
+        calculatorScreen.style.width = "504px";
+        skull.style.left = "calc(50% + 300px)";
+        skull.src = "imgs/limit-screen.png";
+    }
+    console.log(skull.src);
 }
 
 

@@ -50,7 +50,7 @@ html, body {
 
 #skull {
     top: 120px;
-    left: calc(90% - 307px);
+    left: calc(50% + 300px);
     position: absolute;
 }
 
@@ -67,10 +67,10 @@ html, body {
     position: absolute;
     background: radial-gradient(at center, #375077 25%, #2d446b);
     border: #213353 inset 4px;
-    width: 90%;
+    width: 504px;
     height: 80px;
     top: 6%;
-    left: 4.5%;
+    left: 25.2px;
     border-radius: 5px;
 }
 
@@ -114,25 +114,26 @@ html, body {
 
 #functional-container {
     position: absolute;
-    width: 91%;
+    width: 509.6px;
     height: 60px;
     top: 24%;
-    left: 5.2%;
+    left: 29.12px;
 }
 
 #nums-container {
     background: linear-gradient(to top right, #16253b, #1e3047);
     position: absolute;
     border-radius: 10px;
-    width: 53.5%;
+    width: 299.6px;
     height: 61%;
     top: 37%;
-    left: 2%;
+    left: 11.2px;
 }
 
 #arithmetic-container {
     position: absolute;
-    left: calc(75.5% - 95px);
+    left: 327.8px;
+    width: 215px;
     top: calc(53% - 90px);
 }
 
@@ -178,14 +179,17 @@ html, body {
     height: 55px;
 }
 
-#functional-container #del1 img {
-    width: 40px;
-    height: 40px;
+#skull img, #functional-container #del1 img {
     user-select: none;
     -webkit-user-drag: none;
     -moz-user-drag: none;
     -ms-user-drag: none;
     -o-user-drag: none;
+}
+
+#functional-container #del1 img {
+    width: 40px;
+    height: 40px;
 }
 
 #euler, #factorial, #pi {
