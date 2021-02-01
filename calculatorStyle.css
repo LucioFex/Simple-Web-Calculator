@@ -211,7 +211,7 @@ html, body {
 #nums-container #clear {
     font-size: 1.8em;
     background: #291246;
-    border: 1px solid #ffffff49;
+    border: 1px solid #1103244d;
 }
 
 #nums-container #clear:active {
@@ -222,7 +222,7 @@ html, body {
 #functional-container #ce {
     font-size: 1.3em;
     background: #472a69;
-    border: 1px solid #ffffff49;
+    border: 1px solid #280e4d80;
 }
 
 #functional-container #del1:active,

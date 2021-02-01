@@ -13,9 +13,9 @@ const normalValues = {
     "num6": "6", "num7": "7", "num8": "8", "num9": "9", "num0": "0",
     "comma": ",",
     "pi": "3,1415926535897932384", "euler": "2,7182818284590452353"};
-var resultValue = "";
+var resultValue = "0";
+var calculateValues = [];
 var colorNum = 0;
-var calculatorValues = [];
 
 
 function setUp() {
@@ -69,19 +69,27 @@ function buttonAction(input) {
         "square-power", "division", "multiplication", "sum", "substraction"];
 
     if (specialValues.includes(input.id)) {
-        return input.addEventListener("click", processValue, false);
+        return input.addEventListener(
+            "click", function() {processValue(input.id)}, false);
     }
     // If input.id is a number or not in the 'specialValues' list:
-    return input.addEventListener("click", bottomScreenPrint, false);
+    return input.addEventListener(
+        "click", function() {bottomScreenPrint(input.id)}, false);
 }
 
 
-function processValue(sym) {
+function processValue(sym) {  // Continue here
     /*
     Process the inserted symbol to print the
-    progress of the calculation in the top screen.
+    process of the calculation in the top screen.
     */
-    sym = sym.target;
+    // Arithmetic section:
+    if (sym == "sum" || sym == "substraction"
+    || sym == "division" || sym == "multiplication") {
+        calculateValues.push(resultValue);
+        topScreen.innerHTML = calculateValues;
+        bottomScreenPrint("ce");
+    }
 }
 
 
@@ -92,34 +100,33 @@ function bottomScreenPrint(sym) {
     But if the input is a system calculator
     button such as "clear", "ce" or "del".
     */
-    sym = sym.target;
-
-    if (sym.id == "clear" || sym.id == "ce" || sym.id == "c"
-    || (sym.id == "del1" || sym.id == "del2") && resultValue.length == 1
-    || sym.id == "num0" && (resultValue == "" || resultValue == "0")) {
-        resultValue = "";
+    if (sym == "clear" || sym == "ce" || sym == "clear"
+    || (sym == "del1" || sym == "del2") && resultValue.length == 1
+    || sym == "num0" && (resultValue == "" || resultValue == "0")) {
+        resultValue = "0";
     }
 
-    else if (sym.id.includes("num") || sym.id == "comma"
-    && resultValue.length > 0 && resultValue.includes(",") == false) {
-        resultValue += normalValues[sym.id];
+    if (sym == "clear") {
+        calculateValues = [];
     }
 
-    else if (sym.id == "comma" && resultValue.includes(",") == false) {
-        resultValue += "0,";
+    else if (sym.includes("num") || sym == "comma"
+    && resultValue.includes(",") == false) {
+        if (resultValue == "0" && sym != "comma") {resultValue = "";}
+        resultValue += normalValues[sym];
     }
 
-    else if (sym.id == "pi" || sym.id == "euler") {
-        resultValue = normalValues[sym.id];
+    else if (sym == "pi" || sym == "euler") {
+        resultValue = normalValues[sym];
     }
 
-    else if (sym.id == "negate" && resultValue != "") {
+    else if (sym == "negate" && resultValue != "") {
         if (resultValue[0] != "-") {resultValue = "-" + resultValue;}
         else if (resultValue[0] == "-") {
             resultValue = resultValue.slice(1, resultValue.length);}
     }
 
-    else if (sym.id == "del1" || sym.id == "del2") {
+    else if ((sym == "del1" || sym == "del2") && resultValue.length > 1) {
         resultValue = resultValue.slice(0, -1);
     }
 
@@ -135,6 +142,7 @@ function skullPosition() {
     if (bottomScreen.innerHTML.length <= 21) {
         skull.style.left = "calc(50% + 300px)";
         skull.src = "imgs/limit-screen.png";
+
         calculator.style.width = "600px";
         calculatorInterface.style.width = "560px";
         calculatorScreen.style.width = "504px";
