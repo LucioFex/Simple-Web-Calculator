@@ -25,7 +25,7 @@ html, body {
     background-color: #2b4499;
     font: 2.5em "Helvetica", "Candara", "Arial";
     width: fit-content;
-    top: 30px;
+    top: 20px;
     left: calc(50% - 230px);
     padding: 5px 25px 5px 25px;
     border-radius: 20px;
@@ -38,7 +38,7 @@ html, body {
 
 #calculator {
     user-select: None;
-    top: 120px;
+    top: 98px;
     left: calc(50% - 300px);
     width: 600px;
     height: 600px;

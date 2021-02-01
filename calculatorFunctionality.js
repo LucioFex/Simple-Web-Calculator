@@ -12,7 +12,7 @@ const normalValues = {
     "num1": "1", "num2": "2", "num3": "3", "num4": "4", "num5": "5",
     "num6": "6", "num7": "7", "num8": "8", "num9": "9", "num0": "0",
     "comma": ",",
-    "pi": "3.1415926535897932384", "euler": "2.7182818284590452353"};
+    "pi": "3,1415926535897932384", "euler": "2,7182818284590452353"};
 var resultValue = "";
 var colorNum = 0;
 var calculatorValues = [];
@@ -22,7 +22,6 @@ function setUp() {
     // Functionality of the terms and privacy buttons:
     let terms = document.getElementById("terms");
     let privacy = document.getElementById("privacy");
-
     for (element of [terms, privacy]) {
         element.addEventListener("click", notice, false);
     }
@@ -132,30 +131,27 @@ function bottomScreenPrint(sym) {
 }
 
 
-function skullPosition() {  // Continue checking the skull img problem
-    if (bottomScreen.innerHTML.length > 21) {
-        calculator.style.width = `calc(600px + ${
-            (bottomScreen.innerHTML.length - 21) * 24}px)`;
-
-        calculatorInterface.style.width = `calc(560px + ${
-            (bottomScreen.innerHTML.length - 21) * 24}px)`;
-
-        calculatorScreen.style.width = `calc(504px + ${
-            (bottomScreen.innerHTML.length - 21) * 24}px)`;
-
-        skull.style.left = `calc(50% + 300px + ${
-            (bottomScreen.innerHTML.length - 21) * 24}px)`;
-        skull.src = "imgs/over-limit-screen.png";
-    }
-
-    else if (bottomScreen.innerHTML.length <= 21) {
+function skullPosition() {
+    if (bottomScreen.innerHTML.length <= 21) {
+        skull.style.left = "calc(50% + 300px)";
+        skull.src = "imgs/limit-screen.png";
         calculator.style.width = "600px";
         calculatorInterface.style.width = "560px";
         calculatorScreen.style.width = "504px";
-        skull.style.left = "calc(50% + 300px)";
-        skull.src = "imgs/limit-screen.png";
     }
-    console.log(skull.src);
+
+    else if (bottomScreen.innerHTML.length > 21) {
+        skull.style.left = `calc(50% + 300px + ${
+            (bottomScreen.innerHTML.length - 21) * 24}px)`;
+        skull.src = "imgs/over-limit-screen.png";
+
+        calculator.style.width = `calc(600px + ${
+            (bottomScreen.innerHTML.length - 21) * 24}px)`;
+        calculatorInterface.style.width = `calc(560px + ${
+            (bottomScreen.innerHTML.length - 21) * 24}px)`;
+        calculatorScreen.style.width = `calc(504px + ${
+            (bottomScreen.innerHTML.length - 21) * 24}px)`;
+    }
 }
 
 
