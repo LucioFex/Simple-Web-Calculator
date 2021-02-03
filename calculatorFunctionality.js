@@ -85,7 +85,8 @@ function processValue(sym) {  // Continue here
     */
     // Arithmetic section:
     if (sym == "sum" || sym == "substraction"
-    || sym == "division" || sym == "multiplication") {
+        || sym == "division" || sym == "multiplication") {
+
         calculateValues.push(resultValue);
         topScreen.innerHTML = calculateValues;
         bottomScreenPrint("ce");
@@ -101,8 +102,9 @@ function bottomScreenPrint(sym) {
     button such as "clear", "ce" or "del".
     */
     if (sym == "clear" || sym == "ce" || sym == "clear"
-    || (sym == "del1" || sym == "del2") && resultValue.length == 1
-    || sym == "num0" && (resultValue == "" || resultValue == "0")) {
+        || (sym == "del1" || sym == "del2") && resultValue.length == 1
+        || sym == "num0" && (resultValue == "" || resultValue == "0")) {
+
         resultValue = "0";
     }
 
@@ -138,28 +140,36 @@ function bottomScreenPrint(sym) {
 }
 
 
-function skullPosition() {
-    if (bottomScreen.innerHTML.length <= 21) {
+function skullPosition() {  // Continue with the Width of the Top and Bottom
+    let bottomWidth = (bottomScreen.innerHTML.length - 21) * 24;
+    let topWidth = (topScreen.innerHTML.length - 51) * 24;
+
+    let greaterWidth = topWidth;
+    if (bottomWidth >= topWidth) {greaterWidth = bottomWidth;}
+
+    if (greaterWidth <= 0) {
         skull.style.left = "calc(50% + 300px)";
         skull.src = "imgs/limit-screen.png";
-
         calculator.style.width = "600px";
         calculatorInterface.style.width = "560px";
         calculatorScreen.style.width = "504px";
     }
 
-    else if (bottomScreen.innerHTML.length > 21) {
-        skull.style.left = `calc(50% + 300px + ${
-            (bottomScreen.innerHTML.length - 21) * 24}px)`;
+    else if (greaterWidth > 0) {
+        skull.style.left = `calc(50% + 300px + ${greaterWidth}px)`;
         skull.src = "imgs/over-limit-screen.png";
 
-        calculator.style.width = `calc(600px + ${
-            (bottomScreen.innerHTML.length - 21) * 24}px)`;
-        calculatorInterface.style.width = `calc(560px + ${
-            (bottomScreen.innerHTML.length - 21) * 24}px)`;
-        calculatorScreen.style.width = `calc(504px + ${
-            (bottomScreen.innerHTML.length - 21) * 24}px)`;
+        calculator.style.width = `calc(600px + ${greaterWidth}px)`;
+        calculatorInterface.style.width = `calc(560px + ${greaterWidth}px)`;
+        calculatorScreen.style.width = `calc(504px + ${greaterWidth}px)`;
     }
+    console.log("Calculator:", calculator.clientWidth);
+    console.log("Calculator Interace:", calculatorInterface.clientWidth);
+    console.log("Calculator Screen:", calculatorScreen.clientWidth);
+    console.log("=".repeat("Calculator Screen:".length));
+    console.log("bottomWidth:", bottomWidth);
+    console.log("topWidth:", topWidth);
+    console.log("=".repeat("Calculator Screen:".length));
 }
 
 
@@ -172,21 +182,19 @@ function notice(event) {
     if (id == "terms") {
         alert("The license of this web site is the MIT LICENSE.");
     }
-    
+
     else if (id == "privacy") {
         alert("Knowing that this web site is about a calculator, there's " +
             "no need to set any kind of privacy politic. Relax...");
-
         alert(
             "But I wanna learn how to redirect you from this page to another" +
             " one, so... Let's look at the formal definition of privacy :)");
-
         alert(
             "Oh, I olmost forget: \nIf you'd have read this, then surely your" +
             " navigator will cancel the next page that I will try to open." +
             "\n\nIf you skipped everything, then you will have no problem >:("
         )
-        
+
         window.open("https://en.wikipedia.org/wiki/Privacy", "_blank");
     }
 }
