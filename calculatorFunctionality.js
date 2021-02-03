@@ -14,7 +14,8 @@ const normalValues = {
     "comma": ",",
     "pi": "3,1415926535897932384", "euler": "2,7182818284590452353"};
 var resultValue = "0";
-var calculateValues = [];
+// var calculateValues = [];
+var calculateValues = "";
 var colorNum = 0;
 
 
@@ -87,7 +88,8 @@ function processValue(sym) {  // Continue here
     if (sym == "sum" || sym == "substraction"
         || sym == "division" || sym == "multiplication") {
 
-        calculateValues.push(resultValue);
+        // calculateValues.push(resultValue);
+        calculateValues += resultValue;
         topScreen.innerHTML = calculateValues;
         bottomScreenPrint("ce");
     }
@@ -109,7 +111,8 @@ function bottomScreenPrint(sym) {
     }
 
     if (sym == "clear") {
-        calculateValues = [];
+        // calculateValues = [];
+        calculateValues = "";
     }
 
     else if (sym.includes("num") || sym == "comma"
@@ -140,9 +143,15 @@ function bottomScreenPrint(sym) {
 }
 
 
-function skullPosition() {  // Continue with the Width of the Top and Bottom
+function skullPosition() {
+    /*
+    This function changes the position of the skull
+    in the right of the calculator, including its image
+    and increases or reduces the width of the calculator
+    depending in the length of the calculator top and bottom screen.
+    */
     let bottomWidth = (bottomScreen.innerHTML.length - 21) * 24;
-    let topWidth = (topScreen.innerHTML.length - 51) * 24;
+    let topWidth = (topScreen.innerHTML.length - 51) * 10;
 
     let greaterWidth = topWidth;
     if (bottomWidth >= topWidth) {greaterWidth = bottomWidth;}
@@ -163,13 +172,14 @@ function skullPosition() {  // Continue with the Width of the Top and Bottom
         calculatorInterface.style.width = `calc(560px + ${greaterWidth}px)`;
         calculatorScreen.style.width = `calc(504px + ${greaterWidth}px)`;
     }
+
     console.log("Calculator:", calculator.clientWidth);
     console.log("Calculator Interace:", calculatorInterface.clientWidth);
     console.log("Calculator Screen:", calculatorScreen.clientWidth);
-    console.log("=".repeat("Calculator Screen:".length));
     console.log("bottomWidth:", bottomWidth);
     console.log("topWidth:", topWidth);
-    console.log("=".repeat("Calculator Screen:".length));
+    console.log("greaterWidth:", greaterWidth);
+    console.log("=".repeat("Calculator Interace:".length));
 }
 
 

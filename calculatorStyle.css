@@ -104,6 +104,7 @@ html, body {
     color: #e0e0e0b0;
     font-size: 18px;
     padding: 2px 0;
+    user-select: text;
 }
 
 #nums-bottom {
@@ -114,10 +115,10 @@ html, body {
 
 #functional-container {
     position: absolute;
-    width: 509.6px;
+    width: 520px;
     height: 60px;
-    top: 24%;
-    left: 29.12px;
+    top: 23.5%;
+    left: 27px;
 }
 
 #nums-container {

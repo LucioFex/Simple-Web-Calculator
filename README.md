@@ -7,7 +7,9 @@
 
 This is a simple arithmetic web calculator, with some implementations of a scientific one.
 
-![](imgs/preview_img.png)
+![](imgs/preview_img1.png)
+
+![](imgs/preview_img2.png)
 
 
 ## Requeriments
