@@ -11,10 +11,10 @@ const colors = ["#294192", "#2f4d0d", "#790979", "#811414"];
 const calculatorValues = {
     "num1": "1", "num2": "2", "num3": "3", "num4": "4", "num5": "5",
     "num6": "6", "num7": "7", "num8": "8", "num9": "9", "num0": "0",
-    "comma": ",", "sum": "+", "substraction": "-", "division": "÷",
+    "comma": ",", "sum": "+", "substract": "-", "divide": "÷", "multiply": "x",
     "pi": "3,1415926535897932384", "euler": "2,7182818284590452353"};
 var resultValue = "0";
-var calculateValues = "";
+var calculateValues = [];
 var colorNum = 0;
 
 
@@ -66,7 +66,7 @@ function buttonAction(input) {
 
     let specialValues = [
         "equal-to", "over-x", "factorial", "square-root", "cube-root",
-        "square-power", "division", "multiplication", "sum", "substraction"];
+        "square-power", "divide", "multiply", "sum", "substract"];
 
     if (specialValues.includes(input.id)) {
         return input.addEventListener(
@@ -78,18 +78,19 @@ function buttonAction(input) {
 }
 
 
-function processValue(sym) {  // Continue here
+function processValue(sym) {
     /*
     Process the inserted symbol to print the
     process of the calculation in the top screen.
     */
-    // Arithmetic section:
-    if (sym == "sum" || sym == "substraction"
-        || sym == "division" || sym == "multiplication") {
-        calculateValues += resultValue;
-        topScreen.innerHTML = calculateValues;
-        bottomScreenPrint("ce");
+    calculateValues.push(resultValue, calculatorValues[sym]);
+    topScreen.innerHTML = "";
+
+    for (value of calculateValues) {
+        if (topScreen.innerHTML.length > 0) {topScreen.innerHTML += " "}
+        topScreen.innerHTML += value;
     }
+    bottomScreenPrint("ce");
 }
 
 
@@ -97,8 +98,8 @@ function bottomScreenPrint(sym) {
     /*
     Prints the selected number in the bottom screen,
     including variables such as "pi" or "e". Even the 'negate'.
-    But if the input is a system calculator
-    button such as "clear", "ce" or "del".
+    But if the input is a system calculator button such as
+    "clear", "ce" or "del", then it will delete characters.
     */
     if (sym == "clear" || sym == "ce" || sym == "clear"
         || (sym == "del1" || sym == "del2") && resultValue.length == 1
@@ -108,7 +109,7 @@ function bottomScreenPrint(sym) {
     }
 
     if (sym == "clear") {
-        calculateValues = "";
+        calculateValues = [];
     }
 
     else if (sym.includes("num") || sym == "comma"
@@ -147,7 +148,7 @@ function skullPosition() {
     depending in the length of the calculator top and bottom screen.
     */
     let bottomWidth = (bottomScreen.innerHTML.length - 21) * 24;
-    let topWidth = (topScreen.innerHTML.length - 51) * 10;
+    let topWidth = (topScreen.innerHTML.length - 51) * 8;
 
     let greaterWidth = topWidth;
     if (bottomWidth >= topWidth) {greaterWidth = bottomWidth;}
@@ -169,13 +170,13 @@ function skullPosition() {
         calculatorScreen.style.width = `calc(504px + ${greaterWidth}px)`;
     }
 
-    console.log("Calculator:", calculator.clientWidth);
-    console.log("Calculator Interace:", calculatorInterface.clientWidth);
-    console.log("Calculator Screen:", calculatorScreen.clientWidth);
-    console.log("bottomWidth:", bottomWidth);
-    console.log("topWidth:", topWidth);
-    console.log("greaterWidth:", greaterWidth);
-    console.log("=".repeat("Calculator Interace:".length));
+    // console.log("Calculator:", calculator.clientWidth);
+    // console.log("Calculator Interace:", calculatorInterface.clientWidth);
+    // console.log("Calculator Screen:", calculatorScreen.clientWidth);
+    // console.log("bottomWidth:", bottomWidth);
+    // console.log("topWidth:", topWidth);
+    // console.log("greaterWidth:", greaterWidth);
+    // console.log("=".repeat("Calculator Interace:".length));
 }
 
 
