@@ -11,12 +11,12 @@ const colors = ["#294192", "#2f4d0d", "#790979", "#811414"];
 const calculatorValues = {
     "num1": "1", "num2": "2", "num3": "3", "num4": "4", "num5": "5",
     "num6": "6", "num7": "7", "num8": "8", "num9": "9", "num0": "0",
-    "comma": ",", "sum": "+", "substract": "-", "divide": "÷",
-    "multiply": "x", "over-x": "1/", "factorial": "!",
+    "comma": ",", "sum": "+", "substract": "-", "divide": "/",
+    "multiply": "*", "over-x": "1/", "factorial": "!",
     "square-root": "√", "cube-root": "∛", "square-power": "²",
     "pi": "3,1415926535897932384", "euler": "2,7182818284590452353"};
+var calculatorHistory = [];
 var resultValue = "0";
-var calculateValues = [];
 var colorNum = 0;
 
 
@@ -26,9 +26,6 @@ function setUp() {
     */
     let terms = document.getElementById("terms");
     let privacy = document.getElementById("privacy");
-    let specialValues = ["equal-to", "over-x", "factorial", "square-root",
-        "cube-root", "square-power", "divide", "multiply", "sum", "substract"];
-
     // Functionality of the terms and privacy buttons:
     for (element of [terms, privacy]) {
         element.addEventListener("click", notice, false);
@@ -80,22 +77,44 @@ function buttonAction(input) {
 }
 
 
+function calculateValues(history) {  // Continue Working here
+    /*
+    It process the history of values to give the
+    result to the 'processValue' function.
+    */
+    let result = 0;
+
+    for (index of history) {
+        if (history[index] == "+") {
+            try {
+                result += parseFloat(history[index + 1])
+            } catch (error){
+                console.log(error);
+            }
+        }
+        result += parseFloat(history[index]);
+    }
+    return `${result}`;
+}
+
+
 function processValue(sym) {
     /*
     Function that process the inserted symbol to print the
     progress of the calculation's result in the top screen.
     */
-    calculateValues.push(resultValue, calculatorValues[sym]);
+    calculatorHistory.push(resultValue, calculatorValues[sym]);
+    bottomScreenPrint("ce");
     topScreen.innerHTML = "";
 
     if (sym == "sum" || sym == "substract"
-    || sym == "divide" || sym == "multiply")
-        for (value of calculateValues) {
+    || sym == "divide" || sym == "multiply") {
+        // console.log(calculateValues(calculatorHistory));
+        for (value of calculatorHistory) {
             if (topScreen.innerHTML.length > 0) {topScreen.innerHTML += " "}
             topScreen.innerHTML += value;
+        }
     }
-
-    bottomScreenPrint("ce");
 }
 
 
@@ -113,7 +132,7 @@ function bottomScreenPrint(sym) {
     }
 
     if (sym == "clear") {
-        calculateValues = [];
+        calculatorHistory = [];
     }
 
     else if (sym.includes("num") || sym == "comma"
