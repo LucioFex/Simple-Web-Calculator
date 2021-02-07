@@ -11,7 +11,9 @@ const colors = ["#294192", "#2f4d0d", "#790979", "#811414"];
 const calculatorValues = {
     "num1": "1", "num2": "2", "num3": "3", "num4": "4", "num5": "5",
     "num6": "6", "num7": "7", "num8": "8", "num9": "9", "num0": "0",
-    "comma": ",", "sum": "+", "substract": "-", "divide": "÷", "multiply": "x",
+    "comma": ",", "sum": "+", "substract": "-", "divide": "÷",
+    "multiply": "x", "over-x": "1/", "factorial": "!",
+    "square-root": "√", "cube-root": "∛", "square-power": "²",
     "pi": "3,1415926535897932384", "euler": "2,7182818284590452353"};
 var resultValue = "0";
 var calculateValues = [];
@@ -20,10 +22,14 @@ var colorNum = 0;
 
 function setUp() {
     /*
-    Functionality of the terms and privacy buttons:
+    Preparations for the usage of the calculator
     */
     let terms = document.getElementById("terms");
     let privacy = document.getElementById("privacy");
+    let specialValues = ["equal-to", "over-x", "factorial", "square-root",
+        "cube-root", "square-power", "divide", "multiply", "sum", "substract"];
+
+    // Functionality of the terms and privacy buttons:
     for (element of [terms, privacy]) {
         element.addEventListener("click", notice, false);
     }
@@ -31,7 +37,7 @@ function setUp() {
     // Change of the title background color in intervals of 4 seconds:
     setInterval(multiColor, 1000 * 4, document.getElementById("title"));
 
-     // Functionality of the calculator buttons:
+    // Functionality of the calculator buttons:
     for (idName of document.getElementsByClassName("button")) {
         buttonAction(idName);
     }
@@ -63,12 +69,14 @@ function buttonAction(input) {
         "square-power", "divide", "multiply", "sum", "substract"];
 
     if (specialValues.includes(input.id)) {
-        return input.addEventListener(
+        input.addEventListener(
             "click", function() {processValue(input.id)}, false);
     }
-    // If input.id is a number or not in the 'specialValues' list:
-    return input.addEventListener(
+    else if (specialValues.includes(input.id) == false) {
+        // If input.id is a number or not in the 'specialValues' list:
+    input.addEventListener(
         "click", function() {bottomScreenPrint(input.id)}, false);
+    }
 }
 
 
@@ -96,9 +104,8 @@ function bottomScreenPrint(sym) {
     "clear", "ce" or "del", then it will delete characters.
     */
     if (sym == "clear" || sym == "ce" || sym == "clear"
-        || (sym == "del1" || sym == "del2") && resultValue.length == 1
-        || sym == "num0" && (resultValue == "" || resultValue == "0")) {
-
+    || (sym == "del1" || sym == "del2") && resultValue.length == 1
+    || sym == "num0" && (resultValue == "" || resultValue == "0")) {
         resultValue = "0";
     }
 
@@ -158,19 +165,10 @@ function skullPosition() {
     else if (greaterWidth > 0) {
         skull.style.left = `calc(50% + 300px + ${greaterWidth}px)`;
         skull.src = "imgs/over-limit-screen.png";
-
         calculator.style.width = `calc(600px + ${greaterWidth}px)`;
         calculatorInterface.style.width = `calc(560px + ${greaterWidth}px)`;
         calculatorScreen.style.width = `calc(504px + ${greaterWidth}px)`;
     }
-
-    // console.log("Calculator:", calculator.clientWidth);
-    // console.log("Calculator Interace:", calculatorInterface.clientWidth);
-    // console.log("Calculator Screen:", calculatorScreen.clientWidth);
-    // console.log("bottomWidth:", bottomWidth);
-    // console.log("topWidth:", topWidth);
-    // console.log("greaterWidth:", greaterWidth);
-    // console.log("=".repeat("Calculator Interace:".length));
 }
 
 
