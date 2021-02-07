@@ -19,7 +19,9 @@ var colorNum = 0;
 
 
 function setUp() {
-    // Functionality of the terms and privacy buttons:
+    /*
+    Functionality of the terms and privacy buttons:
+    */
     let terms = document.getElementById("terms");
     let privacy = document.getElementById("privacy");
     for (element of [terms, privacy]) {
@@ -37,7 +39,9 @@ function setUp() {
 
 
 function multiColor(title) {
-    // Change of the background color of the title of the page every 4 seconds
+    /*
+    Change of the background color of the title of the page every 4 seconds
+    */
     if (colorNum > (colors.length - 1)) {
         colorNum = 0
     }
@@ -50,18 +54,8 @@ function multiColor(title) {
 function buttonAction(input) {
     /*
     Button selection action:
-        It prepares all AddEventListeners of the calculator buttons.
-
-    This function prints in the bottom calculator
-    screen the selected symbol or number.
-    Also it adds the value to a list to be process by another function.
-
-    If the ID of the input class has an special name such as
-    "clear", "del", "ce" or any type of calculator system button,
-    Then it will have an special tratment.
-
-    If the input is a number or comma, then the function will print it in
-    the bottom Screen.
+    It prepares all AddEventListeners() for the calculator buttons.
+    It divides the 'specialValues' from the normals.
     */
 
     let specialValues = [
@@ -143,8 +137,8 @@ function bottomScreenPrint(sym) {
 function skullPosition() {
     /*
     This function changes the position of the skull
-    in the right of the calculator, including its image
-    and increases or reduces the width of the calculator
+    in the right of the calculator, including its image.
+    It also increases or reduces the width of the calculator
     depending in the length of the calculator top and bottom screen.
     */
     let bottomWidth = (bottomScreen.innerHTML.length - 21) * 24;
@@ -181,7 +175,9 @@ function skullPosition() {
 
 
 function notice(event) {
-    // Usage of the "terms and conditions" and "privacy policy" buttons
+    /*
+    Usage of the "terms and conditions" and "privacy policy" buttons.
+    */
     let id = event.target.id;
     alert("I am supposed to show you something about " +
         `${id[0].toUpperCase() + id.slice(1)} and stuff like that.`);
