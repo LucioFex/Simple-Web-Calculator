@@ -82,16 +82,19 @@ function buttonAction(input) {
 
 function processValue(sym) {
     /*
-    Process the inserted symbol to print the
-    process of the calculation in the top screen.
+    Function that process the inserted symbol to print the
+    progress of the calculation's result in the top screen.
     */
     calculateValues.push(resultValue, calculatorValues[sym]);
     topScreen.innerHTML = "";
 
-    for (value of calculateValues) {
-        if (topScreen.innerHTML.length > 0) {topScreen.innerHTML += " "}
-        topScreen.innerHTML += value;
+    if (sym == "sum" || sym == "substract"
+    || sym == "divide" || sym == "multiply")
+        for (value of calculateValues) {
+            if (topScreen.innerHTML.length > 0) {topScreen.innerHTML += " "}
+            topScreen.innerHTML += value;
     }
+
     bottomScreenPrint("ce");
 }
 
