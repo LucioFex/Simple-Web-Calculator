@@ -77,23 +77,23 @@ function buttonAction(input) {
 }
 
 
-function calculateValues(history) {  // Continue Working here
+function calculateValues(history) {
     /*
     It process the history of values to give the
     result to the 'processValue' function.
     */
     let result = 0;
 
-    for (index of history) {
-        if (history[index] == "+") {
-            try {
-                result += parseFloat(history[index + 1])
-            } catch (error){
-                console.log(error);
-            }
+    for (value of history) {
+        if (value[0] == "+") {
+            result += parseFloat(value.slice(1));
         }
-        result += parseFloat(history[index]);
+        else if (value[0] == "-") {
+            result -= parseFloat(value.slice(1));
+        }
     }
+
+    console.log(result);
     return `${result}`;
 }
 
@@ -103,13 +103,13 @@ function processValue(sym) {
     Function that process the inserted symbol to print the
     progress of the calculation's result in the top screen.
     */
-    calculatorHistory.push(resultValue, calculatorValues[sym]);
+    calculatorHistory.push(calculatorValues[sym] + resultValue);
     bottomScreenPrint("ce");
     topScreen.innerHTML = "";
 
     if (sym == "sum" || sym == "substract"
     || sym == "divide" || sym == "multiply") {
-        // console.log(calculateValues(calculatorHistory));
+        calculateValues(calculatorHistory);
         for (value of calculatorHistory) {
             if (topScreen.innerHTML.length > 0) {topScreen.innerHTML += " "}
             topScreen.innerHTML += value;
