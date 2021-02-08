@@ -1,4 +1,4 @@
-// JavaScript document - Luciano Esteban (2021)
+// JavaScript document - Simple Web Calculator - Luciano Esteban (2021)
 
 // Fundamental variables
 const topScreen = document.getElementById("nums-top");
@@ -18,6 +18,7 @@ const calculatorValues = {
 var calculatorHistory = [];
 var resultValue = "0";
 var colorNum = 0;
+var symbol = "";
 
 
 function setUp() {
@@ -85,15 +86,10 @@ function calculateValues(history) {
     let result = 0;
 
     for (value of history) {
-        if (value[0] == "+") {
-            result += parseFloat(value.slice(1));
-        }
-        else if (value[0] == "-") {
-            result -= parseFloat(value.slice(1));
-        }
+        if (value[0] == "+") {symbol = "+"}
+        else if (value[0] == "-") {symbol = "-"}
     }
-
-    console.log(result);
+    // console.log(result);
     return `${result}`;
 }
 
@@ -111,8 +107,10 @@ function processValue(sym) {
     || sym == "divide" || sym == "multiply") {
         calculateValues(calculatorHistory);
         for (value of calculatorHistory) {
-            if (topScreen.innerHTML.length > 0) {topScreen.innerHTML += " "}
-            topScreen.innerHTML += value;
+            if (topScreen.innerHTML.length > 0) {
+                topScreen.innerHTML += ` ${value[0]} `;
+            }
+            topScreen.innerHTML += value.slice(1);
         }
     }
 }
