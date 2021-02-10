@@ -85,6 +85,7 @@ function calculateValues(history) {
     */
     let result = 0;
 
+    // Arithmetic section
     for (value of history) {
         for (sym of ["+", "-", "*", "/"]) {
             if (value == sym) {symbol = value; break;}
@@ -96,25 +97,32 @@ function calculateValues(history) {
         else if (symbol == "-" && value != symbol) {
             result -= parseFloat(value);
         }
+        else if (symbol == "*" && value != symbol) {
+            result *= parseFloat(value);
+        }
+        else if (symbol == "/" && value != symbol) {
+            result /= parseFloat(value);
+        }
     }
 
     symbol = "+";
-    return `${result}`;
+    return result;
 }
 
 
 function processValue(sym) {
     /*
     Function that process the inserted symbol to print the
-    progress of the calculation's result in the top screen.
+    progress of the calculation's in the top screen and
+    the result of it in the bottom screen.
     */
     calculatorHistory.push(resultValue, calculatorValues[sym]);
+    console.log(calculateValues(calculatorHistory));
     bottomScreenPrint("ce");
     topScreen.innerHTML = "";
 
     if (sym == "sum" || sym == "substract"
     || sym == "divide" || sym == "multiply") {
-        calculateValues(calculatorHistory);
         for (value of calculatorHistory) {
             if (topScreen.innerHTML.length > 0) {topScreen.innerHTML += " ";}
             topScreen.innerHTML += value;
