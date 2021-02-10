@@ -18,7 +18,7 @@ const calculatorValues = {
 var calculatorHistory = [];
 var resultValue = "0";
 var colorNum = 0;
-var symbol = "";
+var symbol = "+";
 
 
 function setUp() {
@@ -80,16 +80,25 @@ function buttonAction(input) {
 
 function calculateValues(history) {
     /*
-    It process the history of values to give the
-    result to the 'processValue' function.
+    It process the history of values to send these numbers (depending
+    of their symbols) to diferents functions to return the result.
     */
     let result = 0;
 
     for (value of history) {
-        if (value[0] == "+") {symbol = "+"}
-        else if (value[0] == "-") {symbol = "-"}
+        for (sym of ["+", "-", "*", "/"]) {
+            if (value == sym) {symbol = value; break;}
+        }
+
+        if (symbol == "+" && value != symbol) {
+            result += parseFloat(value);
+        }
+        else if (symbol == "-" && value != symbol) {
+            result -= parseFloat(value);
+        }
     }
-    // console.log(result);
+
+    symbol = "+";
     return `${result}`;
 }
 
@@ -99,7 +108,7 @@ function processValue(sym) {
     Function that process the inserted symbol to print the
     progress of the calculation's result in the top screen.
     */
-    calculatorHistory.push(calculatorValues[sym] + resultValue);
+    calculatorHistory.push(resultValue, calculatorValues[sym]);
     bottomScreenPrint("ce");
     topScreen.innerHTML = "";
 
@@ -107,10 +116,8 @@ function processValue(sym) {
     || sym == "divide" || sym == "multiply") {
         calculateValues(calculatorHistory);
         for (value of calculatorHistory) {
-            if (topScreen.innerHTML.length > 0) {
-                topScreen.innerHTML += ` ${value[0]} `;
-            }
-            topScreen.innerHTML += value.slice(1);
+            if (topScreen.innerHTML.length > 0) {topScreen.innerHTML += " ";}
+            topScreen.innerHTML += value;
         }
     }
 }
