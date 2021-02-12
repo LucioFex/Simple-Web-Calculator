@@ -12,7 +12,7 @@ const calcValues = {
     "num1": "1", "num2": "2", "num3": "3", "num4": "4", "num5": "5",
     "num6": "6", "num7": "7", "num8": "8", "num9": "9", "num0": "0",
     "comma": ",", "sum": "+", "substract": "-", "divide": "/",
-    "multiply": "*", "over-x": "1/", "factorial": "!",
+    "multiply": "*", "over-x": "1/", "factorial": "!", "equal-to": "",
     "square-root": "√", "cube-root": "∛", "square-power": "²",
     "pi": "3,1415926535897932384", "euler": "2,7182818284590452353"};
 var calculatorHistory = [];
@@ -72,8 +72,8 @@ function buttonAction(input) {
     }
     else if (specialValues.includes(input.id) == false) {
         // If input.id is a number or not in the 'specialValues' list:
-    input.addEventListener(
-        "click", function() {bottomScreenPrint(input.id)}, false);
+        input.addEventListener(
+            "click", function() {bottomScreenPrint(input.id)}, false);
     }
 }
 
@@ -98,14 +98,14 @@ function calculateValues(history) {
     let result = 0;
 
     for (value of history) {
-        for (sym of ["+", "-", "*", "/"]) {
-            if (value == sym) {symbol = value; break;}
-        }
+        if (["+", "-", "*", "/"].includes(value)) {symbol = value;}
+
         // Arithmetic section
         if (["+", "-", "*", "/"].includes(symbol) && value != symbol) {
             result = arithmeticCalculation(result, value);
         }
     }
+
     symbol = "+";
     return result;
 }
@@ -128,6 +128,7 @@ function processValue(sym) {
             topScreen.innerHTML += value.replace(".", ",");
         }
     }
+
     resultValue = "0"
     bottomScreen.innerHTML = calculateValues(calculatorHistory);
 }
