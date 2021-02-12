@@ -12,7 +12,7 @@ const calcValues = {
     "num1": "1", "num2": "2", "num3": "3", "num4": "4", "num5": "5",
     "num6": "6", "num7": "7", "num8": "8", "num9": "9", "num0": "0",
     "comma": ",", "sum": "+", "substract": "-", "divide": "/",
-    "multiply": "*", "over-x": "1/", "factorial": "!", "equal-to": "",
+    "multiply": "*", "over-x": "1/", "factorial": "!", "equal-to": "=",
     "square-root": "√", "cube-root": "∛", "square-power": "²",
     "pi": "3,1415926535897932384", "euler": "2,7182818284590452353"};
 var calculatorHistory = [];
@@ -98,14 +98,19 @@ function calculateValues(history) {
     let result = 0;
 
     for (value of history) {
-        if (["+", "-", "*", "/"].includes(value)) {symbol = value;}
+        if (["+", "-", "*", "/", "="].includes(value)) {symbol = value;}
 
         // Arithmetic section
-        if (["+", "-", "*", "/"].includes(symbol) && value != symbol) {
+        else if (["+", "-", "*", "/"].includes(symbol) && value != symbol) {
             result = arithmeticCalculation(result, value);
         }
-    }
 
+        // Result section
+        else if ("=".includes(value)) {
+            symbol = "+";
+            return result;
+        }
+    }
     symbol = "+";
     return result;
 }
@@ -121,14 +126,13 @@ function processValue(sym) {
     bottomScreenPrint("ce");
     topScreen.innerHTML = "";
 
-    if (sym == "sum" || sym == "substract"
-    || sym == "divide" || sym == "multiply") {
+    if (sym == "sum" || sym == "substract" || sym == "divide"
+    || sym == "multiply" || sym == "equal-to") {
         for (value of calculatorHistory) {
             if (topScreen.innerHTML.length > 0) {topScreen.innerHTML += " ";}
             topScreen.innerHTML += value.replace(".", ",");
         }
     }
-
     resultValue = "0"
     bottomScreen.innerHTML = calculateValues(calculatorHistory);
 }
