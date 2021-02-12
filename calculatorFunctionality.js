@@ -78,9 +78,9 @@ function buttonAction(input) {
 }
 
 
-function arithmeticCalculus(total, number) {
+function arithmeticCalculation(total, number) {
     /*
-    Processing of the total number with arithmetic symbols
+    'Total' number processing with arithmetic symbols.
     */
     if      (symbol == "+") {total += parseFloat(number);}
     else if (symbol == "-") {total -= parseFloat(number);}
@@ -104,7 +104,7 @@ function calculateValues(history) {
 
         // Arithmetic section
         if (["+", "-", "*", "/"].includes(symbol) && value != symbol) {
-            result = arithmeticCalculus(result, value);
+            result = arithmeticCalculation(result, value);
         }
     }
     symbol = "+";
