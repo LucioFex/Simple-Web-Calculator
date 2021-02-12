@@ -78,6 +78,18 @@ function buttonAction(input) {
 }
 
 
+function arithmeticCalculus(total, number) {
+    /*
+    Processing of the total number with arithmetic symbols
+    */
+    if      (symbol == "+") {total += parseFloat(number);}
+    else if (symbol == "-") {total -= parseFloat(number);}
+    else if (symbol == "*") {total *= parseFloat(number);}
+    else if (symbol == "/") {total /= parseFloat(number);}
+    return total;
+}
+
+
 function calculateValues(history) {
     /*
     It process the history of values to send these numbers (depending
@@ -85,26 +97,16 @@ function calculateValues(history) {
     */
     let result = 0;
 
-    // Arithmetic section
     for (value of history) {
         for (sym of ["+", "-", "*", "/"]) {
             if (value == sym) {symbol = value; break;}
         }
 
-        if (symbol == "+" && value != symbol) {
-            result += parseFloat(value);
-        }
-        else if (symbol == "-" && value != symbol) {
-            result -= parseFloat(value);
-        }
-        else if (symbol == "*" && value != symbol) {
-            result *= parseFloat(value);
-        }
-        else if (symbol == "/" && value != symbol) {
-            result /= parseFloat(value);
+        // Arithmetic section
+        if (["+", "-", "*", "/"].includes(symbol) && value != symbol) {
+            result = arithmeticCalculus(result, value);
         }
     }
-
     symbol = "+";
     return result;
 }
@@ -116,7 +118,8 @@ function processValue(sym) {
     progress of the calculation's in the top screen and
     the result of it in the bottom screen.
     */
-    calculatorHistory.push(resultValue, calculatorValues[sym]);
+    calculatorHistory.push(
+        resultValue.replace(",", "."), calculatorValues[sym]);
     console.log(calculateValues(calculatorHistory));
     bottomScreenPrint("ce");
     topScreen.innerHTML = "";
@@ -145,6 +148,7 @@ function bottomScreenPrint(sym) {
     }
 
     if (sym == "clear") {
+        topScreen.innerHTML = "";
         calculatorHistory = [];
     }
 
