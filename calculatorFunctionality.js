@@ -8,7 +8,7 @@ const calculatorInterface = document.getElementById("calculator-interface");
 const calculatorScreen = document.getElementById("calculator-screen");
 const skull = document.getElementById("skull")
 const colors = ["#294192", "#2f4d0d", "#790979", "#811414"];
-const calculatorValues = {
+const calcValues = {
     "num1": "1", "num2": "2", "num3": "3", "num4": "4", "num5": "5",
     "num6": "6", "num7": "7", "num8": "8", "num9": "9", "num0": "0",
     "comma": ",", "sum": "+", "substract": "-", "divide": "/",
@@ -101,7 +101,6 @@ function calculateValues(history) {
         for (sym of ["+", "-", "*", "/"]) {
             if (value == sym) {symbol = value; break;}
         }
-
         // Arithmetic section
         if (["+", "-", "*", "/"].includes(symbol) && value != symbol) {
             result = arithmeticCalculation(result, value);
@@ -118,9 +117,7 @@ function processValue(sym) {
     progress of the calculation's in the top screen and
     the result of it in the bottom screen.
     */
-    calculatorHistory.push(
-        resultValue.replace(",", "."), calculatorValues[sym]);
-    console.log(calculateValues(calculatorHistory));
+    calculatorHistory.push(resultValue.replace(",", "."), calcValues[sym]);
     bottomScreenPrint("ce");
     topScreen.innerHTML = "";
 
@@ -128,9 +125,11 @@ function processValue(sym) {
     || sym == "divide" || sym == "multiply") {
         for (value of calculatorHistory) {
             if (topScreen.innerHTML.length > 0) {topScreen.innerHTML += " ";}
-            topScreen.innerHTML += value;
+            topScreen.innerHTML += value.replace(".", ",");
         }
     }
+    resultValue = "0"
+    bottomScreen.innerHTML = calculateValues(calculatorHistory);
 }
 
 
@@ -155,11 +154,11 @@ function bottomScreenPrint(sym) {
     else if (sym.includes("num") || sym == "comma"
     && resultValue.includes(",") == false) {
         if (resultValue == "0" && sym != "comma") {resultValue = "";}
-        resultValue += calculatorValues[sym];
+        resultValue += calcValues[sym];
     }
 
     else if (sym == "pi" || sym == "euler") {
-        resultValue = calculatorValues[sym];
+        resultValue = calcValues[sym];
     }
 
     else if (sym == "negate" && resultValue != "") {
