@@ -61,7 +61,6 @@ function buttonAction(input) {
     It prepares all AddEventListeners() for the calculator buttons.
     It divides the 'specialValues' from the normals.
     */
-
     let specialValues = [
         "equal-to", "over-x", "factorial", "square-root", "cube-root",
         "square-power", "divide", "multiply", "sum", "substract"];
@@ -106,7 +105,7 @@ function calculateValues(history) {
         }
 
         // Result section
-        else if ("=".includes(value)) {
+        else if ("=".includes(symbol)) {  // Continue working here...
             symbol = "+";
             return result;
         }
@@ -123,17 +122,17 @@ function processValue(sym) {
     the result of it in the bottom screen.
     */
     calculatorHistory.push(resultValue.replace(",", "."), calcValues[sym]);
-    bottomScreenPrint("ce");
     topScreen.innerHTML = "";
 
-    if (sym == "sum" || sym == "substract" || sym == "divide"
-    || sym == "multiply" || sym == "equal-to") {
+    if (sym == "sum" || sym == "substract"
+    || sym == "divide" || sym == "multiply" || sym == "equal-to") {
         for (value of calculatorHistory) {
             if (topScreen.innerHTML.length > 0) {topScreen.innerHTML += " ";}
             topScreen.innerHTML += value.replace(".", ",");
         }
     }
-    resultValue = "0"
+
+    resultValue = "0";
     bottomScreen.innerHTML = calculateValues(calculatorHistory);
 }
 
