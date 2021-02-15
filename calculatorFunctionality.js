@@ -125,14 +125,16 @@ function processValue(sym) {
     if (sym == "sum" || sym == "substract"
     || sym == "divide" || sym == "multiply" || sym == "equal-to") {
         for (value of calculatorHistory) {
-            if (topScreen.innerHTML.length > 0) {topScreen.innerHTML += " ";}
+            if (value == "=") {calculatorHistory = []; break;}
+            else if (topScreen.innerHTML.length > 0) {
+                topScreen.innerHTML += " ";
+            }
             topScreen.innerHTML += value.replace(".", ",");
-            if (value == "=") {
-                calculatorHistory = [total]; break;}
         }
     }
 
     resultValue = "0";
+    if (sym == "equal-to") {resultValue = total;}  // Continue working here
     bottomScreen.innerHTML = total;
 }
 
