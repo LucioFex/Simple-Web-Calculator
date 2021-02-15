@@ -105,10 +105,7 @@ function calculateValues(history) {
         }
 
         // Result section
-        else if ("=".includes(symbol)) {  // Continue working here...
-            symbol = "+";
-            return result;
-        }
+        else if ("=".includes(symbol)) {break}
     }
     symbol = "+";
     return result;
@@ -122,6 +119,7 @@ function processValue(sym) {
     the result of it in the bottom screen.
     */
     calculatorHistory.push(resultValue.replace(",", "."), calcValues[sym]);
+    let total = `${calculateValues(calculatorHistory)}`;
     topScreen.innerHTML = "";
 
     if (sym == "sum" || sym == "substract"
@@ -129,11 +127,13 @@ function processValue(sym) {
         for (value of calculatorHistory) {
             if (topScreen.innerHTML.length > 0) {topScreen.innerHTML += " ";}
             topScreen.innerHTML += value.replace(".", ",");
+            if (value == "=") {
+                calculatorHistory = [total]; break;}
         }
     }
 
     resultValue = "0";
-    bottomScreen.innerHTML = calculateValues(calculatorHistory);
+    bottomScreen.innerHTML = total;
 }
 
 
