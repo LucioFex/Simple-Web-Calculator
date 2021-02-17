@@ -126,16 +126,18 @@ function processValue(sym) {
     if (sym == "sum" || sym == "substract"
     || sym == "divide" || sym == "multiply" || sym == "equal-to") {
         for (value of calculatorHistory) {
-            if (value == "=") {calculatorHistory = []; break;}
-            else if (topScreen.innerHTML.length > 0) {
-                topScreen.innerHTML += " ";
+            if (topScreen.innerHTML.length > 0) {topScreen.innerHTML += " ";}
+            if (value == "=") {
+                topScreen.innerHTML += " =";
+                calculatorHistory = [];
+                break;
             }
             topScreen.innerHTML += value.replace(".", ",");
         }
     }
 
-    resultValue = "0";
-    if (sym == "equal-to") {resultValue = total;}  // Continue working here
+    if (sym == "equal-to") {resultValue = total;}
+    else if (sym != "equal-to") {resultValue = "0";}
     bottomScreen.innerHTML = total;
 }
 
