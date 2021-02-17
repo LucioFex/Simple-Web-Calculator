@@ -106,7 +106,7 @@ function calculateValues(history) {
         }
 
         // Result section
-        else if ("=".includes(symbol)) {break}
+        else if ("=".includes(symbol)) {break;}
     }
     symbol = "+";
     return result;
@@ -136,7 +136,7 @@ function processValue(sym) {
         }
     }
 
-    if (sym == "equal-to") {resultValue = total;}
+    if (sym == "equal-to")      {resultValue = total;}
     else if (sym != "equal-to") {resultValue = "0";}
     bottomScreen.innerHTML = total;
 }
@@ -149,6 +149,12 @@ function bottomScreenPrint(sym) {
     But if the input is a system calculator button such as
     "clear", "ce" or "del", then it will delete characters.
     */
+    if (topScreen.innerHTML.slice(-1) == "=") {
+        resultValue = "0";
+        topScreen.innerHTML = "";
+        calculatorHistory = [];
+    }
+
     if (sym == "clear" || sym == "ce" || sym == "clear"
     || (sym == "del1" || sym == "del2") && resultValue.length == 1
     || sym == "num0" && (resultValue == "" || resultValue == "0")) {
