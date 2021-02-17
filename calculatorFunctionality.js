@@ -149,10 +149,9 @@ function bottomScreenPrint(sym) {
     But if the input is a system calculator button such as
     "clear", "ce" or "del", then it will delete characters.
     */
-    if (topScreen.innerHTML.slice(-1) == "=") {
+    if (topScreen.innerHTML.slice(-1) == "=") {  // Refactor more later...
         resultValue = "0";
         topScreen.innerHTML = "";
-        calculatorHistory = [];
     }
 
     if (sym == "clear" || sym == "ce" || sym == "clear"
