@@ -180,12 +180,8 @@ html, body {
     height: 55px;
 }
 
-#skull img, #functional-container #del1 img {
+#skull, #functional-container #del1 img {
     user-select: none;
-    -webkit-user-drag: none;
-    -moz-user-drag: none;
-    -ms-user-drag: none;
-    -o-user-drag: none;
 }
 
 #functional-container #del1 img {

@@ -27,6 +27,7 @@ function setUp() {
     */
     let terms = document.getElementById("terms");
     let privacy = document.getElementById("privacy");
+
     // Functionality of the terms and privacy buttons:
     for (element of [terms, privacy]) {
         element.addEventListener("click", notice, false);
