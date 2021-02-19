@@ -149,14 +149,14 @@ function bottomScreenPrint(sym) {
     But if the input is a system calculator button such as
     "clear", "ce" or "del", then it will delete characters.
     */
-    if (topScreen.innerHTML.slice(-1) == "=") {  // Refactor more later...
+    if (topScreen.innerHTML.slice(-1) == "=") {
         resultValue = "0";
         topScreen.innerHTML = "";
     }
-
-    if (sym == "clear" || sym == "ce" || sym == "clear"
-    || (sym == "del1" || sym == "del2") && resultValue.length == 1
-    || sym == "num0" && (resultValue == "" || resultValue == "0")) {
+    
+    if (["clear", "ce"].includes(sym) || ["del1", "del2"].includes(sym)
+    && resultValue.length == 1 || sym == "num0"
+    && (resultValue == "" || resultValue == "0")) {
         resultValue = "0";
     }
 
@@ -171,23 +171,22 @@ function bottomScreenPrint(sym) {
         resultValue += calcValues[sym];
     }
 
-    else if (sym == "pi" || sym == "euler") {
+    else if (["pi", "euler"].includes(sym)) {
         resultValue = calcValues[sym];
     }
 
     else if (sym == "negate" && resultValue != "") {
-        if (resultValue[0] != "-") {resultValue = "-" + resultValue;}
-        else if (resultValue[0] == "-") {
-            resultValue = resultValue.slice(1, resultValue.length);}
+        if      (resultValue[0] != "-") {resultValue = "-" + resultValue;}
+        else if (resultValue[0] == "-") {resultValue = resultValue.slice(1);}
     }
 
-    else if ((sym == "del1" || sym == "del2") && resultValue.length > 1) {
+    else if (["del1", "del2"].includes(sym) && resultValue.length > 1) {
         resultValue = resultValue.slice(0, -1);
     }
 
     // Final print
-    bottomScreen.innerHTML = resultValue;
-    if (resultValue == "") {bottomScreen.innerHTML = "0";}
+    if      (resultValue == "") {bottomScreen.innerHTML = "0";}
+    else if (resultValue != "") {bottomScreen.innerHTML = resultValue;}
     skullPosition();
     return resultValue;
 }
