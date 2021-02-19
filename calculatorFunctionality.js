@@ -192,7 +192,7 @@ function bottomScreenPrint(sym) {
 }
 
 
-function skullPosition() {
+function skullPosition() {  // Note: FIX THE BUG IN THE TOPSCREEN RESIZE
     /*
     This function changes the position of the skull
     in the right of the calculator, including its image.
