@@ -119,26 +119,25 @@ function processValue(sym) {
     progress of the calculation's in the top screen and
     the result of it in the bottom screen.
     */
+    if (resultValue.slice(-1) == ",") {resultValue = resultValue.slice(0, -1)}
     calculatorHistory.push(resultValue.replace(",", "."), calcValues[sym]);
-    let total = `${calculateValues(calculatorHistory)}`;
+    let total = calculateValues(calculatorHistory).toString();
     topScreen.innerHTML = "";
 
-    if (sym == "sum" || sym == "substract"
-    || sym == "divide" || sym == "multiply" || sym == "equal-to") {
-        for (value of calculatorHistory) {
-            if (topScreen.innerHTML.length > 0) {topScreen.innerHTML += " ";}
-            if (value == "=") {
-                topScreen.innerHTML += " =";
-                calculatorHistory = [];
-                break;
-            }
-            topScreen.innerHTML += value.replace(".", ",");
+    for (value of calculatorHistory) {
+        if (topScreen.innerHTML.length > 0) {topScreen.innerHTML += " ";}
+        if (value == "=") {
+            topScreen.innerHTML += " =";
+            calculatorHistory = [];
+            break;
         }
+        topScreen.innerHTML += value.replace(".", ",");
     }
+
 
     if (sym == "equal-to")      {resultValue = total;}
     else if (sym != "equal-to") {resultValue = "0";}
-    bottomScreen.innerHTML = total;
+    bottomScreen.innerHTML = total.toString().replace(".", ",");
 }
 
 
