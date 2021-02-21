@@ -134,10 +134,10 @@ function processValue(sym) {
         topScreen.innerHTML += value.replace(".", ",");
     }
 
-
     if (sym == "equal-to")      {resultValue = total;}
     else if (sym != "equal-to") {resultValue = "0";}
     bottomScreen.innerHTML = total.toString().replace(".", ",");
+    skullPosition();
 }
 
 
@@ -189,7 +189,7 @@ function bottomScreenPrint(sym) {
 }
 
 
-function skullPosition() {  // Note: FIX THE BUG IN THE TOPSCREEN RESIZE
+function skullPosition() {
     /*
     This function changes the position of the skull
     in the right of the calculator, including its image.
