@@ -113,6 +113,16 @@ function calculateValues(history) {
 }
 
 
+function arrayComparison(arrayOne, arrayTwo) {
+    for (index in arrayOne) {
+        if (arrayOne[index] != arrayTwo[index]) {
+            return false
+        }
+    }
+    return true
+}
+
+
 function processValue(sym) {
     /*
     Function that process the inserted symbol to print the
@@ -123,6 +133,12 @@ function processValue(sym) {
     calculatorHistory.push(resultValue.replace(",", "."), calcValues[sym]);
     let total = calculateValues(calculatorHistory).toString();
     topScreen.innerHTML = "";
+
+    if (arrayComparison(calculatorHistory.slice(-3),
+        [calcValues[sym], "0", calcValues[sym]])) {
+            calculatorHistory = calculatorHistory.slice(0, -3);
+            calculatorHistory.push(calcValues[sym]);
+        }
 
     for (value of calculatorHistory) {
         if (topScreen.innerHTML.length > 0) {topScreen.innerHTML += " ";}
