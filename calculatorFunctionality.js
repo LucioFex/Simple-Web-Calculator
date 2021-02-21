@@ -114,6 +114,11 @@ function calculateValues(history) {
 
 
 function arrayComparison(arrayOne, arrayTwo) {
+    /*
+    Function to compare the content in two different arrays.
+    If the content is equal, then it will return TRUE.
+    If not, then it will return FALSE.
+    */
     for (index in arrayOne) {
         if (arrayOne[index] != arrayTwo[index]) {
             return false
