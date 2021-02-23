@@ -122,12 +122,20 @@ function processValue(sym) {
     if (resultValue.slice(-1) == ",") {resultValue = resultValue.slice(0, -1)}
     calculatorHistory.push(resultValue.replace(",", "."), calcValues[sym]);
     let total = calculateValues(calculatorHistory).toString();
-    topScreen.innerHTML = "";
 
-    if (calculatorHistory[calculatorHistory.length - 2] == "0") {
-        calculatorHistory = calculatorHistory.slice(0, -3);
-        calculatorHistory.push(calcValues[sym]);
+    if (total == "Infinity") {
+        bottomScreenPrint("clear");
+        topScreen.innerHTML = "( ͠° ͟ʖ ͡°)";
+        bottomScreen.innerHTML = "You can't divide by zero";
+        return bottomScreen;
     }
+
+    else if (calculatorHistory[calculatorHistory.length - 2] == "0") {
+        calculatorHistory = calculatorHistory.slice(0, -3);
+        return calculatorHistory.push(calcValues[sym]);
+    }
+
+    topScreen.innerHTML = "";
 
     for (value of calculatorHistory) {
         if (topScreen.innerHTML.length > 0) {topScreen.innerHTML += " ";}
@@ -138,8 +146,7 @@ function processValue(sym) {
         }
         topScreen.innerHTML += value.replace(".", ",");
     }
-
-    if (sym == "equal-to")      {resultValue = total;}
+    if      (sym == "equal-to") {resultValue = total;}
     else if (sym != "equal-to") {resultValue = "0";}
     bottomScreen.innerHTML = total.toString().replace(".", ",");
     skullPosition();
