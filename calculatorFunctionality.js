@@ -125,8 +125,7 @@ function processValue(sym) {
 
     if (total == "Infinity") {
         bottomScreenPrint("clear");
-        bottomScreen.innerHTML = "You can't divide by zero";
-        return bottomScreen;
+        return bottomScreen.innerHTML = "You can't divide by zero";
     }
 
     else if (calculatorHistory[calculatorHistory.length - 2] == "0") {
@@ -136,13 +135,11 @@ function processValue(sym) {
 
     topScreen.innerHTML = "";
     for (value of calculatorHistory) {
-        if (topScreen.innerHTML.length > 0) {topScreen.innerHTML += " ";}
-        topScreen.innerHTML += value.replace(".", ",");
-        if (value == "=") {calculatorHistory = []; break;}
+        topScreen.innerHTML += " " + value.replace(".", ",");
+        if (value == "=") {calculatorHistory = []; resultValue = total; break;}
     }
 
-    if      (sym == "equal-to") {}
-    else if (sym != "equal-to") {resultValue = "0";}
+    if (sym != "equal-to") {resultValue = "0";}
     bottomScreen.innerHTML = total.toString().replace(".", ",");
     skullPosition();
 }
