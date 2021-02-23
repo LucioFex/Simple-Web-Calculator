@@ -139,11 +139,10 @@ function processValue(sym) {
     let total = calculateValues(calculatorHistory).toString();
     topScreen.innerHTML = "";
 
-    if (arrayComparison(calculatorHistory.slice(-3),
-        [calcValues[sym], "0", calcValues[sym]])) {
-            calculatorHistory = calculatorHistory.slice(0, -3);
-            calculatorHistory.push(calcValues[sym]);
-        }
+    if (calculatorHistory[calculatorHistory.length - 2] == "0") {
+        calculatorHistory = calculatorHistory.slice(0, -3);
+        calculatorHistory.push(calcValues[sym]);
+    }
 
     for (value of calculatorHistory) {
         if (topScreen.innerHTML.length > 0) {topScreen.innerHTML += " ";}
