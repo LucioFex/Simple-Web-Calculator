@@ -130,7 +130,7 @@ function processValue(sym) {
 
     else if (calculatorHistory[calculatorHistory.length - 2] == "0") {
         calculatorHistory = calculatorHistory.slice(0, -3);
-        return calculatorHistory.push(calcValues[sym]);
+        calculatorHistory.push(calcValues[sym]);
     }
 
     topScreen.innerHTML = "";
