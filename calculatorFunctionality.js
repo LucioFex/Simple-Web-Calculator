@@ -80,7 +80,7 @@ function buttonAction(input) {
 
 function arithmeticSection(total, number) {
     /*
-    'Total' number processing with arithmetic symbols.
+    The 'Total' parameter will be processed by 'number' with arithmetic symbols
     */
     if      (symbol == "+") {total += parseFloat(number);}
     else if (symbol == "-") {total -= parseFloat(number);}
@@ -91,7 +91,9 @@ function arithmeticSection(total, number) {
 
 
 function scientificSection(total, number) {
-    
+    /*
+    The 'Total' parameter will be processed by 'number' with scientific symbols
+    */
 }
 
 
