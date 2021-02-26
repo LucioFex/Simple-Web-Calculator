@@ -90,15 +90,16 @@ function arithmeticSection(total, number) {
 }
 
 
-function scientificSection(total, number) {
+function scientificSection(total) {
     /*
     The 'Total' parameter will be processed by 'number' with scientific symbols
     */
-    if      (symbol == "1/") {}
-    else if (symbol == "!")  {}
-    else if (symbol == "√")  {}
-    else if (symbol == "∛")  {}
-    else if (symbol == "²")  {}
+    if      (symbol == "1/") {total = 1 / total;}
+    else if (symbol == "!")  {/* Continue here*/}
+    else if (symbol == "√")  {total = total ** (1/2);}
+    else if (symbol == "∛")  {total ** (1/3);}
+    else if (symbol == "²")  {total = total ** 2;}
+    return total;
 }
 
 
@@ -120,7 +121,7 @@ function calculateValues(history) {
 
         else if (["1/", "!", "√", "∛", "²"].includes(symbol)
         && value != value != symbol) {
-            result = scientificSection(result, value);
+            result = scientificSection(result);
         }
 
         // Result section
