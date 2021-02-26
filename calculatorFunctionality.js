@@ -128,7 +128,8 @@ function processValue(sym) {
         return bottomScreen.innerHTML = "You can't divide by zero";
     }
 
-    else if (calculatorHistory[calculatorHistory.length - 2] == "0") {
+    else if (calculatorHistory.slice(-2)[0] == "0"
+    && calculatorHistory.slice(-1)[0] != "=") {
         calculatorHistory = calculatorHistory.slice(0, -3);
         calculatorHistory.push(calcValues[sym]);
     }
