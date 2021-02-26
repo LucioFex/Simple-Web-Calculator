@@ -94,7 +94,11 @@ function scientificSection(total, number) {
     /*
     The 'Total' parameter will be processed by 'number' with scientific symbols
     */
-    if (symbol == "1/")
+    if      (symbol == "1/") {}
+    else if (symbol == "!")  {}
+    else if (symbol == "√")  {}
+    else if (symbol == "∛")  {}
+    else if (symbol == "²")  {}
 }
 
 
@@ -114,7 +118,7 @@ function calculateValues(history) {
             result = arithmeticSection(result, value);
         }
 
-        else if (["!/", "1/", "!", "√", "∛", "²"].includes(symbol)
+        else if (["1/", "!", "√", "∛", "²"].includes(symbol)
         && value != value != symbol) {
             result = scientificSection(result, value);
         }
