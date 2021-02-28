@@ -120,7 +120,7 @@ function calculateValues(history) {
         }
 
         else if (["1/", "!", "√", "∛", "²"].includes(symbol)
-        && value != value != symbol) {
+        && value != symbol) {
             result = scientificSection(result);
         }
 
