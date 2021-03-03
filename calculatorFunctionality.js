@@ -138,10 +138,10 @@ function processValue(sym) {
     progress of the calculation's in the top screen and
     the result of it in the bottom screen.
     */
-    topScreen.innerHTML = "";
     if (resultValue.slice(-1) == ",") {resultValue = resultValue.slice(0, -1)}
     calculatorHistory.push(resultValue.replace(",", "."), calcValues[sym]);
     let total = calculateValues(calculatorHistory).toString();
+    topScreen.innerHTML = "";
 
 
     if (total == "Infinity") {
@@ -156,23 +156,21 @@ function processValue(sym) {
     }
 
 
-    if (["1/", "√", "∛"].includes(calcValues[sym])) {  // Continue here
-        topScreen.innerHTML += calcValues[sym] + resultValue;
-
+    if (["1/", "√", "∛"].includes(calcValues[sym])) {
+        return topScreen.innerHTML += calcValues[sym] + resultValue;
     }
 
-    else if (["!", "²"].includes(calcValues[sym])) {  // Continue here
+    else if (["!", "²"].includes(calcValues[sym])) {
         topScreen.innerHTML += resultValue + calcValues[sym];
     }
 
-    else if (["1/", "!", "√", "∛", "²"].includes(calcValues[sym]) == false) {
-        for (value of calculatorHistory) {
-            topScreen.innerHTML += " " + value.replace(".", ",");
-            if (value == "=") {
-                calculatorHistory = [];
-                resultValue = total;
-                break;}
-        }
+
+    for (value of calculatorHistory) {
+        topScreen.innerHTML += " " + value.replace(".", ",");
+        if (value == "=") {
+            calculatorHistory = [];
+            resultValue = total;
+            break;}
     }
 
 
