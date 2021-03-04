@@ -111,8 +111,7 @@ function calculateValues(history) {
     let result = 0;
 
     for (value of history) {
-        if (["+", "-", "*", "/", "=",
-            "1/", "!", "√", "∛", "²"].includes(value)) {symbol = value;}
+        if ([...Array(10).keys()].includes(value) == false) {symbol = value;}
 
         // Arithmetic section
         else if (["+", "-", "*", "/"].includes(symbol) && value != symbol) {
@@ -127,8 +126,24 @@ function calculateValues(history) {
         // Result section
         else if ("=".includes(symbol)) {break;}
     }
+
     symbol = "+";
     return result;
+}
+
+
+function screenModification(array, total) {
+    topScreen.innerHTML = "";
+
+    if (total == "Infinity") {
+        bottomScreenPrint("clear");
+        return bottomScreen.innerHTML = "You can't divide by zero";
+    }
+
+    for (value of array) {
+        topScreen.innerHTML += " " + value.replace(".", ",");
+        if (value == "=") {calculatorHistory = []; resultValue = total; break;}
+    }
 }
 
 
@@ -141,39 +156,17 @@ function processValue(sym) {
     if (resultValue.slice(-1) == ",") {resultValue = resultValue.slice(0, -1)}
     calculatorHistory.push(resultValue.replace(",", "."), calcValues[sym]);
     let total = calculateValues(calculatorHistory).toString();
-    topScreen.innerHTML = "";
 
-
-    if (total == "Infinity") {
-        bottomScreenPrint("clear");
-        return bottomScreen.innerHTML = "You can't divide by zero";
-    }
-
-    else if (calculatorHistory.slice(-2)[0] == "0"
+    if (calculatorHistory.slice(-2)[0] == "0"
     && calculatorHistory.slice(-1)[0] != "=") {
         calculatorHistory = calculatorHistory.slice(0, -3);
         calculatorHistory.push(calcValues[sym]);
     }
 
+    // Visual process of the calculation in the top and bottom screen:
+    screenModification(calculatorHistory, total)
 
-    if (["1/", "√", "∛"].includes(calcValues[sym])) {
-        return topScreen.innerHTML += calcValues[sym] + resultValue;
-    }
-
-    else if (["!", "²"].includes(calcValues[sym])) {
-        topScreen.innerHTML += resultValue + calcValues[sym];
-    }
-
-
-    for (value of calculatorHistory) {
-        topScreen.innerHTML += " " + value.replace(".", ",");
-        if (value == "=") {
-            calculatorHistory = [];
-            resultValue = total;
-            break;}
-    }
-
-
+    // Preparation for the next calculation
     if (sym != "equal-to") {resultValue = "0";}
     bottomScreen.innerHTML = total.toString().replace(".", ",");
     skullPosition();
