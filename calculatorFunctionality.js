@@ -134,7 +134,10 @@ function calculateValues(history) {
 
 
 function screenModification(array, total) {
-
+    /*
+    Function that shows the output of the result in the bottom screen,
+    but will also show the process in the top one.
+    */
     topScreen.innerHTML = "";
 
     if (total == "Infinity") {
