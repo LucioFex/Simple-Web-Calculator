@@ -134,6 +134,7 @@ function calculateValues(history) {
 
 
 function screenModification(array, total) {
+
     topScreen.innerHTML = "";
 
     if (total == "Infinity") {
@@ -145,6 +146,8 @@ function screenModification(array, total) {
         topScreen.innerHTML += " " + value.replace(".", ",");
         if (value == "=") {calculatorHistory = []; resultValue = total; break;}
     }
+
+    bottomScreen.innerHTML = total.toString().replace(".", ",");
 }
 
 
@@ -169,7 +172,6 @@ function processValue(sym) {
 
     // Preparation for the next calculation
     if (sym != "equal-to") {resultValue = "0";}
-    bottomScreen.innerHTML = total.toString().replace(".", ",");
     skullPosition();
 }
 
