@@ -111,7 +111,9 @@ function calculateValues(history) {
     let result = 0;
 
     for (value of history) {
-        if ([...Array(10).keys()].includes(value) == false) {symbol = value;}
+        if ("0,1,2,3,4,5,6,7,8,9".split(",").includes(value) == false) {
+            symbol = value;
+        }
 
         // Arithmetic section
         else if (["+", "-", "*", "/"].includes(symbol) && value != symbol) {
