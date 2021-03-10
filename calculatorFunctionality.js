@@ -147,8 +147,10 @@ function screenModification(array, total) {
 
     for (value of array) {
         if (["1/", "!", "√", "∛", "²"].includes(value)) {
+            calculatorHistory = [];
+
             if (["!", "²"].includes(value)) {
-                topScreen.innerHTML = total + value;
+                topScreen.innerHTML = `(${total})` + value;
             }
             else if (["1/", "√", "∛"].includes(value)) {
                 topScreen.innerHTML = value + `(${total})`;
@@ -156,6 +158,7 @@ function screenModification(array, total) {
 
             total = calculateValues(array);
             resultValue = total;
+            break;
         }
         topScreen.innerHTML += " " + value.replace(".", ",");
         if (value == "=") {calculatorHistory = []; resultValue = total; break;}
@@ -175,7 +178,7 @@ function processValue(sym) {
     calculatorHistory.push(resultValue.replace(",", "."), calcValues[sym]);
 
     if (["1/", "!", "√", "∛", "²"].includes(calcValues[sym])) {
-        // pass
+        let total = calculateValues(calculatorHistory.slice(0, -1)).toString();
     }
     let total = calculateValues(calculatorHistory).toString();
 
@@ -189,7 +192,8 @@ function processValue(sym) {
     screenModification(calculatorHistory, total)
 
     // Preparation for the next calculation
-    if (sym != "equal-to") {resultValue = "0";}
+    if (["1/", "!", "√", "∛", "²", "="].includes(calcValues[sym]) == false) {
+        resultValue = "0";}
     skullPosition();
 }
 
