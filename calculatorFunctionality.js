@@ -146,6 +146,15 @@ function screenModification(array, total) {
     }
 
     for (value of array) {
+        if (["1/", "!", "√", "∛", "²"].includes(value)) {
+            if (["!", "²"].includes(value)) {
+                topScreen.innerHTML = "";
+            }
+            else if (["1/", "√", "∛"].includes(value)) {
+                topScreen.innerHTML = "";
+            }
+            resultValue = total;
+        }
         topScreen.innerHTML += " " + value.replace(".", ",");
         if (value == "=") {calculatorHistory = []; resultValue = total; break;}
     }
@@ -162,6 +171,10 @@ function processValue(sym) {
     */
     if (resultValue.slice(-1) == ",") {resultValue = resultValue.slice(0, -1)}
     calculatorHistory.push(resultValue.replace(",", "."), calcValues[sym]);
+
+    if (["1/", "!", "√", "∛", "²"].includes(calcValues[sym])) {
+        // pass
+    }
     let total = calculateValues(calculatorHistory).toString();
 
     if (calculatorHistory.slice(-2)[0] == "0"
