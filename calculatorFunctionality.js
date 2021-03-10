@@ -148,11 +148,13 @@ function screenModification(array, total) {
     for (value of array) {
         if (["1/", "!", "√", "∛", "²"].includes(value)) {
             if (["!", "²"].includes(value)) {
-                topScreen.innerHTML = "";
+                topScreen.innerHTML = total + value;
             }
             else if (["1/", "√", "∛"].includes(value)) {
-                topScreen.innerHTML = "";
+                topScreen.innerHTML = value + `(${total})`;
             }
+
+            total = calculateValues(array);
             resultValue = total;
         }
         topScreen.innerHTML += " " + value.replace(".", ",");
