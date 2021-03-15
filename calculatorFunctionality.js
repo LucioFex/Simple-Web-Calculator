@@ -157,7 +157,7 @@ function screenModification(array, total) {
             }
 
             total = calculateValues(array);
-            resultValue = total;
+            resultValue = total.toString();
             break;
         }
         topScreen.innerHTML += " " + value.replace(".", ",");
@@ -174,13 +174,18 @@ function processValue(sym) {
     progress of the calculation's in the top screen and
     the result of it in the bottom screen.
     */
+    let total;
+
     if (resultValue.slice(-1) == ",") {resultValue = resultValue.slice(0, -1)}
     calculatorHistory.push(resultValue.replace(",", "."), calcValues[sym]);
-
+    
     if (["1/", "!", "√", "∛", "²"].includes(calcValues[sym])) {
-        let total = calculateValues(calculatorHistory.slice(0, -1)).toString();
+        total = calculateValues(calculatorHistory.slice(0, -1)).toString();
     }
-    let total = calculateValues(calculatorHistory).toString();
+
+    else if (["1/", "!", "√", "∛", "²"].includes(calcValues[sym]) == false) {
+        total = calculateValues(calculatorHistory).toString();
+    }
 
     if (calculatorHistory.slice(-2)[0] == "0"
     && calculatorHistory.slice(-1)[0] != "=") {
@@ -292,9 +297,11 @@ function notice(event) {
     else if (id == "privacy") {
         alert("Knowing that this web site is about a calculator, there's " +
             "no need to set any kind of privacy politic. Relax...");
+
         alert(
             "But I wanna learn how to redirect you from this page to another" +
             " one, so... Let's look at the formal definition of privacy :)");
+
         alert(
             "Oh, I olmost forget: \nIf you'd have read this, then surely your" +
             " navigator will cancel the next page that I will try to open." +
