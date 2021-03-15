@@ -95,7 +95,7 @@ function scientificSection(total) {
     The 'Total' parameter will be processed by 'number' with scientific symbols
     */
     if      (symbol == "1/") {total = 1 / total;}
-    else if (symbol == "!")  {/* Continue here*/}
+    else if (symbol == "!")  {/* Continue here */}
     else if (symbol == "√")  {total = total ** (1/2);}
     else if (symbol == "∛")  {total ** (1/3);}
     else if (symbol == "²")  {total = total ** 2;}
@@ -148,7 +148,6 @@ function screenModification(array, total) {
     for (value of array) {
         if (["1/", "!", "√", "∛", "²"].includes(value)) {
             calculatorHistory = [];
-
             if (["!", "²"].includes(value)) {
                 topScreen.innerHTML = `(${total})` + value;
             }
@@ -160,8 +159,14 @@ function screenModification(array, total) {
             resultValue = total.toString();
             break;
         }
+
         topScreen.innerHTML += " " + value.replace(".", ",");
-        if (value == "=") {calculatorHistory = []; resultValue = total; break;}
+
+        if (value == "=") {
+            calculatorHistory = [];
+            resultValue = total.toString();
+            break;
+        }
     }
 
     bottomScreen.innerHTML = total.toString().replace(".", ",");
@@ -174,18 +179,8 @@ function processValue(sym) {
     progress of the calculation's in the top screen and
     the result of it in the bottom screen.
     */
-    let total;
-
     if (resultValue.slice(-1) == ",") {resultValue = resultValue.slice(0, -1)}
     calculatorHistory.push(resultValue.replace(",", "."), calcValues[sym]);
-    
-    if (["1/", "!", "√", "∛", "²"].includes(calcValues[sym])) {
-        total = calculateValues(calculatorHistory.slice(0, -1)).toString();
-    }
-
-    else if (["1/", "!", "√", "∛", "²"].includes(calcValues[sym]) == false) {
-        total = calculateValues(calculatorHistory).toString();
-    }
 
     if (calculatorHistory.slice(-2)[0] == "0"
     && calculatorHistory.slice(-1)[0] != "=") {
@@ -194,7 +189,7 @@ function processValue(sym) {
     }
 
     // Visual process of the calculation in the top and bottom screen:
-    screenModification(calculatorHistory, total)
+    screenModification(calculatorHistory, calculateValues(calculatorHistory));
 
     // Preparation for the next calculation
     if (["1/", "!", "√", "∛", "²", "="].includes(calcValues[sym]) == false) {
