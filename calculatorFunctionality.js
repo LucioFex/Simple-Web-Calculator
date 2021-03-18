@@ -119,9 +119,9 @@ function calculateValues(history) {
             result = arithmeticSection(result, value);
         }
 
-        else if (["1/", "!", "√", "∛", "²"].includes(symbol)
-        && value != symbol) {
+        else if (["1/", "!", "√", "∛", "²"].includes(symbol)) {
             result = scientificSection(result);
+            console.log(result);
         }
 
         // Result section
@@ -155,7 +155,6 @@ function screenModification(array, total) {
                 topScreen.innerHTML = value + `(${total})`;
             }
 
-            total = calculateValues(array);
             resultValue = total.toString();
             break;
         }
