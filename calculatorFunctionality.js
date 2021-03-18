@@ -103,29 +103,31 @@ function scientificSection(total) {
 }
 
 
-function calculateValues(history) {
+function calculateValues(history) {  // Re-structure this function later
     /*
     It process the history of values to send these numbers (depending
     of their symbols) to diferents functions to return the result.
     */
     let result = 0;
 
-    for (value of history) {
+    for (value in history) {
         if (["+", "-", "x", "÷", "=",
-            "1/", "!", "√", "∛", "²"].includes(value)) {symbol = value;}
+            "1/", "!", "√", "∛", "²"].includes(history[value])) {
+                symbol = history[value];
+            }
 
         // Arithmetic section
-        else if (["+", "-", "x", "÷"].includes(symbol) && value != symbol) {
-            result = arithmeticSection(result, value);
+        else if (["+", "-", "x", "÷"].includes(symbol)
+        && history[value] != symbol) {
+            result = arithmeticSection(result, history[value]);
         }
 
         else if (["1/", "!", "√", "∛", "²"].includes(symbol)) {
             result = scientificSection(result);
-            console.log(result);
         }
 
         // Result section
-        else if ("=".includes(symbol)) {break;}
+        else if ("=" == symbol) {break;}
     }
 
     symbol = "+";
