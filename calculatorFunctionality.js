@@ -114,23 +114,17 @@ function calculateValues(history) {
         if (["+", "-", "x", "÷", "=",
             "1/", "!", "√", "∛", "²"].includes(history[value])) {
                 symbol = history[value];
-                console.log("Symbol");
             }
 
         // Arithmetic section
         else if (["+", "-", "x", "÷"].includes(symbol)) {
             result = arithmeticSection(result, history[value]);
-            console.log("Arithmetic");
         }
 
         // Scientific section
         else if (["1/", "!", "√", "∛", "²"].includes(symbol)) {
             result = scientificSection(result);
-            console.log("Scientific");
         }
-
-        // Result section
-        // else if ("=" == symbol) {break;}
     }
 
     symbol = "+";
