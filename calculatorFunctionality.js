@@ -125,6 +125,16 @@ function calculateValues(history) {
         else if (["1/", "!", "√", "∛", "²"].includes(symbol)) {
             result = scientificSection(result);
         }
+
+        // Check this later...
+        // Arithmetic section
+        // if (["+", "-", "x", "÷"].includes(history[value - 1])) {
+        //     result = arithmeticSection(result, history[value], history[value -1]);
+        // }
+        // Scientific section
+        // else if (["1/", "!", "√", "∛", "²"].includes(history[value])) {
+        //     result = scientificSection(result, history[value -1]);
+        // }
     }
 
     symbol = "+";
