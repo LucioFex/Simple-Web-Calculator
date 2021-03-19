@@ -103,7 +103,7 @@ function scientificSection(total) {
 }
 
 
-function calculateValues(history) {  // Re-structure this function later
+function calculateValues(history) {
     /*
     It process the history of values to send these numbers (depending
     of their symbols) to diferents functions to return the result.
@@ -114,20 +114,23 @@ function calculateValues(history) {  // Re-structure this function later
         if (["+", "-", "x", "÷", "=",
             "1/", "!", "√", "∛", "²"].includes(history[value])) {
                 symbol = history[value];
+                console.log("Symbol");
             }
 
         // Arithmetic section
-        else if (["+", "-", "x", "÷"].includes(symbol)
-        && history[value] != symbol) {
+        else if (["+", "-", "x", "÷"].includes(symbol)) {
             result = arithmeticSection(result, history[value]);
+            console.log("Arithmetic");
         }
 
+        // Scientific section
         else if (["1/", "!", "√", "∛", "²"].includes(symbol)) {
             result = scientificSection(result);
+            console.log("Scientific");
         }
 
         // Result section
-        else if ("=" == symbol) {break;}
+        // else if ("=" == symbol) {break;}
     }
 
     symbol = "+";
