@@ -115,10 +115,9 @@ function calculateValues(history) {
         }
         // Scientific section
         else if (["1/", "!", "√", "∛", "²"].includes(history[value])) {
-            result = scientificSection(result, history[value -1]);
+            result = scientificSection(result, history[value]);
         }
     }
-
     return result;
 }
 
