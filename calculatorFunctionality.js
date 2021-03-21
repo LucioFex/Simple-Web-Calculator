@@ -135,24 +135,23 @@ function screenModification(array, total) {
     }
 
     for (value in array) {
-        value = array[value];
-
-        if (["1/", "!", "√", "∛", "²"].includes(value)) {
+        if (["1/", "!", "√", "∛", "²"].includes(array[value])) {
+            previous_result = calculateValues(array.slice(0, -1));
             calculatorHistory = [];
 
-            if (["!", "²"].includes(value)) {
-                topScreen.innerHTML = `(${total})` + value;
+            if (["!", "²"].includes(array[value])) {
+                topScreen.innerHTML = `(${previous_result})` + array[value];
             }
-            else if (["1/", "√", "∛"].includes(value)) {
-                topScreen.innerHTML = value + `(${total})`;
+            else if (["1/", "√", "∛"].includes(array[value])) {
+                topScreen.innerHTML = array[value] + `(${previous_result})`;
             }
 
             resultValue = total.toString();
             break;
         }
-        topScreen.innerHTML += " " + value.replace(".", ",");
+        topScreen.innerHTML += " " + array[value].replace(".", ",");
 
-        if (value == "=") {
+        if (array[value] == "=") {
             calculatorHistory = [];
             resultValue = total.toString();
             break;
