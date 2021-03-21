@@ -77,15 +77,14 @@ function buttonAction(input) {
 }
 
 
-function arithmeticSection(total, number, symbol) {
+function arithmeticSection(total, symbol, number) {
     /*
     The 'Total' parameter will be processed by 'number' with arithmetic symbols
     */
-    if      (symbol == "+") {total += parseFloat(number);}
-    else if (symbol == "-") {total -= parseFloat(number);}
-    else if (symbol == "x") {total *= parseFloat(number);}
-    else if (symbol == "÷") {total /= parseFloat(number);}
-    return total;
+    if      (symbol == "+") {return total + parseFloat(number);}
+    else if (symbol == "-") {return total - parseFloat(number);}
+    else if (symbol == "x") {return total * parseFloat(number);}
+    else if (symbol == "÷") {return total / parseFloat(number);}
 }
 
 
@@ -93,12 +92,11 @@ function scientificSection(total, symbol) {
     /*
     The 'Total' parameter will be processed by 'number' with scientific symbols
     */
-    if      (symbol == "1/") {total = 1 / total;}
+    if      (symbol == "1/") {return 1 / total;}
     else if (symbol == "!")  {/* Continue here */}
-    else if (symbol == "√")  {total = total ** (1/2);}
-    else if (symbol == "∛")  {total ** (1/3);}
-    else if (symbol == "²")  {total = total ** 2;}
-    return total;
+    else if (symbol == "√")  {return total ** (1/2);}
+    else if (symbol == "∛")  {return total ** (1/3);}
+    else if (symbol == "²")  {return total = total ** 2;}
 }
 
 
@@ -112,10 +110,8 @@ function calculateValues(history) {
     for (value in history) {
         // Arithmetic section
         if (["+", "-", "x", "÷"].includes(history[value - 1])) {
-            result = arithmeticSection(result, history[value], history[value -1]);
-            console.log(result);
-            console.log(history[value - 1]);
-            console.log(history[value]);
+            result = arithmeticSection(
+                result, history[value -1], history[value]);
         }
         // Scientific section
         else if (["1/", "!", "√", "∛", "²"].includes(history[value])) {
