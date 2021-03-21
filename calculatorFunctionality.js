@@ -134,7 +134,9 @@ function screenModification(array, total) {
         return bottomScreen.innerHTML = "You can't divide by zero";
     }
 
-    for (value of array) {
+    for (value in array) {
+        value = array[value];
+
         if (["1/", "!", "√", "∛", "²"].includes(value)) {
             calculatorHistory = [];
 
