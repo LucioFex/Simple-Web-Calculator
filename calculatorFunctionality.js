@@ -18,7 +18,6 @@ const calcValues = {
 var calculatorHistory = [];
 var resultValue = "0";
 var colorNum = 0;
-var symbol = "+";
 
 
 function setUp() {
@@ -78,7 +77,7 @@ function buttonAction(input) {
 }
 
 
-function arithmeticSection(total, number) {
+function arithmeticSection(total, number, symbol) {
     /*
     The 'Total' parameter will be processed by 'number' with arithmetic symbols
     */
@@ -90,7 +89,7 @@ function arithmeticSection(total, number) {
 }
 
 
-function scientificSection(total) {
+function scientificSection(total, symbol) {
     /*
     The 'Total' parameter will be processed by 'number' with scientific symbols
     */
@@ -108,36 +107,22 @@ function calculateValues(history) {
     It process the history of values to send these numbers (depending
     of their symbols) to diferents functions to return the result.
     */
-    let result = 0;
+    let result = parseFloat(history[0]);
 
     for (value in history) {
-        if (["+", "-", "x", "÷", "=",
-            "1/", "!", "√", "∛", "²"].includes(history[value])) {
-                symbol = history[value];
-            }
-
         // Arithmetic section
-        else if (["+", "-", "x", "÷"].includes(symbol)) {
-            result = arithmeticSection(result, history[value]);
+        if (["+", "-", "x", "÷"].includes(history[value - 1])) {
+            result = arithmeticSection(result, history[value], history[value -1]);
+            console.log(result);
+            console.log(history[value - 1]);
+            console.log(history[value]);
         }
-
         // Scientific section
-        else if (["1/", "!", "√", "∛", "²"].includes(symbol)) {
-            result = scientificSection(result);
+        else if (["1/", "!", "√", "∛", "²"].includes(history[value])) {
+            result = scientificSection(result, history[value -1]);
         }
-
-        // Check this later...
-        // Arithmetic section
-        // if (["+", "-", "x", "÷"].includes(history[value - 1])) {
-        //     result = arithmeticSection(result, history[value], history[value -1]);
-        // }
-        // Scientific section
-        // else if (["1/", "!", "√", "∛", "²"].includes(history[value])) {
-        //     result = scientificSection(result, history[value -1]);
-        // }
     }
 
-    symbol = "+";
     return result;
 }
 
@@ -157,6 +142,7 @@ function screenModification(array, total) {
     for (value of array) {
         if (["1/", "!", "√", "∛", "²"].includes(value)) {
             calculatorHistory = [];
+
             if (["!", "²"].includes(value)) {
                 topScreen.innerHTML = `(${total})` + value;
             }
@@ -167,7 +153,6 @@ function screenModification(array, total) {
             resultValue = total.toString();
             break;
         }
-
         topScreen.innerHTML += " " + value.replace(".", ",");
 
         if (value == "=") {
