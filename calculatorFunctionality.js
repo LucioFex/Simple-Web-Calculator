@@ -139,11 +139,11 @@ function screenModification(array, total) {
             previous_result = calculateValues(array.slice(0, -1));
             calculatorHistory = [];
 
-            if (["!", "²"].includes(array[value])) {
-                topScreen.innerHTML = `(${previous_result})` + array[value];
+            if (["!", "²"].includes(array.slice(-1)[0])) {
+                topScreen.innerHTML = `(${previous_result})` + array.slice(-1)[0];
             }
-            else if (["1/", "√", "∛"].includes(array[value])) {
-                topScreen.innerHTML = array[value] + `(${previous_result})`;
+            else if (["1/", "√", "∛"].includes(array.slice(-1)[0])) {
+                topScreen.innerHTML = array.slice(-1)[0] + `(${previous_result})`;
             }
 
             resultValue = total.toString();
