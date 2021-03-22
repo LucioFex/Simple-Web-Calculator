@@ -15,7 +15,7 @@ const calcValues = {
     "multiply": "x", "over-x": "1/", "factorial": "!", "equal-to": "=",
     "square-root": "√", "cube-root": "∛", "square-power": "²",
     "pi": "3,1415926535897932384", "euler": "2,7182818284590452353"};
-var calculatorHistory = [];
+var calcHistory = [];
 var resultValue = "0";
 var colorNum = 0;
 
@@ -122,7 +122,7 @@ function calculateValues(history) {
 }
 
 
-function screenModification(array, total) {
+function screenModification(total) {
     /*
     Function that shows the output of the result in the bottom screen,
     but will also show the process in the top one.
@@ -134,25 +134,28 @@ function screenModification(array, total) {
         return bottomScreen.innerHTML = "You can't divide by zero";
     }
 
-    for (value in array) {
-        if (["1/", "!", "√", "∛", "²"].includes(array[value])) {
-            previous_result = calculateValues(array.slice(0, -1));
-            calculatorHistory = [];
+    for (value in calcHistory) {
+        if (["1/", "!", "√", "∛", "²"].includes(calcHistory[value])) {
+            previous_result = calculateValues(calcHistory.slice(0, -1));
 
-            if (["!", "²"].includes(array.slice(-1)[0])) {
-                topScreen.innerHTML = `(${previous_result})` + array.slice(-1)[0];
-            }
-            else if (["1/", "√", "∛"].includes(array.slice(-1)[0])) {
-                topScreen.innerHTML = array.slice(-1)[0] + `(${previous_result})`;
+            if (["!", "²"].includes(calcHistory.slice(-1)[0])) {
+                topScreen.innerHTML =
+                `(${previous_result})` + calcHistory.slice(-1)[0];
             }
 
+            else if (["1/", "√", "∛"].includes(calcHistory.slice(-1)[0])) {
+                topScreen.innerHTML =
+                calcHistory.slice(-1)[0] + `(${previous_result})`;
+            }
+
+            calcHistory = [];
             resultValue = total.toString();
             break;
         }
-        topScreen.innerHTML += " " + array[value].replace(".", ",");
+        topScreen.innerHTML += " " + calcHistory[value].replace(".", ",");
 
-        if (array[value] == "=") {
-            calculatorHistory = [];
+        if (calcHistory[value] == "=") {
+            calcHistory = [];
             resultValue = total.toString();
             break;
         }
@@ -169,20 +172,20 @@ function processValue(sym) {
     the result of it in the bottom screen.
     */
     if (resultValue.slice(-1) == ",") {resultValue = resultValue.slice(0, -1)}
-    calculatorHistory.push(resultValue.replace(",", "."), calcValues[sym]);
+    calcHistory.push(resultValue.replace(",", "."), calcValues[sym]);
 
-    if (calculatorHistory.slice(-2)[0] == "0"
-    && calculatorHistory.slice(-1)[0] != "=") {
-        calculatorHistory = calculatorHistory.slice(0, -3);
-        calculatorHistory.push(calcValues[sym]);
+    if (calcHistory.slice(-2)[0] == "0"
+    && calcHistory.slice(-1)[0] != "=") {
+        calcHistory = calcHistory.slice(0, -3);
+        calcHistory.push(calcValues[sym]);
     }
 
     // Visual process of the calculation in the top and bottom screen:
-    screenModification(calculatorHistory, calculateValues(calculatorHistory));
+    screenModification(calculateValues(calcHistory));
 
     // Preparation for the next calculation
-    if (["1/", "!", "√", "∛", "²", "="].includes(calcValues[sym]) == false) {
-        resultValue = "0";}
+    if (["1/", "!", "√", "∛", "²", "="].includes(
+        calcValues[sym]) == false) {resultValue = "0";}
     skullPosition();
 }
 
@@ -207,7 +210,7 @@ function bottomScreenPrint(sym) {
 
     if (sym == "clear") {
         topScreen.innerHTML = "";
-        calculatorHistory = [];
+        calcHistory = [];
     }
 
     else if (sym.includes("num") || sym == "comma"
