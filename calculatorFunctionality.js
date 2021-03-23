@@ -17,6 +17,7 @@ const calcValues = {
     "pi": "3,1415926535897932384", "euler": "2,7182818284590452353"};
 var calcHistory = [];
 var resultValue = "0";
+var givenResult = false;
 var colorNum = 0;
 
 
@@ -150,6 +151,7 @@ function screenModification(total) {
 
             calcHistory = [];
             resultValue = total.toString();
+            givenResult = true;
             break;
         }
         topScreen.innerHTML += " " + calcHistory[value].replace(".", ",");
@@ -157,6 +159,7 @@ function screenModification(total) {
         if (calcHistory[value] == "=") {
             calcHistory = [];
             resultValue = total.toString();
+            givenResult = true;
             break;
         }
     }
@@ -196,7 +199,9 @@ function bottomScreenPrint(sym) {
     But if the input is a system calculator button such as
     "clear", "ce" or "del", then it will delete characters.
     */
-    if (topScreen.innerHTML.slice(-1) == "=" && sym != "negate") {
+    // Check if the last answer is a number when you got a result before
+    if (givenResult && sym != "negate") {
+        givenResult = false;
         resultValue = "0";
         topScreen.innerHTML = "";
     }
