@@ -184,8 +184,7 @@ function processValue(sym) {
     screenModification(calculateValues(calcHistory));
 
     // Preparation for the next calculation
-    if (["1/", "!", "√", "∛", "²", "="].includes(
-        calcValues[sym]) == false) {resultValue = "0";}
+    if (calcValues[sym] != "=") {resultValue = "0";}
     skullPosition();
 }
 
