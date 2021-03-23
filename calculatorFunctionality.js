@@ -155,6 +155,7 @@ function screenModification(total) {
             givenResult = true;
             break;
         }
+
         // If there's a simple number or an arithmetic symbol
         topScreen.innerHTML += " " + calcHistory[value].replace(".", ",");
     }
@@ -187,6 +188,18 @@ function processValue(sym) {
 }
 
 
+function givenResultCheck(sym) {
+    /*
+    Check if the last answer is a number when you got a result before
+    */
+    if (givenResult && sym != "negate") {
+        givenResult = false;
+        resultValue = "0";
+        topScreen.innerHTML = "";
+    }
+}
+
+
 function bottomScreenPrint(sym) {
     /*
     Prints the selected number in the bottom screen,
@@ -194,13 +207,8 @@ function bottomScreenPrint(sym) {
     But if the input is a system calculator button such as
     "clear", "ce" or "del", then it will delete characters.
     */
-    // Check if the last answer is a number when you got a result before
-    if (givenResult && sym != "negate") {
-        givenResult = false;
-        resultValue = "0";
-        topScreen.innerHTML = "";
-    }
-    
+    givenResultCheck(sym);
+
     if (["clear", "ce"].includes(sym) || ["del1", "del2"].includes(sym)
     && resultValue.length == 1 || sym == "num0"
     && (resultValue == "" || resultValue == "0")) {
