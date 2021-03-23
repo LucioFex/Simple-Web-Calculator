@@ -136,7 +136,7 @@ function screenModification(total) {
     }
 
     for (value in calcHistory) {
-        if (["1/", "!", "√", "∛", "²"].includes(calcHistory[value])) {
+        if (["1/", "!", "√", "∛", "²", "="].includes(calcHistory[value])) {
             previous_result = calculateValues(calcHistory.slice(0, -1));
 
             if (["!", "²"].includes(calcHistory.slice(-1)[0])) {
@@ -148,20 +148,12 @@ function screenModification(total) {
                 topScreen.innerHTML =
                 calcHistory.slice(-1)[0] + `(${previous_result})`;
             }
-
             calcHistory = [];
             resultValue = total.toString();
             givenResult = true;
             break;
         }
         topScreen.innerHTML += " " + calcHistory[value].replace(".", ",");
-
-        if (calcHistory[value] == "=") {
-            calcHistory = [];
-            resultValue = total.toString();
-            givenResult = true;
-            break;
-        }
     }
 
     bottomScreen.innerHTML = total.toString().replace(".", ",");
