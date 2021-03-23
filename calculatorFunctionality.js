@@ -148,11 +148,14 @@ function screenModification(total) {
                 topScreen.innerHTML =
                 calcHistory.slice(-1)[0] + `(${previous_result})`;
             }
+
+            // Beginning of the givenResult mode
             calcHistory = [];
             resultValue = total.toString();
             givenResult = true;
             break;
         }
+        // If there's a simple number or an arithmetic symbol
         topScreen.innerHTML += " " + calcHistory[value].replace(".", ",");
     }
 
