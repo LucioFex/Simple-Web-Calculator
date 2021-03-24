@@ -26,8 +26,8 @@ Pull requests are welcome. So if you've got an idea of how to improve this code,
 
 ## Credits
 
-- Delete icon from [Those-Icons](https://www.flaticon.com/authors/those-icons) from www.flaticon.com.
 - Social icons from [w3schools](https://www.w3schools.com/icons/fontawesome_icons_brand.asp).
+- Delete icon from [Those-Icons (flaticon)](https://www.flaticon.com/authors/those-icons).
 - Skull icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/skull_3554197).
 - Ropes icon from [Freepik (flaticon)](https://www.flaticon.com/free-icon/ropes_1382616).
 - Headphones icon from [Nhor Phai(flaticon)](https://www.flaticon.com/free-icon/headphones_2590162?related_id=2590061&origin=search).
