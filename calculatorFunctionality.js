@@ -150,6 +150,7 @@ function screenModification(total) {
             }
 
             // Beginning of the givenResult mode
+            console.log("Clear of calcHistory VAR")
             calcHistory = [];
             resultValue = total.toString();
             givenResult = true;
@@ -183,7 +184,8 @@ function processValue(sym) {
     screenModification(calculateValues(calcHistory));
 
     // Preparation for the next calculation
-    if (calcValues[sym] != "=") {resultValue = "0";}
+    if (["1/", "!", "√", "∛", "²", "="].includes(calcValues[sym]) == false) {
+        resultValue = "0";}
     skullPosition();
 }
 
