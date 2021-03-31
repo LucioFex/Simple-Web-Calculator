@@ -8,6 +8,7 @@ const calculatorInterface = document.getElementById("calculator-interface");
 const calculatorScreen = document.getElementById("calculator-screen");
 const skull = document.getElementById("skull")
 const colors = ["#294192", "#2f4d0d", "#790979", "#811414"];
+const footer = document.getElementById("footer");
 const calcValues = {
     "num1": "1", "num2": "2", "num3": "3", "num4": "4", "num5": "5",
     "num6": "6", "num7": "7", "num8": "8", "num9": "9", "num0": "0",
@@ -19,7 +20,6 @@ var calcHistory = [];
 var resultValue = "0";
 var givenResult = false;
 var colorNum = 0;
-
 
 function setUp() {
     /*
@@ -266,6 +266,7 @@ function skullPosition() {
         calculator.style.width = "600px";
         calculatorInterface.style.width = "560px";
         calculatorScreen.style.width = "504px";
+        footer.style.width = "100%";
     }
 
     else if (greaterWidth > 0) {
@@ -274,6 +275,7 @@ function skullPosition() {
         calculator.style.width = `calc(600px + ${greaterWidth}px)`;
         calculatorInterface.style.width = `calc(560px + ${greaterWidth}px)`;
         calculatorScreen.style.width = `calc(504px + ${greaterWidth}px)`;
+        footer.style.width = `calc(100% + ${greaterWidth}px)`;
     }
 }
 
