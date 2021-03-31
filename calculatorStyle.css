@@ -17,7 +17,6 @@ html, body {
 
 #main {
     overflow: auto;
-    /* padding-bottom: 10%; */
 }
 
 #title {
@@ -252,13 +251,8 @@ html, body {
 
 footer {
     background: linear-gradient(to right, #19171b 20%, #18181a 20%);
-    height: 300px;
+    height: 32vh;
     overflow: hidden;
-}
-
-#inner-footer {
-    display: block;
-    margin: 0 auto;
 }
 
 #inner-footer #logo-container {
@@ -277,6 +271,7 @@ footer {
     margin-top: 10px;
     float: left;
 }
+
 #inner-footer .footer-third:last-child {
     margin-right: 0;
 }
