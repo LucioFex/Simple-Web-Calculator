@@ -150,7 +150,6 @@ function screenModification(total) {
             }
 
             // Beginning of the givenResult mode
-            console.log("Clear of calcHistory VAR")
             calcHistory = [];
             resultValue = total.toString();
             givenResult = true;
@@ -194,7 +193,8 @@ function givenResultCheck(sym) {
     /*
     Check if the last answer is a number when you got a result before
     */
-    if (givenResult && sym != "negate") {
+    if (calcHistory.slice(-2)[0].includes("+", "-", "x", "÷")
+    && sym != "negate" && givenResult) {
         givenResult = false;
         resultValue = "0";
         topScreen.innerHTML = "";
