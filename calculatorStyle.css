@@ -252,15 +252,8 @@ html, body {
 
 footer {
     background: linear-gradient(to right, #19171b 20%, #18181a 20%);
-    position: relative;
     height: 300px;
-    margin-top: -100px;
-    clear: both;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    display: block;
     overflow: hidden;
-    box-sizing: border-box;
 }
 
 #inner-footer {
