@@ -251,7 +251,7 @@ html, body {
 
 footer {
     background: linear-gradient(to right, #19171b 20%, #18181a 20%);
-    height: 32vh;
+    height: 30vh;
     overflow: hidden;
 }
 
@@ -261,7 +261,7 @@ footer {
 }
 
 #inner-footer #logo-container img {
-    width: 280px;
+    width: 265px;
     height: auto;
 }
 
