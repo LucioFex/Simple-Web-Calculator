@@ -193,8 +193,8 @@ function givenResultCheck(sym) {
     /*
     Check if the last answer is a number when you got a result before
     */
-    if (givenResult && calcHistory.slice(-2)[0].includes("+", "-", "x", "÷")
-        && sym != "negate") {
+    if (givenResult && sym != "negate" && calcHistory.length != 0 &&
+        calcHistory.slice(-2)[0].includes("+", "-", "x", "÷")) {
         givenResult = false;
         resultValue = "0";
         topScreen.innerHTML = "";
