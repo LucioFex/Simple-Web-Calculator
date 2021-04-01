@@ -191,7 +191,15 @@ function processValue(sym) {
 
 function givenResultCheck(sym) {
     /*
-    Check if the last answer is a number when you got a result before
+    Looks if the user got a result, after that checks if the 
+    next input is a number or a symbol.
+
+    If the input is a number:
+        It restart the values of every screen.
+
+    If the input is a symbol:
+        It adds the last number in the top screen and then the
+        arithmetic operator.
     */
     if (givenResult && sym != "negate" && (calcHistory.length == 0 ||
         calcHistory.slice(-2)[0].includes("+", "-", "x", "÷"))) {
