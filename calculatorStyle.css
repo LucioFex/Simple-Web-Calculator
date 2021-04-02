@@ -12,7 +12,7 @@ html, body {
 }
 
 #container {
-    min-height: calc(106vh - 250px);
+    min-height: calc(100% - 10em);
 }
 
 #title {
@@ -320,4 +320,10 @@ footer {
 .footer-third li i {
     font-size: 65px;
     padding-right: 15px;
+}
+
+/* --- -Responsive alterations- ---*/
+
+@media (max-height: 1050px) {
+    #container {min-height: calc(10vh + 700px);}
 }
