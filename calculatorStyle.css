@@ -251,7 +251,8 @@ html, body {
 
 footer {
     background: linear-gradient(to right, #19171b 20%, #18181a 20%);
-    height: 30vh;
+    height: 31.5vh;
+    width: 99.1vw;
     overflow: hidden;
 }
 
@@ -276,7 +277,7 @@ footer {
     margin-right: 0;
 }
 
-#inner-footer .footer-third h1{
+#inner-footer .footer-third h1 {
     font-family: "arial", "sans-serif";
     font-size: 30px;
     color: white;
@@ -287,7 +288,7 @@ footer {
     margin-top: 20px;
 }
 
-#inner-footer .footer-third a{
+#inner-footer .footer-third a {
     font-family: "arial", "sans-serif";
     font-size: 18px;
     color: #8d8a96;
