@@ -12,12 +12,8 @@ html, body {
 }
 
 #container {
-    min-height: 80%;
+    min-height: calc(106vh - 250px);
 }
-
-/* #main {
-    overflow: auto;
-} */
 
 #title {
     color: white;
@@ -251,9 +247,8 @@ html, body {
 
 footer {
     background: linear-gradient(to right, #19171b 20%, #18181a 20%);
-    height: 31.5vh;
+    height: 18rem;
     width: 99.1vw;
-    overflow: hidden;
 }
 
 #logo-container {
