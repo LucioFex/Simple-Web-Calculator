@@ -15,9 +15,9 @@ html, body {
     min-height: 80%;
 }
 
-#main {
+/* #main {
     overflow: auto;
-}
+} */
 
 #title {
     color: white;
@@ -256,28 +256,28 @@ footer {
     overflow: hidden;
 }
 
-#inner-footer #logo-container {
+#logo-container {
     float: left;
     padding: 25px 50px 0 30px;
 }
 
-#inner-footer #logo-container img {
+#logo-container img {
     width: 265px;
     height: auto;
 }
 
-#inner-footer .footer-third {
+.footer-third {
     width: calc(21.6666666667% - 20px);
     margin-right: 10px;
     margin-top: 10px;
     float: left;
 }
 
-#inner-footer .footer-third:last-child {
+.footer-third:last-child {
     margin-right: 0;
 }
 
-#inner-footer .footer-third h1 {
+.footer-third h1 {
     font-family: "arial", "sans-serif";
     font-size: 30px;
     color: white;
@@ -288,7 +288,7 @@ footer {
     margin-top: 20px;
 }
 
-#inner-footer .footer-third a {
+.footer-third a {
     font-family: "arial", "sans-serif";
     font-size: 18px;
     color: #8d8a96;
@@ -301,19 +301,19 @@ footer {
     transition: 0.2s ease-in-out 0.01s;
 }
 
-#inner-footer .footer-third a:hover {
+.footer-third a:hover {
     color: white;
     transform: scale(1.15);
     text-decoration: underline;
 }
 
-#inner-footer .footer-third li {
+.footer-third li {
     display: inline-block;
     padding: 0 5px;
     font-size: 20px;
 }
 
-#inner-footer .footer-third span {
+.footer-third span {
     color: white;
     font-family: "arial", "sans-serif";
     font-size: 18px;
@@ -322,7 +322,7 @@ footer {
     width: 105%;
 }
 
-#inner-footer .footer-third li i {
+.footer-third li i {
     font-size: 65px;
     padding-right: 15px;
 }
