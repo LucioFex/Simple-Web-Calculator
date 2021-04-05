@@ -249,6 +249,7 @@ footer {
     background: linear-gradient(to right, #19171b 20%, #18181a 20%);
     height: 18rem;
     width: 99.1vw;
+    overflow: hidden;
 }
 
 #logo-container {
@@ -326,4 +327,5 @@ footer {
 
 @media (max-height: 1050px) {
     #container {min-height: calc(10vh + 700px);}
+    footer {width: 118.9em;}
 }
