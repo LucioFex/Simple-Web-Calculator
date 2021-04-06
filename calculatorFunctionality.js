@@ -94,10 +94,15 @@ function scientificSection(total, symbol) {
     The 'Total' parameter will be processed by 'number' with scientific symbols
     */
     if      (symbol == "1/") {return 1 / total;}
-    else if (symbol == "!")  {/* Continue here */}
     else if (symbol == "√")  {return total ** (1/2);}
     else if (symbol == "∛")  {return total ** (1/3);}
     else if (symbol == "²")  {return total = total ** 2;}
+    else if (symbol == "!")  {
+        let baseTotal = total + 1;
+        for (let num = 1; num != baseTotal; num++) {
+            if (num == baseTotal + 1) {return total}
+            total *= num}
+    }
 }
 
 
