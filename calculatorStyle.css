@@ -8,7 +8,7 @@
 
 html, body {
     height: 100%;
-    background: radial-gradient(at center, #253770, #382569);
+    background-image: radial-gradient(at center, #253770, #382569);
 }
 
 #container {
@@ -37,7 +37,7 @@ html, body {
     left: calc(50% - 300px);
     width: 600px;
     height: 600px;
-    background: radial-gradient(at center, #281f58 70%, #193444);
+    background-image: radial-gradient(at center, #281f58 70%, #193444);
     border-radius: 30px;
     box-shadow: 10px 10px 25px black;
     position: absolute;
@@ -53,14 +53,14 @@ html, body {
     margin: 17px;
     width: 560px;
     height: 565px;
-    background: linear-gradient(to top right, #131f30, #1d2b3d);
+    background-image: linear-gradient(to top right, #131f30, #1d2b3d);
     position: relative;
     border-radius: 15px;
 }
 
 #calculator-screen {
     position: absolute;
-    background: radial-gradient(at center, #375077 25%, #2d446b);
+    background-image: radial-gradient(at center, #375077 25%, #2d446b);
     border: #213353 inset 4px;
     width: 504px;
     height: 80px;
@@ -117,7 +117,7 @@ html, body {
 }
 
 #nums-container {
-    background: linear-gradient(to top right, #16253b, #1e3047);
+    background-image: linear-gradient(to top right, #16253b, #1e3047);
     position: absolute;
     border-radius: 10px;
     width: 299.6px;
@@ -246,7 +246,7 @@ html, body {
 }
 
 footer {
-    background: linear-gradient(to right, #19171b 20%, #18181a 20%);
+    background-image: linear-gradient(to right, #19171b 20%, #18181a 20%);
     height: 18rem;
     width: 99.1vw;
     overflow: hidden;
