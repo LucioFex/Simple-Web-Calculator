@@ -98,10 +98,9 @@ function scientificSection(total, symbol) {
     else if (symbol == "∛")  {return total ** (1/3);}
     else if (symbol == "²")  {return total = total ** 2;}
     else if (symbol == "!")  {
-        let baseTotal = total + 1;
-        for (let num = 1; num != baseTotal; num++) {
-            if (num == baseTotal + 1) {return total}
-            total *= num}
+        let baseTotal = total;
+        for (let num = 1; num != baseTotal; num++) {total *= num}
+        return total;
     }
 }
 
