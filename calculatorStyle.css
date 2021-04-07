@@ -77,13 +77,13 @@ html, body {
 #screen-top {
     top: 0;
     height: 30%;
-    background: #2e4366;
+    background-color: #2e4366;
 }
 
 #screen-bottom {
     top: 30%;
     height: calc(70% - 5px);
-    background: #293c5e;
+    background-color: #293c5e;
     border-top: #31486e solid 5px;
 }
 
@@ -157,15 +157,15 @@ html, body {
 }
 
 #functional-container .button:active {
-    background: #182a53;
+    background-color: #182a53;
 }
 
 #arithmetic-container .button:active {
-    background: #273e61;
+    background-color: #273e61;
 }
 
 #nums-container .button:active {
-    background: #1c385e;
+    background-color: #1c385e;
 }
 
 #functional-container .button {
@@ -194,7 +194,7 @@ html, body {
 }
 
 #nums-container .button {
-    background: #243b5a;
+    background-color: #243b5a;
     font-size: 2.2em;
     width: 80px;
     height: 70px;
@@ -202,24 +202,24 @@ html, body {
 
 #nums-container #clear {
     font-size: 1.8em;
-    background: #291246;
+    background-color: #291246;
     border: 1px solid #1103244d;
 }
 
 #nums-container #clear:active {
-    background: #3a1764;
+    background-color: #3a1764;
 }
 
 #functional-container #del1,
 #functional-container #ce {
     font-size: 1.3em;
-    background: #472a69;
+    background-color: #472a69;
     border: 1px solid #280e4d80;
 }
 
 #functional-container #del1:active,
 #functional-container #ce:active {
-    background: #462075;
+    background-color: #462075;
 }
 
 #nums-container #comma {
@@ -228,20 +228,20 @@ html, body {
 }
 
 #arithmetic-container .button {
-    background: #24355a;
+    background-color: #24355a;
     font-size: 2.2em;
     width: 95px;
     height: 55px;
 }
 
 #arithmetic-container #equal-to {
-    background: #3a5285;
+    background-color: #3a5285;
     width: calc(100px * 2);
     height: 65px;
 }
 
 #arithmetic-container #equal-to:active {
-    background: #314e8b;
+    background-color: #314e8b;
     transform: scale(1.09);
 }
 
