@@ -100,16 +100,9 @@ function scientificSection(total, symbol) {
     else if (symbol == "²")  {return total = total ** 2;}
     else if (symbol == "!")  {
         let baseTotal = total.toString();
-
-        if (baseTotal.includes(".")) {
-            console.log("You simply can't do that");
-            topScreen.innerHTML = "Mathematical error";
-        }
-
-        else if (baseTotal.includes(".") == false) {
+        if (baseTotal.includes(".") == false) {
             for (let num = 1; num != baseTotal; num++) {total *= num}
         }
-
         return total;
     }
 }
