@@ -146,7 +146,12 @@ function screenModification(total) {
         if (["1/", "!", "√", "∛", "²", "="].includes(calcHistory[value])) {
             previous_result = calculateValues(calcHistory.slice(0, -1));
 
-            if (["!", "²"].includes(calcHistory.slice(-1)[0])) {
+            if ("!" == calcHistory.slice(-1)[0]
+            && total.toString().includes(".")) {
+                topScreen.innerHTML = "Mathematical Error";
+            }
+
+            else if (["!", "²"].includes(calcHistory.slice(-1)[0])) {
                 topScreen.innerHTML =
                 `(${previous_result})` + calcHistory.slice(-1)[0];
             }
