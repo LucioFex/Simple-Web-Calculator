@@ -21,6 +21,7 @@ var resultValue = "0";
 var givenResult = false;
 var colorNum = 0;
 
+
 function setUp() {
     /*
     Preparations for the usage of the calculator
@@ -98,8 +99,17 @@ function scientificSection(total, symbol) {
     else if (symbol == "∛")  {return total ** (1/3);}
     else if (symbol == "²")  {return total = total ** 2;}
     else if (symbol == "!")  {
-        let baseTotal = total;
-        for (let num = 1; num != baseTotal; num++) {total *= num}
+        let baseTotal = total.toString();
+
+        if (baseTotal.includes(".")) {
+            console.log("You simply can't do that");
+            topScreen.innerHTML = "Mathematical error";
+        }
+
+        else if (baseTotal.includes(".") == false) {
+            for (let num = 1; num != baseTotal; num++) {total *= num}
+        }
+
         return total;
     }
 }
