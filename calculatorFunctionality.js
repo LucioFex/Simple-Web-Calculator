@@ -316,19 +316,18 @@ function notice(event) {
     }
 
     else if (id == "privacy") {
-        alert("Knowing that this web site is about a calculator, there's " +
-            "no need to set any kind of privacy politic. Relax...");
+        privacyTexts = [
+            "Knowing that this web site is about a calculator, there's " +
+            "no need to set any kind of privacy politic. Relax...",
 
-        alert(
             "But I wanna learn how to redirect you from this page to another" +
-            " one, so... Let's look at the formal definition of privacy :)");
+            " one, so... Let's look at the formal definition of privacy :)",
 
-        alert(
-            "Oh, I olmost forget: \nIf you'd have read this, then surely your" +
+            "Oh, I almost forget: \nIf you'd have read this, then surely your" +
             " navigator will cancel the next page that I will try to open." +
-            "\n\nIf you skipped everything, then you will have no problem >:("
-        )
+            "\n\nIf you skipped everything, then you will have no problem >:("]
 
+        for (text of privacyTexts) {alert(text)}
         window.open("https://en.wikipedia.org/wiki/Privacy", "_blank");
     }
 }
