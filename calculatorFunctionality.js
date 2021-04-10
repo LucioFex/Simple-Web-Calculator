@@ -51,10 +51,7 @@ function multiColor(title) {
     /*
     Change of the background color of the title of the page every 4 seconds
     */
-    if (colorNum > (colors.length - 1)) {
-        colorNum = 0
-    }
-
+    if (colorNum > (colors.length - 1)) {colorNum = 0}
     title.style.background = colors[colorNum];
     colorNum += 1;
 }
