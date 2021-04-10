@@ -34,6 +34,9 @@ function setUp() {
         element.addEventListener("click", notice, false);
     }
 
+    // Update of the footer's width
+    skullPosition()
+
     // Change of the title background color in intervals of 4 seconds:
     setInterval(multiColor, 1000 * 4, document.getElementById("title"));
 
@@ -329,6 +332,5 @@ function notice(event) {
         window.open("https://en.wikipedia.org/wiki/Privacy", "_blank");
     }
 }
-
 
 window.addEventListener('load', setUp, false);  // Starts the script
