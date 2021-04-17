@@ -96,16 +96,15 @@ function scientificSection(total, symbol) {
     /*
     The 'Total' parameter will be processed by 'number' with scientific symbols
     */
-    if      (symbol == "1/") {return 1 / total;}
-    else if (symbol == "√")  {return total ** (1/2);}
-    else if (symbol == "∛")  {return total ** (1/3);}
-    else if (symbol == "²")  {return total = total ** 2;}
-    else if (symbol == "!")  {
-        let baseTotal = total.toString();
-        if (baseTotal.includes(".") == false) {
-            for (let num = 1; num != baseTotal; num++) {total *= num}
-        }
-        return total;
+    switch (symbol) {
+        case "1/": return 1 / total;
+        case "√": return total ** (1/2);
+        case "∛": return total ** (1/3);
+        case "²": return total = total ** 2;
+        case "!": let baseTotal = total.toString();
+            if (baseTotal.includes(".") == false) {
+                for (let num = 1; num != baseTotal; num++) {total *= num}}
+            return total;
     }
 }
 
