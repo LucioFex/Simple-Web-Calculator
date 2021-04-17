@@ -273,7 +273,7 @@ function skullPosition() {
     This function changes the position of the skull
     in the right of the calculator, including its image.
     It also increases or reduces the width of the calculator
-    depending in the length of the calculator top and bottom screen.
+    depending of the calculator's top and bottom screen length.
     */
     let bottomWidth = (bottomScreen.innerHTML.length - 21) * 24;
     let topWidth = (topScreen.innerHTML.length - 51) * 8;
@@ -281,22 +281,24 @@ function skullPosition() {
     let greaterWidth = topWidth;
     if (bottomWidth >= topWidth) {greaterWidth = bottomWidth;}
 
-    if (greaterWidth <= 0) {
-        skull.style.left = "calc(50% + 300px)";
-        skull.src = "imgs/limit-screen.png";
-        calculator.style.width = "600px";
-        calculatorInterface.style.width = "560px";
-        calculatorScreen.style.width = "504px";
-        footer.style.width = "100%";
-    }
+    switch (greaterWidth <= 0) {
+        case true:
+            skull.style.left = "calc(50% + 300px)";
+            skull.src = "imgs/limit-screen.png";
+            calculator.style.width = "600px";
+            calculatorInterface.style.width = "560px";
+            calculatorScreen.style.width = "504px";
+            footer.style.width = "100%";
+            break;
 
-    else if (greaterWidth > 0) {
-        skull.style.left = `calc(50% + 300px + ${greaterWidth}px)`;
-        skull.src = "imgs/over-limit-screen.png";
-        calculator.style.width = `calc(600px + ${greaterWidth}px)`;
-        calculatorInterface.style.width = `calc(560px + ${greaterWidth}px)`;
-        calculatorScreen.style.width = `calc(504px + ${greaterWidth}px)`;
-        footer.style.width = `calc(100% + ${greaterWidth}px)`;
+        case false:
+            skull.src = "imgs/over-limit-screen.png";
+            skull.style.left = `calc(50% + 300px + ${greaterWidth}px)`;
+            calculator.style.width = `calc(600px + ${greaterWidth}px)`;
+            calculatorInterface.style.width = `calc(560px + ${greaterWidth}px)`;
+            calculatorScreen.style.width = `calc(504px + ${greaterWidth}px)`;
+            footer.style.width = `calc(100% + ${greaterWidth}px)`;
+            break;
     }
 }
 
