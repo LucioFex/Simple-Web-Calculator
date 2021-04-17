@@ -34,7 +34,7 @@ function setUp() {
         element.addEventListener("click", notice, false);
     }
 
-    // Update of the footer's width
+    // Update of the footer's width when the user opens the page
     skullPosition()
 
     // Change of the title background color in intervals of 4 seconds:
@@ -51,7 +51,7 @@ function multiColor(title) {
     /*
     Change of the background color of the title of the page every 4 seconds
     */
-    if (colorNum > (colors.length - 1)) {colorNum = 0}
+    if (colorNum > colors.length - 1) {colorNum = 0}
     title.style.background = colors[colorNum];
     colorNum += 1;
 }
@@ -83,10 +83,12 @@ function arithmeticSection(total, symbol, number) {
     /*
     The 'Total' parameter will be processed by 'number' with arithmetic symbols
     */
-    if      (symbol == "+") {return total + parseFloat(number);}
-    else if (symbol == "-") {return total - parseFloat(number);}
-    else if (symbol == "x") {return total * parseFloat(number);}
-    else if (symbol == "÷") {return total / parseFloat(number);}
+    switch (symbol) {
+        case "+": return total + parseFloat(number);
+        case "-": return total - parseFloat(number);
+        case "x": return total * parseFloat(number);
+        case "÷": return total / parseFloat(number);
+    }
 }
 
 
