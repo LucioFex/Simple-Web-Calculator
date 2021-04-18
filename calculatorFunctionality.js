@@ -114,6 +114,10 @@ function calculateValues(history) {
     It process the history of values to send these numbers (depending
     of their symbols) to diferents functions to return the result.
     */
+    if (Number.isNaN(parseFloat(history[0]))) {
+        history.unshift("0");
+    }
+
     let result = parseFloat(history[0]);
 
     for (value in history) {
@@ -127,6 +131,7 @@ function calculateValues(history) {
             result = scientificSection(result, history[value]);
         }
     }
+
     return result;
 }
 
@@ -327,7 +332,7 @@ function helpSection(event) {
             " navigator will cancel the next page that I will try to open." +
             "\n\nIf you skipped everything, then you will have no problem >:("]
 
-        for (text of privacyTexts) {alert(text)}
+        for (text of privacyTexts) {alert(text);}
         window.open("https://en.wikipedia.org/wiki/Privacy", "_blank");
     }
 }
