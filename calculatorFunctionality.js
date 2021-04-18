@@ -114,10 +114,7 @@ function calculateValues(history) {
     It process the history of values to send these numbers (depending
     of their symbols) to diferents functions to return the result.
     */
-    if (Number.isNaN(parseFloat(history[0]))) {
-        history.unshift("0");
-    }
-
+    if (Number.isNaN(parseFloat(history[0]))) {history.unshift("0");}
     let result = parseFloat(history[0]);
 
     for (value in history) {
@@ -131,7 +128,6 @@ function calculateValues(history) {
             result = scientificSection(result, history[value]);
         }
     }
-
     return result;
 }
 
