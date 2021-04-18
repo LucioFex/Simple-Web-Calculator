@@ -69,12 +69,12 @@ function buttonAction(input) {
 
     if (specialValues.includes(input.id)) {
         input.addEventListener(
-            "click", function() {processValue(input.id)}, false);
+            "click", () => processValue(input.id), false);
     }
     else if (specialValues.includes(input.id) == false) {
         // If input.id is a number or not in the 'specialValues' list:
         input.addEventListener(
-            "click", function() {bottomScreenPrint(input.id)}, false);
+            "click", () => bottomScreenPrint(input.id), false);
     }
 }
 
