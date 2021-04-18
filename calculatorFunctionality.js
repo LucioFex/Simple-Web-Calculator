@@ -133,22 +133,15 @@ function calculateValues(history) {
 }
 
 
-function checkWrongInputs(input) {
+function wrongInput(input) {  // Keep working here
     let sym = calcHistory.slice(-1)[0];
 
-    // console.log(sym);
-    // console.log(input);
+    let factorialError = sym == "!"  && input.includes("-", ".");
+    let rootError      = sym == "√"  && input[1] == "-";
+    let overXError     = sym == "1/" && input.slice(2) == "0";
 
-    let conditionFactorial = (
-        sym == "!" && (input.includes("-", ".") || input == "0"));
-
-    let conditionRoot = (sym.includes("√", "∛") && input[1] == "-");
-
-    let conditionOverX = (sym == "1/" && input.slice(2) == "0")
-
-    if (conditionFactorial || conditionRoot || conditionOverX) {
-        topScreen.innerHTML = ("Mathematical Error");
-    }
+    if (factorialError || rootError || overXError) {return true;}
+    return false;
 }
 
 
@@ -169,7 +162,10 @@ function screenModification(total) {
         if (["1/", "!", "√", "∛", "²", "="].includes(calcHistory[value])) {
             previous_result = calculateValues(calcHistory.slice(0, -1));
             
-            checkWrongInputs(total);
+            if (wrongInput(total)) {
+                topScreen.innerHTML = "Mathematical Error";
+                calcHistory = []; resultValue = total; givenResult = true;break;
+            }
 
             if (["!", "²"].includes(calcHistory.slice(-1)[0])) {
                 topScreen.innerHTML =
