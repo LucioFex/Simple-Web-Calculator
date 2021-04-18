@@ -102,7 +102,8 @@ function scientificSection(total, symbol) {
         case "∛": return total ** (1/3);
         case "²": return total = total ** 2;
         case "!": let baseTotal = total.toString();
-            if (baseTotal.includes(".") == false) {
+            if (baseTotal.includes(".") == false
+            && baseTotal != "0" && baseTotal[0] != "-") {
                 for (let num = 1; num != baseTotal; num++) {total *= num}}
             return total;
     }
