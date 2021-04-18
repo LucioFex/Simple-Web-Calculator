@@ -31,7 +31,7 @@ function setUp() {
 
     // Functionality of the terms and privacy buttons:
     for (element of [terms, privacy]) {
-        element.addEventListener("click", notice, false);
+        element.addEventListener("click", helpSection, false);
     }
 
     // Update of the footer's width when the user opens the page
@@ -303,7 +303,7 @@ function skullPosition() {
 }
 
 
-function notice(event) {
+function helpSection(event) {
     /*
     Usage of the "terms and conditions" and "privacy policy" buttons.
     */
