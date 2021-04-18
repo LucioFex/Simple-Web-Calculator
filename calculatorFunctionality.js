@@ -150,7 +150,8 @@ function screenModification(total) {
             previous_result = calculateValues(calcHistory.slice(0, -1));
 
             if ("!" == calcHistory.slice(-1)[0]
-            && total.toString().includes(".")) {
+            && (total.toString().includes(".") ||
+            total.toString()[0] == "-" ||total.toString() == "0")){
                 topScreen.innerHTML = "Mathematical Error";
             }
 
