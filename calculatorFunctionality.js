@@ -133,12 +133,32 @@ function calculateValues(history) {
 }
 
 
+function checkWrongInputs(input) {
+    let sym = calcHistory.slice(-1)[0];
+
+    // console.log(sym);
+    // console.log(input);
+
+    let conditionFactorial = (
+        sym == "!" && (input.includes("-", ".") || input == "0"));
+
+    let conditionRoot = (sym.includes("√", "∛") && input[1] == "-");
+
+    let conditionOverX = (sym == "1/" && input.slice(2) == "0")
+
+    if (conditionFactorial || conditionRoot || conditionOverX) {
+        topScreen.innerHTML = ("Mathematical Error");
+    }
+}
+
+
 function screenModification(total) {
     /*
     Function that shows the output of the result in the bottom screen,
     but will also show the process in the top one.
     */
     topScreen.innerHTML = "";
+    total = total.toString();
 
     if (total == "Infinity") {
         bottomScreenPrint("clear");
@@ -148,14 +168,10 @@ function screenModification(total) {
     for (value in calcHistory) {
         if (["1/", "!", "√", "∛", "²", "="].includes(calcHistory[value])) {
             previous_result = calculateValues(calcHistory.slice(0, -1));
+            
+            checkWrongInputs(total);
 
-            if ("!" == calcHistory.slice(-1)[0]
-            && (total.toString().includes(".") ||
-            total.toString()[0] == "-" ||total.toString() == "0")){
-                topScreen.innerHTML = "Mathematical Error";
-            }
-
-            else if (["!", "²"].includes(calcHistory.slice(-1)[0])) {
+            if (["!", "²"].includes(calcHistory.slice(-1)[0])) {
                 topScreen.innerHTML =
                 `(${previous_result})` + calcHistory.slice(-1)[0];
             }
@@ -166,17 +182,14 @@ function screenModification(total) {
             }
 
             // Beginning of the givenResult mode
-            calcHistory = [];
-            resultValue = total.toString();
-            givenResult = true;
-            break;
+            calcHistory = []; resultValue = total; givenResult = true; break;
         }
 
         // If there's a simple number or an arithmetic symbol
         topScreen.innerHTML += " " + calcHistory[value].replace(".", ",");
     }
 
-    bottomScreen.innerHTML = total.toString().replace(".", ",");
+    bottomScreen.innerHTML = total.replace(".", ",");
 }
 
 
