@@ -98,9 +98,9 @@ function scientificSection(total, symbol) {
     */
     switch (symbol) {
         case "1/": return 1 / total;
-        case "√": return total ** (1/2);
-        case "∛": return total ** (1/3);
-        case "²": return total = total ** 2;
+        case "√": return Math.sqrt(total);
+        case "∛": return Math.cbrt(total);
+        case "²": return total = Math.pow(total, 2);
         case "!": let baseTotal = total.toString();
             if (baseTotal.includes(".") == false
             && baseTotal != "0" && baseTotal[0] != "-") {
@@ -133,7 +133,7 @@ function calculateValues(history) {
 }
 
 
-function wrongInput(input) {  // Keep working here
+function wrongInput(input) {
     let sym = calcHistory.slice(-1)[0];
 
     let factorialError = sym == "!"  && input.includes("-", ".");
