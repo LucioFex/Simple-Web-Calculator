@@ -102,8 +102,8 @@ function scientificSection(total, symbol) {
         case "∛": return Math.cbrt(total);
         case "²": return total = Math.pow(total, 2);
         case "!": let baseTotal = total.toString();
-            if (baseTotal.includes(".") == false
-            && baseTotal != "0" && baseTotal[0] != "-") {
+            if (baseTotal == "0") {total = 1;}
+            else if (baseTotal.includes(".") == false && baseTotal[0] != "-") {
                 for (let num = 1; num != baseTotal; num++) {total *= num}}
             return total;
     }
