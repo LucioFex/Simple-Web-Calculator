@@ -1,11 +1,12 @@
 # Simple Web Calculator
 
-### A basic calculator made only in HTML, CSS and JavaScript.
+### The "Simple-Web-Calculator" is a basic tool that has the system of a normal arithmetic calculator, with the specialty of having some buttons and scientific symbols.
 
 ![](imgs/calculator_img.png)
 
 
-This is a simple arithmetic web calculator, with some implementations of a scientific one.
+This is a simple arithmetic web calculator, with some implementations 
+of a scientific one, made only with HTML, CSS and JavaScript.
 
 ![](imgs/preview_img1.jpg)
 
