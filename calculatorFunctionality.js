@@ -92,7 +92,7 @@ function arithmeticSection(total, symbol, number) {
 }
 
 
-function scientificSection(total, symbol) {
+function scientificSection(total, symbol) {  // Keep working here
     /*
     The 'Total' parameter will be processed by 'number' with scientific symbols
     */
@@ -134,6 +134,9 @@ function calculateValues(history) {
 
 
 function wrongInput(input) {
+    /*
+    Function that alerts if a scientific input has an incorrect symbol.
+    */
     let sym = calcHistory.slice(-1)[0];
 
     let factorialError = sym == "!"  && input.includes("-", ".");
