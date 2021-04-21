@@ -98,10 +98,11 @@ function scientificSection(number, symbol) {
     */
     switch (symbol) {
         case "1/": return 1 / number;
-        case "√": return Math.sqrt(number);
-        case "∛": return Math.cbrt(number);
-        case "²": return number = Math.pow(number, 2);
-        case "!": let baseTotal = number.toString();
+        case "√":  return Math.sqrt(number);
+        case "∛":  return Math.cbrt(number);
+        case "²":  return Math.pow(number, 2);
+
+        case "!":  let baseTotal = number.toString();
             if (baseTotal == "0") {number = 1;}
             else if (baseTotal.includes(".") == false && baseTotal[0] != "-") {
                 for (let num = 1; num != baseTotal; num++) {number *= num}}
@@ -110,7 +111,7 @@ function scientificSection(number, symbol) {
 }
 
 
-function calculateValues(history) {  // Refactor later
+function calculateValues(history) {
     /*
     It process the history of values to send these numbers (depending
     of their symbols) to diferents functions to return the result.
