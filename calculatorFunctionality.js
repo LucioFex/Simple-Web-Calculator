@@ -103,7 +103,7 @@ function scientificSection(number, symbol) {
         case "²":  return Math.pow(number, 2);
 
         case "!":  let baseTotal = number.toString();
-            if (baseTotal == "0") {number = 1;}
+            if (baseTotal == "0") {number = 1}
             else if (baseTotal.includes(".") == false && baseTotal[0] != "-") {
                 for (let num = 1; num != baseTotal; num++) {number *= num}}
             return number;
@@ -116,7 +116,7 @@ function calculateValues(history) {
     It process the history of values to send these numbers (depending
     of their symbols) to diferents functions to return the result.
     */
-    if (Number.isNaN(parseFloat(history[0]))) {history.unshift("0");}
+    if (Number.isNaN(parseFloat(history[0]))) {history.unshift("0")}
     let result = parseFloat(history[0]);
 
     for (value in history) {
@@ -135,7 +135,7 @@ function calculateValues(history) {
 }
 
 
-function wrongInput(input) {
+function wrongInput(input) {  // Use after solving the scientific sym's bugs
     /*
     Function that alerts if a scientific input has an incorrect symbol.
     */
@@ -145,7 +145,7 @@ function wrongInput(input) {
     let rootError      = sym == "√"  && input[1] == "-";
     let overXError     = sym == "1/" && input.slice(2) == "0";
 
-    if (factorialError || rootError || overXError) {return true;}
+    if (factorialError || rootError || overXError) {return true}
     return false;
 }
 
@@ -208,7 +208,7 @@ function processValue(sym) {
 
     // Preparation for the next calculation
     if (["1/", "!", "√", "∛", "²", "="].includes(calcValues[sym]) == false) {
-        resultValue = "0";}
+        resultValue = "0"}
     skullPosition();
 }
 
@@ -256,7 +256,7 @@ function bottomScreenPrint(sym) {
 
     else if (sym.includes("num") || sym == "comma"
     && resultValue.includes(",") == false) {
-        if (resultValue == "0" && sym != "comma") {resultValue = "";}
+        if (resultValue == "0" && sym != "comma") {resultValue = ""}
         resultValue += calcValues[sym];
     }
 
@@ -265,8 +265,8 @@ function bottomScreenPrint(sym) {
     }
 
     else if (sym == "negate" && resultValue != "0") {
-        if      (resultValue[0] != "-") {resultValue = "-" + resultValue;}
-        else if (resultValue[0] == "-") {resultValue = resultValue.slice(1);}
+        if      (resultValue[0] != "-") {resultValue = "-" + resultValue}
+        else if (resultValue[0] == "-") {resultValue = resultValue.slice(1)}
     }
 
     else if (["del1", "del2"].includes(sym) && resultValue.length > 1) {
@@ -290,7 +290,7 @@ function skullPosition() {
     let topWidth = (topScreen.innerHTML.length - 51) * 8;
 
     let greaterWidth = topWidth;
-    if (bottomWidth >= topWidth) {greaterWidth = bottomWidth;}
+    if (bottomWidth >= topWidth) {greaterWidth = bottomWidth}
 
     switch (greaterWidth <= 0) {
         case true:
@@ -338,7 +338,7 @@ function helpSection(event) {
             " navigator will cancel the next page that I will try to open." +
             "\n\nIf you skipped everything, then you will have no problem >:("]
 
-        for (text of privacyTexts) {alert(text);}
+        for (text of privacyTexts) {alert(text)}
         window.open("https://en.wikipedia.org/wiki/Privacy", "_blank");
     }
 }
