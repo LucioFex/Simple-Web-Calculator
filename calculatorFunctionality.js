@@ -92,25 +92,25 @@ function arithmeticSection(total, symbol, number) {
 }
 
 
-function scientificSection(value, symbol) {
+function scientificSection(number, symbol) {
     /*
     The 'Total' parameter will be processed by 'number' with scientific symbols
     */
     switch (symbol) {
-        case "1/": return 1 / value;
-        case "√": return Math.sqrt(value);
-        case "∛": return Math.cbrt(value);
-        case "²": return value = Math.pow(value, 2);
-        case "!": let baseTotal = value.toString();
-            if (baseTotal == "0") {value = 1;}
+        case "1/": return 1 / number;
+        case "√": return Math.sqrt(number);
+        case "∛": return Math.cbrt(number);
+        case "²": return number = Math.pow(number, 2);
+        case "!": let baseTotal = number.toString();
+            if (baseTotal == "0") {number = 1;}
             else if (baseTotal.includes(".") == false && baseTotal[0] != "-") {
-                for (let num = 1; num != baseTotal; num++) {value *= num}}
-            return value;
+                for (let num = 1; num != baseTotal; num++) {number *= num}}
+            return number;
     }
 }
 
 
-function calculateValues(history) {
+function calculateValues(history) {  // Refactor later
     /*
     It process the history of values to send these numbers (depending
     of their symbols) to diferents functions to return the result.
@@ -119,14 +119,15 @@ function calculateValues(history) {
     let result = parseFloat(history[0]);
 
     for (value in history) {
+        let numberAndSymbol = [history[value -1], history[value]];
+
         // Arithmetic section
         if (["+", "-", "x", "÷"].includes(history[value - 1])) {
-            result = arithmeticSection(
-                result, history[value -1], history[value]);
+            result = arithmeticSection(result, ...numberAndSymbol);
         }
         // Scientific section
         else if (["1/", "!", "√", "∛", "²"].includes(history[value])) {
-            result = scientificSection(history[value - 1], history[value]);
+            result = scientificSection(...numberAndSymbol);
         }
     }
     return result;
