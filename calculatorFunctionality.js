@@ -92,20 +92,20 @@ function arithmeticSection(total, symbol, number) {
 }
 
 
-function scientificSection(total, symbol) {  // Keep working here
+function scientificSection(value, symbol) {
     /*
     The 'Total' parameter will be processed by 'number' with scientific symbols
     */
     switch (symbol) {
-        case "1/": return 1 / total;
-        case "√": return Math.sqrt(total);
-        case "∛": return Math.cbrt(total);
-        case "²": return total = Math.pow(total, 2);
-        case "!": let baseTotal = total.toString();
-            if (baseTotal == "0") {total = 1;}
+        case "1/": return 1 / value;
+        case "√": return Math.sqrt(value);
+        case "∛": return Math.cbrt(value);
+        case "²": return value = Math.pow(value, 2);
+        case "!": let baseTotal = value.toString();
+            if (baseTotal == "0") {value = 1;}
             else if (baseTotal.includes(".") == false && baseTotal[0] != "-") {
-                for (let num = 1; num != baseTotal; num++) {total *= num}}
-            return total;
+                for (let num = 1; num != baseTotal; num++) {value *= num}}
+            return value;
     }
 }
 
@@ -126,7 +126,7 @@ function calculateValues(history) {
         }
         // Scientific section
         else if (["1/", "!", "√", "∛", "²"].includes(history[value])) {
-            result = scientificSection(result, history[value]);
+            result = scientificSection(history[value - 1], history[value]);
         }
     }
     return result;
@@ -164,11 +164,6 @@ function screenModification(total) {
     for (value in calcHistory) {
         if (["1/", "!", "√", "∛", "²", "="].includes(calcHistory[value])) {
             previous_result = calculateValues(calcHistory.slice(0, -1));
-            
-            if (wrongInput(total)) {
-                topScreen.innerHTML = "Mathematical Error";
-                calcHistory = []; resultValue = total; givenResult = true;break;
-            }
 
             if (["!", "²"].includes(calcHistory.slice(-1)[0])) {
                 topScreen.innerHTML =
@@ -201,8 +196,7 @@ function processValue(sym) {
     if (resultValue.slice(-1) == ",") {resultValue = resultValue.slice(0, -1)}
     calcHistory.push(resultValue.replace(",", "."), calcValues[sym]);
 
-    if (calcHistory.slice(-2)[0] == "0"
-    && calcHistory.slice(-1)[0] != "=") {
+    if (calcHistory.slice(-2)[0] == "0" && calcHistory.slice(-1)[0] != "=") {
         calcHistory = calcHistory.slice(0, -3);
         calcHistory.push(calcValues[sym]);
     }
