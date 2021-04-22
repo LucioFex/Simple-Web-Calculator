@@ -150,7 +150,11 @@ function wrongInput(input) {  // Use after solving the scientific sym's bugs
 }
 
 
-function scientificValuesProcessing(total) {
+function scientificScreenPrint(total) {
+    /*
+    Function to change the aspect of the top screen when a
+    the input is a scientific.
+    */
     previousResult = calculateValues(calcHistory.slice(0, -1));
 
     switch (calcHistory.slice(-1)[0]) {
@@ -191,7 +195,7 @@ function screenModification(total) {
     for (value in calcHistory) {
         // If there's a scientific symbol
         if (["1/", "!", "√", "∛", "²", "="].includes(calcHistory[value])) {
-            scientificValuesProcessing(total);
+            scientificScreenPrint(total);
             break;
         }
 
