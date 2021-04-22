@@ -150,25 +150,24 @@ function wrongInput(input) {  // Use after solving the scientific sym's bugs
 }
 
 
-function scientificScreenPrint(total) {
+function scientificScreenPrint(total) {  // Keep working here
     /*
     Function to change the aspect of the top screen when a
     the input is a scientific.
     */
-    previousResult = calculateValues(calcHistory.slice(0, -1));
+    let previousResult = "(" + calculateValues(calcHistory.slice(0, -1)) + ")";
+    let symbol = calcHistory.slice(-1)[0];
 
-    switch (calcHistory.slice(-1)[0]) {
+    switch (symbol) {
         case "!":
         case "²":
-            topScreen.innerHTML =
-            `(${previousResult})` + calcHistory.slice(-1)[0];
+            topScreen.innerHTML = previousResult + symbol;
             break;
 
         case "1/":
         case "√":
         case "∛":
-            topScreen.innerHTML =
-            calcHistory.slice(-1)[0] + `(${previousResult})`;
+            topScreen.innerHTML = symbol + previousResult;
             break;
     }
 
