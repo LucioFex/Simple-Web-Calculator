@@ -150,6 +150,31 @@ function wrongInput(input) {  // Use after solving the scientific sym's bugs
 }
 
 
+function scientificValuesProcessing(total) {
+    previousResult = calculateValues(calcHistory.slice(0, -1));
+
+    switch (calcHistory.slice(-1)[0]) {
+        case "!":
+        case "²":
+            topScreen.innerHTML =
+            `(${previousResult})` + calcHistory.slice(-1)[0];
+            break;
+
+        case "1/":
+        case "√":
+        case "∛":
+            topScreen.innerHTML =
+            calcHistory.slice(-1)[0] + `(${previousResult})`;
+            break;
+    }
+
+    // Beginning of the givenResult mode
+    calcHistory = [];
+    resultValue = total;
+    givenResult = true;
+}
+
+
 function screenModification(total) {
     /*
     Function that shows the output of the result in the bottom screen,
@@ -164,21 +189,10 @@ function screenModification(total) {
     }
 
     for (value in calcHistory) {
+        // If there's a scientific symbol
         if (["1/", "!", "√", "∛", "²", "="].includes(calcHistory[value])) {
-            previous_result = calculateValues(calcHistory.slice(0, -1));
-
-            if (["!", "²"].includes(calcHistory.slice(-1)[0])) {
-                topScreen.innerHTML =
-                `(${previous_result})` + calcHistory.slice(-1)[0];
-            }
-
-            else if (["1/", "√", "∛"].includes(calcHistory.slice(-1)[0])) {
-                topScreen.innerHTML =
-                calcHistory.slice(-1)[0] + `(${previous_result})`;
-            }
-
-            // Beginning of the givenResult mode
-            calcHistory = []; resultValue = total; givenResult = true; break;
+            scientificValuesProcessing(total);
+            break;
         }
 
         // If there's a simple number or an arithmetic symbol
