@@ -18,7 +18,7 @@ const calcValues = {
     "pi": "3,1415926535897932384", "euler": "2,7182818284590452353"};
 var calcHistory = [];
 var resultValue = "0";
-var givenResult = false;
+var givenResult = "";
 var colorNum = 0;
 
 
@@ -174,7 +174,7 @@ function scientificScreenPrint(total) {
     // Beginning of the givenResult mode
     calcHistory = [];
     resultValue = total;
-    givenResult = true;
+    givenResult = symbol;
 }
 
 
@@ -212,6 +212,8 @@ function processValue(sym) {
     progress of the calculation's in the top screen and
     the result of it in the bottom screen.
     */
+    givenResultCheck(sym);
+
     if (resultValue.slice(-1) == ",") {resultValue = resultValue.slice(0, -1)}
     calcHistory.push(resultValue.replace(",", "."), calcValues[sym]);
 
@@ -232,7 +234,7 @@ function processValue(sym) {
 
 function givenResultCheck(sym) {
     /*
-    Looks if the user got a result, after that checks if the 
+    Looks if the user got a result, after that checks if the
     next input is a number or a symbol.
 
     If the input is a number:
@@ -242,11 +244,22 @@ function givenResultCheck(sym) {
         It adds the last number in the top screen and then the
         arithmetic operator.
     */
-    if (givenResult && sym != "negate" && (calcHistory.length == 0 ||
-        calcHistory.slice(-2)[0].includes("+", "-", "x", "÷"))) {
-        givenResult = false;
+    if (givenResult.includes("1/", "!", "√", "∛", "²", "=") == false) return
+    console.log(givenResult);
+
+    let condition = (sym != "negate" && (calcHistory.length == 0 ||
+        calcHistory.slice(-2)[0].includes("+", "-", "x", "÷")))
+
+    if (givenResult == "=" && condition) {
+        givenResult = "";
         resultValue = "0";
         topScreen.innerHTML = "";
+    }
+
+    else if (givenResult != "=" && condition) {
+        givenResult = "";
+        resultValue = "0";
+        screenModification(calculateValues(calcHistory.slice(-2)));
     }
 }
 
@@ -258,8 +271,6 @@ function bottomScreenPrint(sym) {
     But if the input is a system calculator button such as
     "clear", "ce" or "del", then it will delete characters.
     */
-    givenResultCheck(sym);
-
     if (["clear", "ce"].includes(sym) || ["del1", "del2"].includes(sym)
     && resultValue.length == 1 || sym == "num0"
     && (resultValue == "" || resultValue == "0")) {
