@@ -16,9 +16,9 @@ const calcValues = {
     "multiply": "x", "over-x": "1/", "factorial": "!", "equal-to": "=",
     "square-root": "√", "cube-root": "∛", "square-power": "²",
     "pi": "3,1415926535897932384", "euler": "2,7182818284590452353"};
-var calcHistory = [];
+var record = [];
 var resultValue = "0";
-var givenResult = "";
+var givenResult = false;
 var colorNum = 0;
 
 
@@ -139,7 +139,7 @@ function wrongInput(input) {  // Use after solving the scientific sym's bugs
     /*
     Function that alerts if a scientific input has an incorrect symbol.
     */
-    let sym = calcHistory.slice(-1)[0];
+    let sym = record.slice(-1)[0];
 
     let factorialError = sym == "!"  && input.includes("-", ".");
     let rootError      = sym == "√"  && input[1] == "-";
@@ -155,8 +155,8 @@ function scientificScreenPrint(total) {
     Function to change the aspect of the top screen when a
     the input is a scientific.
     */
-    let previousResult = `(${calculateValues(calcHistory.slice(0, -1))})`;
-    let symbol = calcHistory.slice(-1)[0];
+    let previousResult = `(${calculateValues(record.slice(0, -1))})`;
+    let symbol = record.slice(-1)[0];
 
     switch (symbol) {
         case "!":
@@ -170,11 +170,6 @@ function scientificScreenPrint(total) {
             topScreen.innerHTML = symbol + previousResult;
             break;
     }
-
-    // Beginning of the givenResult mode
-    calcHistory = [];
-    resultValue = total;
-    givenResult = symbol;
 }
 
 
@@ -191,15 +186,29 @@ function screenModification(total) {
         return bottomScreen.innerHTML = "You can't divide by zero";
     }
 
-    for (value in calcHistory) {
-        // If there's a scientific symbol
-        if (["1/", "!", "√", "∛", "²", "="].includes(calcHistory[value])) {
-            scientificScreenPrint(total);
-            break;
-        }
+    for (value in record) {
+        switch (record[value]) {
+            // Beginning of the givenResult mode
+            case "=":
+                record = [];
+                resultValue = total;
+                givenResult = true;
+                break;
 
-        // If there's a simple number or an arithmetic symbol
-        topScreen.innerHTML += " " + calcHistory[value].replace(".", ",");
+            // If there's a scientific symbol
+            case "1/":
+            case "!":
+            case "√":
+            case "∛":
+            case "²":
+                scientificScreenPrint(total);
+                break;
+
+            // If there's a simple number or an arithmetic symbol
+            default:
+                topScreen.innerHTML += ` ${record[value].replace(".", ",")}`
+                break;
+        }
     }
 
     bottomScreen.innerHTML = total.replace(".", ",");
@@ -212,18 +221,16 @@ function processValue(sym) {
     progress of the calculation's in the top screen and
     the result of it in the bottom screen.
     */
-    givenResultCheck(sym);
-
     if (resultValue.slice(-1) == ",") {resultValue = resultValue.slice(0, -1)}
-    calcHistory.push(resultValue.replace(",", "."), calcValues[sym]);
+    record.push(resultValue.replace(",", "."), calcValues[sym]);
 
-    if (calcHistory.slice(-2)[0] == "0" && calcHistory.slice(-1)[0] != "=") {
-        calcHistory = calcHistory.slice(0, -3);
-        calcHistory.push(calcValues[sym]);
+    if (record.slice(-2)[0] == "0" && record.slice(-1)[0] != "=") {
+        record = record.slice(0, -3);
+        record.push(calcValues[sym]);
     }
 
     // Visual process of the calculation in the top and bottom screen:
-    screenModification(calculateValues(calcHistory));
+    screenModification(calculateValues(record));
 
     // Preparation for the next calculation
     if (["1/", "!", "√", "∛", "²", "="].includes(calcValues[sym]) == false) {
@@ -234,7 +241,7 @@ function processValue(sym) {
 
 function givenResultCheck(sym) {
     /*
-    Looks if the user got a result, after that checks if the
+    Looks if the user got a result, after that checks if the 
     next input is a number or a symbol.
 
     If the input is a number:
@@ -244,22 +251,11 @@ function givenResultCheck(sym) {
         It adds the last number in the top screen and then the
         arithmetic operator.
     */
-    if (givenResult.includes("1/", "!", "√", "∛", "²", "=") == false) return
-    console.log(givenResult);
-
-    let condition = (sym != "negate" && (calcHistory.length == 0 ||
-        calcHistory.slice(-2)[0].includes("+", "-", "x", "÷")))
-
-    if (givenResult == "=" && condition) {
-        givenResult = "";
+    if (givenResult && sym != "negate" && (record.length == 0 ||
+        record.slice(-2)[0].includes("+", "-", "x", "÷"))) {
+        givenResult = false;
         resultValue = "0";
         topScreen.innerHTML = "";
-    }
-
-    else if (givenResult != "=" && condition) {
-        givenResult = "";
-        resultValue = "0";
-        screenModification(calculateValues(calcHistory.slice(-2)));
     }
 }
 
@@ -271,6 +267,8 @@ function bottomScreenPrint(sym) {
     But if the input is a system calculator button such as
     "clear", "ce" or "del", then it will delete characters.
     */
+    givenResultCheck(sym);
+
     if (["clear", "ce"].includes(sym) || ["del1", "del2"].includes(sym)
     && resultValue.length == 1 || sym == "num0"
     && (resultValue == "" || resultValue == "0")) {
@@ -279,7 +277,7 @@ function bottomScreenPrint(sym) {
 
     if (sym == "clear") {
         topScreen.innerHTML = "";
-        calcHistory = [];
+        record = [];
     }
 
     else if (sym.includes("num") || sym == "comma"
