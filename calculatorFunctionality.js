@@ -155,7 +155,7 @@ function scientificScreenPrint(total) {
     Function to change the aspect of the top screen when a
     the input is a scientific.
     */
-    let previousResult = `(${calculateValues(record.slice(0, -1))})`;
+    let previousResult = `(${resultValue})`;
     let symbol = record.slice(-1)[0];
 
     switch (symbol) {
@@ -187,28 +187,24 @@ function screenModification(total) {
     }
 
     for (value in record) {
-        switch (record[value]) {
-            // Beginning of the givenResult mode
-            case "=":
-                record = [];
-                resultValue = total;
-                givenResult = true;
-                break;
-
-            // If there's a scientific symbol
-            case "1/":
-            case "!":
-            case "√":
-            case "∛":
-            case "²":
-                scientificScreenPrint(total);
-                break;
-
-            // If there's a simple number or an arithmetic symbol
-            default:
-                topScreen.innerHTML += ` ${record[value].replace(".", ",")}`
-                break;
+        // Beginning of the givenResult mode
+        if (record[value] == "=") {
+            record = [];
+            resultValue = total;
+            givenResult = true;
+            break;
         }
+
+        // If there's a scientific symbol
+        else if (["1/", "!", "√", "∛", "²"].includes(record[value])) {
+            scientificScreenPrint(total);
+            record = record.slice(0, -2);
+            record.push(total)
+            break;
+        }
+
+        // If there's a simple number or an arithmetic symbol
+        topScreen.innerHTML += ` ${record[value].replace(".", ",")}`
     }
 
     bottomScreen.innerHTML = total.replace(".", ",");
