@@ -170,6 +170,11 @@ function scientificScreenPrint(total) {
             topScreen.innerHTML = symbol + previousResult;
             break;
     }
+
+    // Beginning of the givenResult mode
+    record = [];
+    resultValue = total;
+    givenResult = true;
 }
 
 
@@ -187,19 +192,9 @@ function screenModification(total) {
     }
 
     for (value in record) {
-        // Beginning of the givenResult mode
-        if (record[value] == "=") {
-            record = [];
-            resultValue = total;
-            givenResult = true;
-            break;
-        }
-
         // If there's a scientific symbol
-        else if (["1/", "!", "√", "∛", "²"].includes(record[value])) {
+        if (["1/", "!", "√", "∛", "²", "="].includes(record[value])) {
             scientificScreenPrint(total);
-            record = record.slice(0, -2);
-            record.push(total)
             break;
         }
 
