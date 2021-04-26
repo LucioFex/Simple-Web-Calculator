@@ -246,9 +246,10 @@ function givenResultCheck(sym) {
         It adds the last number in the top screen and then the
         arithmetic operator.
     */
-    if (givenResult && sym != "negate" && (record.length == 0 || record.length == 3)) {
+    if (givenResult && sym != "negate" && [0, 3].includes(record.length)) {
         givenResult = false;
         resultValue = "0";
+        record = [];
         topScreen.innerHTML = "";
     }
 }
