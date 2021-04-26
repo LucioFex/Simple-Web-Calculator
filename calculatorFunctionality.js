@@ -175,8 +175,8 @@ function scientificScreenPrint(total) {
     }
 
     // Beginning of the givenResult mode
-    if      (symbol == "=") {record = []}
-    else if (symbol != "=") {record = [preTotal, preSymbol, total]}
+    record = [];
+    if (symbol != "=") {record = [preTotal, preSymbol]}
     resultValue = total;
     givenResult = true;
 }
