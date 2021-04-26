@@ -156,27 +156,37 @@ function scientificScreenPrint(total) {
     the input is a scientific.
     */
     let symbol = record.slice(-1)[0];
-    let preTotal = calculateValues(record.slice(0, -2)).toString();
-    let preSymbol = record.slice(-3)[0];
+    let preSymbol
+    let preTotal
+    let preProcess
+
+    if (record.length >= 4) {
+        preTotal = calculateValues(record.slice(0, -2)).toString();
+        preSymbol = record.slice(-3)[0];
+        preProcess = `${preTotal} ${preSymbol}`;
+    }
+
+    else if (record.length < 4) {preProcess = ""}
 
     switch (symbol) {
         case "!":
         case "²":
             topScreen.innerHTML =
-                `${preTotal} ${preSymbol} (${resultValue})${symbol}`;
+                `${preProcess} (${resultValue})${symbol}`;
             break;
 
         case "1/":
         case "√":
         case "∛":
             topScreen.innerHTML =
-                `${preTotal} ${preSymbol} ${symbol}(${resultValue})`;
+                `${preProcess} ${symbol}(${resultValue})`;
             break;
     }
 
     // Beginning of the givenResult mode
-    record = [];
-    if (symbol != "=") {record = [preTotal, preSymbol]}
+    if (symbol != "=" && record.length >= 4) {record = [preTotal, preSymbol]}
+    else if (symbol == "=" || record.length < 4) {record = []}
+
     resultValue = total;
     givenResult = true;
 }
