@@ -156,22 +156,27 @@ function scientificScreenPrint(total) {
     the input is a scientific.
     */
     let symbol = record.slice(-1)[0];
+    let preTotal = calculateValues(record.slice(0, -2)).toString();
+    let preSymbol = record.slice(-3)[0];
 
     switch (symbol) {
         case "!":
         case "²":
-            topScreen.innerHTML = `(${resultValue})` + symbol;
+            topScreen.innerHTML =
+                `${preTotal} ${preSymbol} (${resultValue})${symbol}`;
             break;
 
         case "1/":
         case "√":
         case "∛":
-            topScreen.innerHTML = symbol + `(${resultValue})`;
+            topScreen.innerHTML =
+                `${preTotal} ${preSymbol} ${symbol}(${resultValue})`;
             break;
     }
 
     // Beginning of the givenResult mode
-    record = [];
+    if      (symbol == "=") {record = []}
+    else if (symbol != "=") {record = [preTotal, preSymbol, total]}
     resultValue = total;
     givenResult = true;
 }
@@ -198,7 +203,7 @@ function screenModification(total) {
         }
 
         // If there's a simple number or an arithmetic symbol
-        topScreen.innerHTML += ` ${record[value].replace(".", ",")}`
+        topScreen.innerHTML += ` ${record[value].replace(".", ",")}`;
     }
 
     bottomScreen.innerHTML = total.replace(".", ",");
@@ -241,7 +246,7 @@ function givenResultCheck(sym) {
         It adds the last number in the top screen and then the
         arithmetic operator.
     */
-    if (givenResult && sym != "negate" && (record.length == 0)) {
+    if (givenResult && sym != "negate" && (record.length == 0 || record.length == 3)) {
         givenResult = false;
         resultValue = "0";
         topScreen.innerHTML = "";
