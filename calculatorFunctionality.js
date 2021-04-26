@@ -1,6 +1,6 @@
 // JavaScript document - Simple Web Calculator - Luciano Esteban (2021)
 
-// Fundamental variables
+// Fundamental constants & variables
 const topScreen = document.getElementById("nums-top");
 const bottomScreen = document.getElementById("nums-bottom");
 const calculator = document.getElementById("calculator");
@@ -16,10 +16,10 @@ const calcValues = {
     "multiply": "x", "over-x": "1/", "factorial": "!", "equal-to": "=",
     "square-root": "√", "cube-root": "∛", "square-power": "²",
     "pi": "3,1415926535897932384", "euler": "2,7182818284590452353"};
-var record = [];
-var resultValue = "0";
 var givenResult = false;
+var resultValue = "0";
 var colorNum = 0;
+var record = [];
 
 
 function setUp() {
@@ -155,19 +155,18 @@ function scientificScreenPrint(total) {
     Function to change the aspect of the top screen when a
     the input is a scientific.
     */
-    let previousResult = `(${resultValue})`;
     let symbol = record.slice(-1)[0];
 
     switch (symbol) {
         case "!":
         case "²":
-            topScreen.innerHTML = previousResult + symbol;
+            topScreen.innerHTML = `(${resultValue})` + symbol;
             break;
 
         case "1/":
         case "√":
         case "∛":
-            topScreen.innerHTML = symbol + previousResult;
+            topScreen.innerHTML = symbol + `(${resultValue})`;
             break;
     }
 
@@ -232,7 +231,7 @@ function processValue(sym) {
 
 function givenResultCheck(sym) {
     /*
-    Looks if the user got a result, after that checks if the 
+    Looks if the user got a result, after that checks if the
     next input is a number or a symbol.
 
     If the input is a number:
@@ -242,8 +241,7 @@ function givenResultCheck(sym) {
         It adds the last number in the top screen and then the
         arithmetic operator.
     */
-    if (givenResult && sym != "negate" && (record.length == 0 ||
-        record.slice(-2)[0].includes("+", "-", "x", "÷"))) {
+    if (givenResult && sym != "negate" && (record.length == 0)) {
         givenResult = false;
         resultValue = "0";
         topScreen.innerHTML = "";
