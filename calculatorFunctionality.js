@@ -7,15 +7,14 @@ const calculator = document.getElementById("calculator");
 const calculatorInterface = document.getElementById("calculator-interface");
 const calculatorScreen = document.getElementById("calculator-screen");
 const skull = document.getElementById("skull")
-const colors = ["#294192", "#2f4d0d", "#790979", "#811414"];
 const footer = document.getElementById("footer");
+const colors = ["#294192", "#2f4d0d", "#790979", "#811414"];
 const calcValues = {
-    "num1": "1", "num2": "2", "num3": "3", "num4": "4", "num5": "5",
-    "num6": "6", "num7": "7", "num8": "8", "num9": "9", "num0": "0",
-    "comma": ",", "sum": "+", "substract": "-", "divide": "÷",
-    "multiply": "x", "over-x": "1/", "factorial": "!", "equal-to": "=",
-    "square-root": "√", "cube-root": "∛", "square-power": "²",
-    "pi": "3,1415926535897932384", "euler": "2,7182818284590452353"};
+    num1: "1", num2: "2", num3: "3", num4: "4", num5: "5", num6: "6",
+    num7: "7", num8: "8", num9: "9", num0: "0", comma: ",", sum: "+",
+    substract: "-", divide: "÷", multiply: "x", factorial: "!",
+    equalTo: "=", squareRoot: "√", cubeRoot: "∛", squarePower: "²",
+    pi: "3,1415926535897932384", euler: "2,7182818284590452353"};
 var givenResult = false;
 var resultValue = "0";
 var colorNum = 0;
@@ -64,8 +63,8 @@ function buttonAction(input) {
     It divides the 'specialValues' from the normals.
     */
     let specialValues = [
-        "equal-to", "over-x", "factorial", "square-root", "cube-root",
-        "square-power", "divide", "multiply", "sum", "substract"];
+        "equalTo", "overX", "factorial", "squareRoot", "cubeRoot",
+        "squarePower", "divide", "multiply", "sum", "substract"];
 
     if (specialValues.includes(input.id)) {
         input.addEventListener(

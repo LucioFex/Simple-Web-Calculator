@@ -234,13 +234,13 @@ html, body {
     height: 55px;
 }
 
-#arithmetic-container #equal-to {
+#arithmetic-container #equalTo {
     background-color: #3a5285;
     width: calc(100px * 2);
     height: 65px;
 }
 
-#arithmetic-container #equal-to:active {
+#arithmetic-container #equalTo:active {
     background-color: #314e8b;
     transform: scale(1.09);
 }
