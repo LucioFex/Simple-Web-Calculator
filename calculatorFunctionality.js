@@ -71,7 +71,7 @@ function buttonAction(input) {
         input.addEventListener(
             "click", () => processValue(input.id), false);
     }
-    else if (specialValues.includes(input.id) == false) {
+    else if (specialValues.includes(input.id) === false) {
         // If input.id is a number or not in the 'specialValues' list:
         input.addEventListener(
             "click", () => bottomScreenPrint(input.id), false);
@@ -103,8 +103,8 @@ function scientificSection(number, symbol) {
         case "²":  return Math.pow(number, 2);
 
         case "!":  let baseTotal = number.toString();
-            if (baseTotal == "0") {number = 1}
-            else if (baseTotal.includes(".") == false && baseTotal[0] != "-") {
+            if (baseTotal === "0") {number = 1}
+            else if (baseTotal.includes(".") === false && baseTotal[0] != "-") {
                 for (let num = 1; num != baseTotal; num++) {number *= num}}
             return number;
     }
@@ -141,9 +141,9 @@ function wrongInput(input) {  // Use after solving the scientific sym's bugs
     */
     let sym = record.slice(-1)[0];
 
-    let factorialError = sym == "!"  && input.includes("-", ".");
-    let rootError      = sym == "√"  && input[1] == "-";
-    let overXError     = sym == "1/" && input.slice(2) == "0";
+    let factorialError = sym === "!"  && input.includes("-", ".");
+    let rootError      = sym === "√"  && input[1] === "-";
+    let overXError     = sym === "1/" && input.slice(2) === "0";
 
     if (factorialError || rootError || overXError) {return true}
     return false;
@@ -185,7 +185,7 @@ function scientificScreenPrint(total) {
 
     // Beginning of the givenResult mode
     if (symbol != "=" && record.length >= 4) {record = [preTotal, preSymbol]}
-    else if (symbol == "=" || record.length < 4) {record = []}
+    else if (symbol === "=" || record.length < 4) {record = []}
 
     resultValue = total;
     givenResult = true;
@@ -200,7 +200,7 @@ function screenModification(total) {
     topScreen.innerHTML = "";
     total = total.toString();
 
-    if (total == "Infinity") {
+    if (total === "Infinity") {
         bottomScreenPrint("clear");
         return bottomScreen.innerHTML = "You can't divide by zero";
     }
@@ -226,10 +226,10 @@ function processValue(sym) {
     progress of the calculation's in the top screen and
     the result of it in the bottom screen.
     */
-    if (resultValue.slice(-1) == ",") {resultValue = resultValue.slice(0, -1)}
+    if (resultValue.slice(-1) === ",") {resultValue = resultValue.slice(0, -1)}
     record.push(resultValue.replace(",", "."), calcValues[sym]);
 
-    if (record.slice(-2)[0] == "0" && record.slice(-1)[0] != "=") {
+    if (record.slice(-2)[0] === "0" && record.slice(-1)[0] != "=") {
         record = record.slice(0, -3);
         record.push(calcValues[sym]);
     }
@@ -238,7 +238,7 @@ function processValue(sym) {
     screenModification(calculateValues(record));
 
     // Preparation for the next calculation
-    if (["1/", "!", "√", "∛", "²", "="].includes(calcValues[sym]) == false) {
+    if (["1/", "!", "√", "∛", "²", "="].includes(calcValues[sym]) === false) {
         resultValue = "0"}
     skullPosition();
 }
@@ -275,19 +275,19 @@ function bottomScreenPrint(sym) {
     givenResultCheck(sym);
 
     if (["clear", "ce"].includes(sym) || ["del1", "del2"].includes(sym)
-    && resultValue.length == 1 || sym == "num0"
-    && (resultValue == "" || resultValue == "0")) {
+    && resultValue.length === 1 || sym === "num0"
+    && (resultValue === "" || resultValue === "0")) {
         resultValue = "0";
     }
 
-    if (sym == "clear") {
+    if (sym === "clear") {
         topScreen.innerHTML = "";
         record = [];
     }
 
-    else if (sym.includes("num") || sym == "comma"
-    && resultValue.includes(",") == false) {
-        if (resultValue == "0" && sym != "comma") {resultValue = ""}
+    else if (sym.includes("num") || sym === "comma"
+    && resultValue.includes(",") === false) {
+        if (resultValue === "0" && sym != "comma") {resultValue = ""}
         resultValue += calcValues[sym];
     }
 
@@ -295,9 +295,9 @@ function bottomScreenPrint(sym) {
         resultValue = calcValues[sym];
     }
 
-    else if (sym == "negate" && resultValue != "0") {
+    else if (sym === "negate" && resultValue != "0") {
         if      (resultValue[0] != "-") {resultValue = "-" + resultValue}
-        else if (resultValue[0] == "-") {resultValue = resultValue.slice(1)}
+        else if (resultValue[0] === "-") {resultValue = resultValue.slice(1)}
     }
 
     else if (["del1", "del2"].includes(sym) && resultValue.length > 1) {
@@ -353,11 +353,11 @@ function helpSection(event) {
     alert("I am supposed to show you something about " +
         `${id[0].toUpperCase() + id.slice(1)} and stuff like that.`);
 
-    if (id == "terms") {
+    if (id === "terms") {
         alert("The license of this web site is the MIT LICENSE.");
     }
 
-    else if (id == "privacy") {
+    else if (id === "privacy") {
         privacyTexts = [
             "Knowing that this web site is about a calculator, there's " +
             "no need to set any kind of privacy politic. Relax...",
