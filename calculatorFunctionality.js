@@ -144,8 +144,8 @@ function wrongInput(number, symbol) {
     Function that alerts if a scientific input has an incorrect symbol.
     */
     let factorialError = symbol === "!"  && number.includes("-", ".");
-    let rootError      = symbol === "√"  && number[1] === "-";
-    let overXError     = symbol === "1/" && number.slice(2) === "0";
+    let rootError      = symbol === "√"  && number[0] === "-";
+    let overXError     = symbol === "1/" && number === "0";
 
     if (factorialError || rootError || overXError) {return true}
 }
