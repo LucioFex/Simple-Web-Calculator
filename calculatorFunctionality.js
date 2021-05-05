@@ -149,7 +149,7 @@ function wrongInput(input) {  // Use after solving the scientific sym's bugs
 }
 
 
-function scientificScreenPrint(total) {
+function topScreenPrint(total) {
     /*
     Function to change the aspect of the top screen when a
     the input is a scientific.
@@ -159,13 +159,13 @@ function scientificScreenPrint(total) {
     let preTotal
     let preProcess
 
-    if (record.length >= 4) {
+    if (record.length >= 4 && symbol ) {
         preTotal = calculateValues(record.slice(0, -2)).toString();
         preSymbol = record.slice(-3)[0];
         preProcess = `${preTotal} ${preSymbol}`;
     }
 
-    else if (record.length < 4) {preProcess = ""}
+    else if (record.length < 4 && symbol != "=") {preProcess = ""}
 
     switch (symbol) {
         case "!":
@@ -180,6 +180,9 @@ function scientificScreenPrint(total) {
             topScreen.innerHTML =
                 `${preProcess} ${symbol}(${resultValue})`;
             break;
+        case "=":
+            topScreen.innerHTML += " =";
+            break
     }
 
     // Beginning of the givenResult mode
@@ -207,7 +210,7 @@ function screenModification(total) {
     for (value in record) {
         // If there's a scientific symbol
         if (["1/", "!", "√", "∛", "²", "="].includes(record[value])) {
-            scientificScreenPrint(total);
+            topScreenPrint(total);
             break;
         }
 
