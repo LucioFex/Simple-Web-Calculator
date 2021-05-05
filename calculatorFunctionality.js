@@ -95,14 +95,18 @@ function scientificSection(number, symbol) {
     /*
     The 'Total' parameter will be processed by 'number' with scientific symbols
     */
+    wrongInput(number, symbol);
+
     switch (symbol) {
         case "1/": return 1 / number;
         case "√":  return Math.sqrt(number);
         case "∛":  return Math.cbrt(number);
         case "²":  return Math.pow(number, 2);
 
-        case "!":  let baseTotal = number.toString();
+        case "!":
+            let baseTotal = number.toString();
             if (baseTotal === "0") {number = 1}
+
             else if (baseTotal.includes(".") === false && baseTotal[0] != "-") {
                 for (let num = 1; num != baseTotal; num++) {number *= num}}
             return number;
@@ -125,6 +129,7 @@ function calculateValues(history) {
         if (["+", "-", "x", "÷"].includes(history[value - 1])) {
             result = arithmeticSection(result, ...numberAndSymbol);
         }
+
         // Scientific section
         else if (["1/", "!", "√", "∛", "²"].includes(history[value])) {
             result = scientificSection(...numberAndSymbol);
@@ -134,18 +139,15 @@ function calculateValues(history) {
 }
 
 
-function wrongInput(input) {  // Use after solving the scientific sym's bugs
+function wrongInput(number, symbol) {
     /*
     Function that alerts if a scientific input has an incorrect symbol.
     */
-    let sym = record.slice(-1)[0];
-
-    let factorialError = sym === "!"  && input.includes("-", ".");
-    let rootError      = sym === "√"  && input[1] === "-";
-    let overXError     = sym === "1/" && input.slice(2) === "0";
+    let factorialError = symbol === "!"  && number.includes("-", ".");
+    let rootError      = symbol === "√"  && number[1] === "-";
+    let overXError     = symbol === "1/" && number.slice(2) === "0";
 
     if (factorialError || rootError || overXError) {return true}
-    return false;
 }
 
 
@@ -180,6 +182,7 @@ function topScreenPrint(total) {
             topScreen.innerHTML =
                 `${preProcess} ${symbol}(${resultValue})`;
             break;
+
         case "=":
             topScreen.innerHTML += " =";
             break
@@ -255,8 +258,7 @@ function givenResultCheck(sym) {
         It restart the values of every screen.
 
     If the input is a symbol:
-        It adds the last number in the top screen and then the
-        arithmetic operator.
+        It adds the last number in the top screen and then the operator.
     */
     if (givenResult && sym != "negate" && [0, 3].includes(record.length)) {
         givenResult = false;
