@@ -95,7 +95,7 @@ function scientificSection(number, symbol) {
     /*
     The 'Total' parameter will be processed by 'number' with scientific symbols
     */
-    wrongInput(number, symbol);
+    if (wrongInput(number, symbol)) {return number}
 
     switch (symbol) {
         case "1/": return 1 / number;
@@ -146,6 +146,9 @@ function wrongInput(number, symbol) {
     let factorialError = symbol === "!"  && number.includes("-", ".");
     let rootError      = symbol === "√"  && number[0] === "-";
     let overXError     = symbol === "1/" && number === "0";
+
+    if (factorialError || rootError) {bottomScreen.innerHTML = "Invalid Input"}
+    else if  (overXError) {bottomScreen.innerHTML = "You can't divide by zero"}
 
     if (factorialError || rootError || overXError) {return true}
 }
