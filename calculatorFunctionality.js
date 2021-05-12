@@ -141,16 +141,14 @@ function calculateValues(history) {
 
 function wrongInput(number, symbol) {
     /*
-    Function that alerts if a scientific input has an incorrect symbol.
+    Function that alerts if an input has an incorrect symbol.
     */
     let factorialError = symbol === "!"  && number.includes("-", ".");
     let rootError      = symbol === "√"  && number[0] === "-";
     let overXError     = symbol === "1/" && number === "0";
 
-    if (factorialError || rootError) {bottomScreen.innerHTML = "Invalid Input"}
-    else if  (overXError) {bottomScreen.innerHTML = "You can't divide by zero"}
-
-    if (factorialError || rootError || overXError) {return true}
+    if (factorialError || rootError) {return "Invalid Input"}
+    else if (overXError) {return "You can't divide by zero"}
 }
 
 
