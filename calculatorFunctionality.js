@@ -145,10 +145,10 @@ function wrongInput(number, symbol) {
     */
     let factorialError = symbol === "!"  && number.includes("-", ".");
     let rootError      = symbol === "√"  && number[0] === "-";
-    let overXError     = symbol === "1/" && number === "0";
+    let zeroDivisionError     = symbol === "1/" && number === undefined;
 
     if (factorialError || rootError) {return "Invalid Input"}
-    else if (overXError) {return "You can't divide by zero"}
+    else if (zeroDivisionError) {return "You can't divide by zero"}
 }
 
 
