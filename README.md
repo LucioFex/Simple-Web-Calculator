@@ -5,15 +5,14 @@
 ![](imgs/calculator_img.png)
 
 
-This is a simple arithmetic web calculator, with some implementations 
-of a scientific one, made only with HTML, CSS and JavaScript.
+#### This is a simple arithmetic web calculator, with some implementations of a scientific one, made only with HTML, CSS and JavaScript.
 
 ![](imgs/preview_img1.jpg)
 
 ![](imgs/preview_img2.jpg)
 
 
-## Requeriments
+## Technologies used in the program
 
 - [HTML5](https://developer.mozilla.org/en-US/docs/Web/HTML)
 - [CSS3](https://www.w3.org/Style/CSS/Overview.en.html)
@@ -25,7 +24,7 @@ of a scientific one, made only with HTML, CSS and JavaScript.
 Pull requests are welcome. So if you've got an idea of how to improve this code, I'll thank you for opening an issue to check that change that you want to make.
 
 
-## Credits
+## Icon Design Credits
 
 - Social icons from [w3schools](https://www.w3schools.com/icons/fontawesome_icons_brand.asp).
 - Delete icon from [Those-Icons (flaticon)](https://www.flaticon.com/authors/those-icons).
