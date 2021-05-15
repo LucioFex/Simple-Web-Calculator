@@ -95,7 +95,11 @@ function scientificSection(number, symbol) {
     /*
     The 'Total' parameter will be processed by 'number' with scientific symbols
     */
-    if (wrongInput(number, symbol)) {return wrongInput(number, symbol)}
+    if (wrongInput(number, symbol)) {
+        console.log(true);
+        bottomScreen.innerHTML = wrongInput(number, symbol);
+        return "error"
+    }
 
     switch (symbol) {
         case "1/": return 1 / number;
@@ -135,6 +139,8 @@ function calculateValues(history) {
             result = scientificSection(...numberAndSymbol);
         }
     }
+
+    if (result == "error") {record = []}
     return result;
 }
 
@@ -155,7 +161,7 @@ function wrongInput(number, symbol) {
 function topScreenPrint(total) {
     /*
     Function to change the aspect of the top screen when a
-    the input is a scientific.
+    the input is a scientific operator.
     */
     let symbol = record.slice(-1)[0];
     let preSymbol
@@ -222,7 +228,7 @@ function screenModification(total) {
         topScreen.innerHTML += ` ${record[value].replace(".", ",")}`;
     }
 
-    bottomScreen.innerHTML = total.replace(".", ",");
+    if (total != "error") {bottomScreen.innerHTML = total.replace(".", ",")}
 }
 
 
