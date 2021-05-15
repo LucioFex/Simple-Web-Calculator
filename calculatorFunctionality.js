@@ -139,7 +139,7 @@ function calculateValues(history) {
         }
     }
 
-    if (result === "error") {record = []}
+    if (result === "error") {record = [], resultValue = "0"}
     return result;
 }
 
