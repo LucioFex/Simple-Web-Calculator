@@ -96,7 +96,6 @@ function scientificSection(number, symbol) {
     The 'Total' parameter will be processed by 'number' with scientific symbols
     */
     if (wrongInput(number, symbol)) {
-        console.log(true);
         bottomScreen.innerHTML = wrongInput(number, symbol);
         return "error"
     }
@@ -111,8 +110,8 @@ function scientificSection(number, symbol) {
             let baseTotal = number.toString();
             if (baseTotal === "0") {number = 1}
 
-            else if (baseTotal.includes(".") === false && baseTotal[0] != "-") {
-                for (let num = 1; num != baseTotal; num++) {number *= num}}
+            else if (baseTotal.includes(".") === false && baseTotal[0] !== "-") {
+                for (let num = 1; num !== baseTotal; num++) {number *= num}}
             return number;
     }
 }
@@ -140,7 +139,7 @@ function calculateValues(history) {
         }
     }
 
-    if (result == "error") {record = []}
+    if (result === "error") {record = []}
     return result;
 }
 
@@ -174,7 +173,7 @@ function topScreenPrint(total) {
         preProcess = `${preTotal} ${preSymbol}`;
     }
 
-    else if (record.length < 4 && symbol != "=") {preProcess = ""}
+    else if (record.length < 4 && symbol !== "=") {preProcess = ""}
 
     switch (symbol) {
         case "!":
@@ -196,7 +195,7 @@ function topScreenPrint(total) {
     }
 
     // Beginning of the givenResult mode
-    if (symbol != "=" && record.length >= 4) {record = [preTotal, preSymbol]}
+    if (symbol !== "=" && record.length >= 4) {record = [preTotal, preSymbol]}
     else if (symbol === "=" || record.length < 4) {record = []}
 
     resultValue = total;
@@ -228,7 +227,7 @@ function screenModification(total) {
         topScreen.innerHTML += ` ${record[value].replace(".", ",")}`;
     }
 
-    if (total != "error") {bottomScreen.innerHTML = total.replace(".", ",")}
+    if (total !== "error") {bottomScreen.innerHTML = total.replace(".", ",")}
 }
 
 
@@ -241,7 +240,7 @@ function processValue(sym) {
     if (resultValue.slice(-1) === ",") {resultValue = resultValue.slice(0, -1)}
     record.push(resultValue.replace(",", "."), calcValues[sym]);
 
-    if (record.slice(-2)[0] === "0" && record.slice(-1)[0] != "=") {
+    if (record.slice(-2)[0] === "0" && record.slice(-1)[0] !== "=") {
         record = record.slice(0, -3);
         record.push(calcValues[sym]);
     }
@@ -267,7 +266,7 @@ function givenResultCheck(sym) {
     If the input is a symbol:
         It adds the last number in the top screen and then the operator.
     */
-    if (givenResult && sym != "negate" && [0, 3].includes(record.length)) {
+    if (givenResult && sym !== "negate" && [0, 3].includes(record.length)) {
         givenResult = false;
         resultValue = "0";
         record = [];
@@ -298,7 +297,7 @@ function bottomScreenPrint(sym) {
 
     else if (sym.includes("num") || sym === "comma"
     && resultValue.includes(",") === false) {
-        if (resultValue === "0" && sym != "comma") {resultValue = ""}
+        if (resultValue === "0" && sym !== "comma") {resultValue = ""}
         resultValue += calcValues[sym];
     }
 
@@ -306,8 +305,8 @@ function bottomScreenPrint(sym) {
         resultValue = calcValues[sym];
     }
 
-    else if (sym === "negate" && resultValue != "0") {
-        if      (resultValue[0] != "-") {resultValue = "-" + resultValue}
+    else if (sym === "negate" && resultValue !== "0") {
+        if      (resultValue[0] !== "-") {resultValue = "-" + resultValue}
         else if (resultValue[0] === "-") {resultValue = resultValue.slice(1)}
     }
 
