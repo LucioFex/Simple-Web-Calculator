@@ -109,12 +109,10 @@ function scientificSection(symbol) {
         case "²":  return Math.pow(number, 2);
 
         case "!":
-            let baseTotal = number.toString();
-            if (baseTotal === "0") {number = 1}
+            if (number === 0) {return 1}
+            let inputNumber = number;
 
-            else if (
-                baseTotal.includes(".") === false && baseTotal[0] !== "-") {
-                for (let num = 1; num !== baseTotal; num++) {number *= num}}
+            for (num=1; num < inputNumber; num++) {number *= num}
             return number;
     }
 }
