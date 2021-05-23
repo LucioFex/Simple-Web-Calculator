@@ -95,7 +95,7 @@ function scientificSection(symbol) {
     /*
     The 'Total' parameter will be processed by 'number' with scientific symbols
     */
-    let number = parseFloat(bottomScreen.innerHTML);
+    let number = parseFloat(bottomScreen.innerHTML.replace(",", "."));
 
     if (wrongInput(number, symbol)) {
         bottomScreen.innerHTML = wrongInput(number, symbol);
@@ -150,7 +150,7 @@ function wrongInput(number, symbol) {
     Function that alerts if an input has an incorrect symbol.
     */
     number = number.toString()
-
+    console.log(number);
     let factorialError    = symbol === "!"  && number.includes("-", ".");
     let rootError         = symbol === "√"  && number[0] === "-";
     let zeroDivisionError = symbol === "1/" && number === undefined;
