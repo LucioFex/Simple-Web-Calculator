@@ -151,8 +151,10 @@ function wrongInput(number, symbol) {
     /*
     Function that alerts if an input has an incorrect symbol.
     */
-    let factorialError    = symbol === "!" && number.includes("-", ".");
-    let rootError         = symbol === "√" && number[0] === "-";
+    number = number.toString()
+
+    let factorialError    = symbol === "!"  && number.includes("-", ".");
+    let rootError         = symbol === "√"  && number[0] === "-";
     let zeroDivisionError = symbol === "1/" && number === undefined;
 
     if      (factorialError || rootError)  {return "Invalid Input"}
