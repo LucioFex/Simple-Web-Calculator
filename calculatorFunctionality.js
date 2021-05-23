@@ -91,10 +91,12 @@ function arithmeticSection(total, symbol, number) {
 }
 
 
-function scientificSection(number, symbol) {
+function scientificSection(symbol) {
     /*
     The 'Total' parameter will be processed by 'number' with scientific symbols
     */
+    let number = parseFloat(bottomScreen.innerHTML);
+
     if (wrongInput(number, symbol)) {
         bottomScreen.innerHTML = wrongInput(number, symbol);
         return "error"
@@ -110,7 +112,8 @@ function scientificSection(number, symbol) {
             let baseTotal = number.toString();
             if (baseTotal === "0") {number = 1}
 
-            else if (baseTotal.includes(".") === false && baseTotal[0] !== "-") {
+            else if (
+                baseTotal.includes(".") === false && baseTotal[0] !== "-") {
                 for (let num = 1; num !== baseTotal; num++) {number *= num}}
             return number;
     }
@@ -124,7 +127,7 @@ function calculateValues(history) {
     */
     if (Number.isNaN(parseFloat(history[0]))) {history.unshift("0")}
     let result = parseFloat(history[0]);
-
+    
     for (value in history) {
         let numberAndSymbol = [history[value -1], history[value]];
 
@@ -135,7 +138,7 @@ function calculateValues(history) {
 
         // Scientific section
         else if (["1/", "!", "√", "∛", "²"].includes(history[value])) {
-            result = scientificSection(...numberAndSymbol);
+            result = scientificSection(numberAndSymbol[1]);
         }
     }
 
@@ -167,26 +170,27 @@ function topScreenPrint(total) {
     let preTotal
     let preProcess
 
-    if (record.length >= 4 && symbol ) {
+    if (record.length >= 4 && symbol) {
         preTotal = calculateValues(record.slice(0, -2)).toString();
         preSymbol = record.slice(-3)[0];
         preProcess = `${preTotal} ${preSymbol}`;
     }
 
     else if (record.length < 4 && symbol !== "=") {preProcess = ""}
+    let screenNumber = bottomScreen.innerHTML;
 
     switch (symbol) {
         case "!":
         case "²":
             topScreen.innerHTML =
-                `${preProcess} (${resultValue})${symbol}`;
+                `${preProcess} (${screenNumber})${symbol}`;
             break;
 
         case "1/":
         case "√":
         case "∛":
             topScreen.innerHTML =
-                `${preProcess} ${symbol}(${resultValue})`;
+                `${preProcess} ${symbol}(${screenNumber})`;
             break;
 
         case "=":
@@ -240,7 +244,7 @@ function processValue(sym) {
     if (resultValue.slice(-1) === ",") {resultValue = resultValue.slice(0, -1)}
     record.push(resultValue.replace(",", "."), calcValues[sym]);
 
-    if (record.slice(-2)[0] === "0" && record.slice(-1)[0] !== "=") {
+    if (record.slice(-2)[0] === "0" && record.slice(-1)[0] !== "=" && record.length === 2) {
         record = record.slice(0, -3);
         record.push(calcValues[sym]);
     }
