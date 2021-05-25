@@ -35,8 +35,6 @@ Pull requests are welcome. So if you've got an idea of how to improve this code,
 - Headphones icon from [Nhor Phai(flaticon)](https://www.flaticon.com/free-icon/headphones_2590162?related_id=2590061&origin=search).
 
 
-## ```Project Status: Almost complete```
-
 ## License
 
 #### MIT © [Luciano Esteban](https://github.com/LucioFex)
