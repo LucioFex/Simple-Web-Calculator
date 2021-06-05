@@ -43,6 +43,9 @@ function setUp() {
     for (idName of document.getElementsByClassName("button")) {
         buttonAction(idName);
     }
+
+    // Link the numbers from the keyboard to the calculator
+    document.addEventListener("keydown", keyboardNumbers, false);
 }
 
 
@@ -385,6 +388,12 @@ function helpSection(event) {
 
         for (text of privacyTexts) {alert(text)}
         window.open("https://en.wikipedia.org/wiki/Privacy", "_blank");
+    }
+}
+
+function keyboardNumbers(event) {
+    if (event.key === calcValues["num" + event.key]) {
+        bottomScreenPrint("num" + event.key)
     }
 }
 
