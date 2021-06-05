@@ -392,6 +392,9 @@ function helpSection(event) {
 }
 
 function keyboardNumbers(event) {
+    /*
+    Function to call the numbers and some symbols with the keyboard.
+    */
     if (event.key === calcValues["num" + event.key]) {
         bottomScreenPrint("num" + event.key)
     }
