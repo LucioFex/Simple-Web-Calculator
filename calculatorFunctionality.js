@@ -18,10 +18,9 @@ const calcValues = {
 const keyboardSymbols = {
     "1": "num1", "2": "num2", "3": "num3", "4": "num4", "5": "num5",
     "6": "num6", "7": "num7", "8": "num8", "9": "num9", "0": "num0",
-    "Backspace": "del1", "Delete": "clear",
-    "+": "sum", "-": "substract", "/": "divide", "*": "multiply", "π": "pi",
-    "Enter": "equalTo", "=": "equalTo",  ",": "comma", "e": "euler",
-    "²": "squarePower", "√": "squareRoot", "∛": "cubeRoot"
+    "Backspace": "del1", "Delete": "clear", ",": "comma",
+    "+": "sum", "-": "substract", "/": "divide", "*": "multiply",
+    "Enter": "equalTo", "=": "equalTo", "e": "euler"
 }
 var givenResult = false;
 var resultValue = "0";
@@ -374,10 +373,17 @@ function keyboardButtons(event) {
     Function to use the numbers and some symbols of
     the keyboard as calculator buttons.
     */
-    let bottomValues = Object.keys(keyboardSymbols).slice(0, 12);
-    let topValues = Object.keys(keyboardSymbols).slice(12)
+    let bottomValues = Object.keys(keyboardSymbols).slice(0, 13);
+    let topValues = Object.keys(keyboardSymbols).slice(13);
 
-    bottomScreenPrint(keyboardSymbols[event.key])
+    if (bottomValues.includes(event.key)) {
+        bottomScreenPrint(keyboardSymbols[event.key]);
+    }
+    
+    else if (topValues.includes(event.key)) {
+        processValue(keyboardSymbols[event.key]);
+    }
+
 }
 
 function helpSection(event) {
