@@ -15,6 +15,14 @@ const calcValues = {
     substract: "-", divide: "÷", multiply: "x", factorial: "!", overX: "1/",
     equalTo: "=", squareRoot: "√", cubeRoot: "∛", squarePower: "²",
     pi: "3,1415926535897932384", euler: "2,7182818284590452353"};
+const keyboardSymbols = {
+    "1": "num1", "2": "num2", "3": "num3", "4": "num4", "5": "num5",
+    "6": "num6", "7": "num7", "8": "num8", "9": "num9", "0": "num0",
+    "Backspace": "del1", "Delete": "clear",
+    "+": "sum", "-": "substract", "/": "divide", "*": "multiply", "π": "pi",
+    "Enter": "equalTo", "=": "equalTo",  ",": "comma", "e": "euler",
+    "²": "squarePower", "√": "squareRoot", "∛": "cubeRoot"
+}
 var givenResult = false;
 var resultValue = "0";
 var colorNum = 0;
@@ -44,8 +52,8 @@ function setUp() {
         buttonAction(idName);
     }
 
-    // Link the numbers from the keyboard to the calculator
-    document.addEventListener("keydown", keyboardNumbers, false);
+    // Link some symbols of the keyboard to the calculator
+    document.addEventListener("keydown", keyboardButtons, false);
 }
 
 
@@ -361,6 +369,16 @@ function skullPosition() {
     }
 }
 
+function keyboardButtons(event) {
+    /*
+    Function to use the numbers and some symbols of
+    the keyboard as calculator buttons.
+    */
+    let bottomValues = Object.keys(keyboardSymbols).slice(0, 12);
+    let topValues = Object.keys(keyboardSymbols).slice(12)
+
+    bottomScreenPrint(keyboardSymbols[event.key])
+}
 
 function helpSection(event) {
     /*
@@ -388,15 +406,6 @@ function helpSection(event) {
 
         for (text of privacyTexts) {alert(text)}
         window.open("https://en.wikipedia.org/wiki/Privacy", "_blank");
-    }
-}
-
-function keyboardNumbers(event) {
-    /*
-    Function to call the numbers and some symbols with the keyboard.
-    */
-    if (event.key === calcValues["num" + event.key]) {
-        bottomScreenPrint("num" + event.key)
     }
 }
 
