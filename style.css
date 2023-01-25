@@ -176,6 +176,11 @@ html, body {
     height: 55px;
 }
 
+#skull img {
+    user-select: none;
+    transition: transform 1s ease-in-out 1s;
+};
+
 #skull, #functional-container #del1 img {
     user-select: none;
 }

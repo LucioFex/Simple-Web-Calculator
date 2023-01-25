@@ -349,6 +349,13 @@ function skullPosition() {
 
     switch (greaterWidth <= 0) {
         case true:
+            let transition = 0.2;
+            skull.style.transition = `${transition}s ease-in-out 0s`;
+            calculator.style.transition = `${transition}s ease-in-out 0s`;
+            calculatorInterface.style.transition = `${transition}s ease-in-out 0s`;
+            calculatorScreen.style.transition = `${transition}s ease-in-out 0s`;
+            footer.style.transition = `${transition}s ease-in-out 0s`;
+
             skull.style.left = "calc(50% + 300px)";
             skull.src = "imgs/limit-screen.png";
             calculator.style.width = "600px";
