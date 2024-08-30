@@ -315,13 +315,17 @@ footer {
     font-size: 20px;
 }
 
-.footer-third span {
+ span {
     color: white;
     font-family: "arial", "sans-serif";
-    font-size: 18px;
+    font-size: 38px;
     font-weight: 200;
     display: block;
-    width: 105%;
+    width: 100%;
+    max-width: 800px;
+    margin:20px auto;
+    text-align: center;
+
 }
 
 .footer-third li i {
