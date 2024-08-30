@@ -23,7 +23,7 @@ html, body {
     top: 20px;
     left: calc(50% - 230px);
     padding: 5px 25px 5px 25px;
-    border-radius: 20px;
+    border-radius: 15px;
     text-shadow: 5px 5px 5px #000000;
     box-shadow: 0px 5px 10px #220a36;
     position: absolute;
@@ -315,13 +315,17 @@ footer {
     font-size: 20px;
 }
 
-.footer-third span {
+ span {
     color: white;
     font-family: "arial", "sans-serif";
-    font-size: 18px;
+    font-size: 38px;
     font-weight: 200;
     display: block;
-    width: 105%;
+    width: 100%;
+    max-width: 800px;
+    margin:20px auto;
+    text-align: center;
+
 }
 
 .footer-third li i {
